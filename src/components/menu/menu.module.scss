@@ -1,0 +1,36 @@
+
+@import 'styles/init.scss';
+
+.menu {
+  position: fixed;
+}
+
+.menuList {
+  width: auto;
+  border-radius: 5px;
+  background-color: #eee;
+
+  &.rightAngleTop {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &.children {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+  }
+}
+
+.menuItem {
+  color: #000;
+  position: relative;
+
+  &:hover {
+
+    .menuList {
+      display: block;
+    }
+  }
+}

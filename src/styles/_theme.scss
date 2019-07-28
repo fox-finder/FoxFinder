@@ -1,0 +1,21 @@
+
+@mixin create-theme($primary) {
+  #{--primary}: $primary;
+  #{--module-bg}: rgba($primary, 0.6);
+  #{--module-hover-bg}: $primary;
+}
+
+#root {
+
+  &.default {
+    @include create-theme(
+      $primary: $white
+    )
+  }
+
+  &.dark {
+    @include create-theme(
+      $primary: $black
+    )
+  }
+}

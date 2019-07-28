@@ -1,0 +1,55 @@
+
+$iconfont-url: '//at.alicdn.com/t/font_190798_rjgpakiecc.css';
+
+// colors
+$white: #ffffff;
+$black: #000000;
+$green: #61ca57;
+$red: #ee6c60;
+$yellow: #f6c050;
+$grey: #555555;
+
+// font
+$monospace: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+$serif: Georgia, Times, 'Times New Roman', serif;
+$sans-serif: specialSymbol, DINRegular, -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
+$font-family: $sans-serif;
+
+// typography
+$font-size-base: 14px;
+$font-size-large: 1.2rem;
+$font-size-small: .85rem;
+$font-size-h1: 2rem;
+$font-size-h2: 1.75rem;
+$font-size-h3: 1.5rem;
+$font-size-h4: 1.2rem;
+$font-size-h5: 1rem;
+$font-size-h6: $font-size-small;
+$line-height-base: 1.4;
+
+// theme colors
+$primary: var(--primary);
+$body-bg: var(--body-bg);
+$window-bg: var(--window-bg);
+$window-hover-bg: var(--window-hover-bg);
+
+// text
+$text: var(--text-color);
+$text-reversal: var(--text-reversal);
+$text-dark: var(--text-dark);
+$text-darken: var(--text-darken);
+$text-light: var(--text-light);
+$secondary: var(--text-secondary);
+$disabled: var(--text-disabled);
+$dividers: var(--text-dividers);
+
+// layout
+$radius: 2px;
+$header-height: 1.6rem;
+
+$base-index: 0;
+$dock-index: 1;
+$window-index: 2;
+$header-index: 3;
+$popup-index: 8;
+$menu-index: 9;

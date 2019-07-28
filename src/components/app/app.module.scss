@@ -1,0 +1,10 @@
+
+@import 'styles/init.scss';
+
+.os {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: $base-index;
+  overflow: hidden;
+}
