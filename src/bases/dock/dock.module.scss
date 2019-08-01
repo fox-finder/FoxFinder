@@ -1,0 +1,119 @@
+
+@import 'styles/init.scss';
+
+$dock-animation-time: 0.088s;
+
+.dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $dock-height-default;
+  display: flex;
+  justify-content: center;
+  z-index: $layout-dock-index;
+
+  .apps {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: auto;
+    max-width: 90vw;
+    margin: 0;
+    padding: $gap / 2;
+    padding-bottom: calc((#{$gap} / 2) + #{$radius});
+    background-color: #ffffffb5;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    .item {
+      position: relative;
+      display: block;
+      width: auto;
+      height: 100%;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        // background-color: red;
+        z-index: 9;
+      }
+
+      &:hover {
+
+        > .icon {
+          transform: scale(1.5);
+          margin: 0 $gap * 1.6;
+          transition: transform $dock-animation-time, margin $dock-animation-time;
+        }
+
+        &::after {
+          transform: scale(1.5);
+        }
+
+        & + .item {
+
+          > .name {
+            visibility: visible;
+            transition: visibility 0s;
+          }
+
+          > .icon {
+            transform: scale(1.8);
+            margin: 0 $gap * 2;
+            transition: transform $dock-animation-time, margin $dock-animation-time;
+          }
+
+          & + .item {
+
+            > .icon {
+              transform: scale(1.5);
+              margin: 0 $gap * 2;
+              transition: transform $dock-animation-time, margin $dock-animation-time;
+            }
+          }
+        }
+      }
+
+      .name {
+        position: absolute;
+        top: -150%;
+        left: 50%;
+        display: block;
+        width: auto;
+        height: $gap * 2;
+        line-height: $gap * 2;
+        padding: 0 ($gap / 2);
+        background-color: #ffffffb5;
+        border-radius: $radius;
+        transform: translateX(-50%);
+        visibility: hidden;
+        transition: visibility 0s;
+      }
+
+      .icon {
+        display: block;
+        height: 100%;
+        transform-origin: bottom;
+        transition: transform $dock-animation-time, margin $dock-animation-time;
+      }
+
+      .active {
+        display: block;
+        width: 5px;
+        height: 4px;
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 1px;
+        background-color: $reverse;
+      }
+    }
+  }
+}

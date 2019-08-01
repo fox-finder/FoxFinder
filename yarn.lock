@@ -1271,6 +1271,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/classnames@^2.2.9":
+  version "2.2.9"
+  resolved "https://registry.npm.taobao.org/@types/classnames/download/@types/classnames-2.2.9.tgz#d868b6febb02666330410fe7f58f3c4b8258be7b"
+  integrity sha1-2Gi2/rsCZmMwQQ/n9Y88S4JYvns=
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
   resolved "https://registry.npm.taobao.org/@types/istanbul-lib-coverage/download/@types/istanbul-lib-coverage-2.0.1.tgz#42995b446db9a48a11a07ec083499a860e9138ff"
@@ -1853,6 +1858,16 @@ atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.npm.taobao.org/atob/download/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
+
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.npm.taobao.org/autobind-decorator/download/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha1-6p4cmHCM87WzVvfPnxDyZf8YI5w=
+
+autobind@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/autobind/download/autobind-1.0.3.tgz#c0d82ed2f6f12fb1331da388b89ad51a3bf968fa"
+  integrity sha1-wNgu0vbxL7EzHaOIuJrVGjv5aPo=
 
 autoprefixer@^9.4.9:
   version "9.6.1"

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from 'components/app';
+import { Os } from './bases/os';
 
 import 'normalize.css';
 import './styles/app.scss';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Os />, document.getElementById('root'));

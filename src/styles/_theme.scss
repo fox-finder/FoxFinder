@@ -1,21 +1,24 @@
 
-@mixin create-theme($primary) {
-  #{--primary}: $primary;
-  #{--module-bg}: rgba($primary, 0.6);
-  #{--module-hover-bg}: $primary;
+@mixin create-theme($normal, $reverse) {
+  #{--normal}: $normal;
+  #{--reverse}: $reverse;
+  #{--module-bg}: rgba($normal, 0.6);
+  #{--module-hover-bg}: $normal;
 }
 
 #root {
 
   &.default {
     @include create-theme(
-      $primary: $white
+      $normal: $white,
+      $reverse: $black
     )
   }
 
   &.dark {
     @include create-theme(
-      $primary: $black
+      $normal: $black,
+      $reverse: $white
     )
   }
 }

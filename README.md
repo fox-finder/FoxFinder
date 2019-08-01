@@ -2,43 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## OS
 
-os
-  - desktop
-    - file
-    - dir
-    - widget
-  - header
-    - logo
-      - about
-      - system setting
-      - app store
-      - history app
-      - logout  system
-    - tray
-      - full screen
-      - show desktop
-      - local time
-      - user
-      - battery
-  - dock
-    * url type
-    * iframe type
-    * widget type
-    * file link type
-    * status:
-      * error
-      * active
-    - system pin
-      - launch
-      - finder
-      - recycle
-    - user pin
-    - history
-  * module
-    - setting
-    - launch
-    - finder
-    - app store
 
 ## Available Scripts
 

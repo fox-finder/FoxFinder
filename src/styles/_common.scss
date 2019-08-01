@@ -11,6 +11,7 @@
 }
 
 body {
+  font-size: $font-size-base;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,7 +24,7 @@ code {
 * {
   outline: none;
   box-shadow: none;
-  border-radius: 0;
+  box-sizing: border-box;
 }
 
 *, *:hover {
@@ -69,18 +70,18 @@ a {
 }
 
 ::selection {
-  background: $primary; 
-  color: $white;
+  background: $normal; 
+  color: $reverse;
 }
 
 ::-moz-selection {
-  background: $primary; 
-  color: $white;
+  background: $normal; 
+  color: $reverse;
 }
 
 ::-webkit-selection {
-  background: $primary; 
-  color: $white;
+  background: $normal; 
+  color: $reverse;
 }
 
 ::-webkit-scrollbar {
