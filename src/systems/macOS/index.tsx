@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { observer } from 'mobx-react';
-import styles from './os.module.scss';
-import { Desktop } from 'bases/desktop';
-import { Header } from 'bases/header';
-import { Dock } from 'bases/dock';
-import { ContextMenu } from 'bases/menu/ContextMenu';
-import menuStore from 'bases/menu/store';
+
+import { Desktop } from './desktop';
+import { Header } from './header';
+import { Dock } from './dock';
+import { ContextMenu } from './menu/ContextMenu';
+import menuStore from 'stores/menu';
 
 function test() {
   console.log('测试点击')
@@ -20,9 +20,9 @@ function testchild() {
   console.log('testchild')
 }
 
-export const Os: React.FC = observer(() => {
+export const MacOS: React.FC = observer(() => {
   return (
-    <div id="os" className={styles.os}>
+    <div id="os">
       <Header />
       <Desktop />
       <Dock />

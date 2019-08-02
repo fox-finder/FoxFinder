@@ -1,8 +1,20 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Os } from './bases/os';
+import { observer } from 'mobx-react';
+import { MacOS } from './systems/macOS';
+import { Win95 } from './systems/win95';
+import { WinXP } from './systems/winXP';
+import { Windows } from './systems/windows';
 
 import 'normalize.css';
-import './styles/app.scss';
+import './styles/os.scss';
 
-ReactDOM.render(<Os />, document.getElementById('root'));
+export const App: React.FC = observer(() => {
+  // return <Win95 />
+  // return <WinXP />
+  // return <Windows />
+  return <MacOS />
+})
+
+ReactDOM.render(<App />, document.getElementById('root'));

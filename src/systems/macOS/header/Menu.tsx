@@ -1,9 +1,9 @@
 
 import React from 'react';
 import styles from './header.module.scss';
-import { KeyType, PositionType } from 'bases/menu/store';
-import { MenuRegister } from 'bases/menu/Register';
-import { MenuList } from 'bases/menu/List';
+import { KeyType, PositionType } from '../../../stores/menu';
+import { MenuRegister } from '../menu/Register';
+import { MenuList } from '../menu/List';
 
 function openAbout() {
   console.log('打开关于系统')

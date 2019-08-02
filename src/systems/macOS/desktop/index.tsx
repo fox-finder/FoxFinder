@@ -1,8 +1,8 @@
 
 import React from 'react';
 import styles from './desktop.module.scss';
-import { MenuRegister } from 'bases/menu/Register';
-import menuStore, { KeyType, PositionType } from 'bases/menu/store';
+import { MenuRegister } from '../menu/Register';
+import menuStore, { KeyType, PositionType } from '../../../stores/menu';
 import { Window, TitleBar, Text, SegmentedControl, SegmentedControlItem } from 'react-desktop/macOs';
 
 const menuList = [

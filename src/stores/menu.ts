@@ -2,7 +2,7 @@
 import autobind from 'autobind-decorator'
 import { observable, computed, action } from 'mobx';
 import { observer } from 'mobx-react';
-import { MenuItem, IMenuItemProps } from './Item';
+import { MenuItem, IMenuItemProps } from '../systems/macOS/menu/Item';
 
 export enum KeyType {
   Left = 'left',
