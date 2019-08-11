@@ -1,7 +1,40 @@
 
 @import 'styles/init.scss';
 
-$dock-animation-time: 0.088s;
+$dock-icon-animation-time: .0888s;
+$dock-size-animation-time: .0888s;
+
+// 元素放大器
+@mixin dockItemSize($scale, $animation-time) {
+  margin: 0 ($gap * $scale);
+  transition: margin $dock-size-animation-time;
+}
+
+// icon 放大器
+@mixin dockItemIconScale($scale, $animation-time) {
+  transform: scale($scale);
+  transition: transform $dock-icon-animation-time;
+}
+
+// 启动动画
+@keyframes app-running {
+  0% { transform: translateY(0) }
+  35% { transform: translateY(-40%) }
+  45% { transform: translateY(0) }
+  80% { transform: translateY(-30%) }
+  90% { transform: translateY(0) }
+}
+
+// 异常动画
+@keyframes app-error {
+  0% { transform: translateY(0) }
+  20% { transform: translateY(-80%) }
+  25% { transform: translateY(0) }
+  40% { transform: translateY(-43%) }
+  45% { transform: translateY(0) }
+  65% { transform: translateY(-28%) }
+  70% { transform: translateY(0) }
+}
 
 .dock {
   position: fixed;
@@ -9,86 +42,96 @@ $dock-animation-time: 0.088s;
   left: 0;
   right: 0;
   width: 100%;
-  height: $dock-height-default;
+  height: $dock-height-normal;
   display: flex;
   justify-content: center;
   z-index: $layout-dock-index;
 
-  .apps {
+  &.small {
+    height: $dock-height-small;
+  }
+
+  * {
+    user-select: none;
+  }
+
+  .container {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: auto;
-    max-width: 90vw;
+    max-width: 90%;
     margin: 0;
     padding: $gap / 2;
     padding-bottom: calc((#{$gap} / 2) + #{$radius});
-    background-color: #ffffffb5;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    transition: width $dock-size-animation-time;
+
+    .separator {
+      display: flex;
+      width: 1px;
+      height: 77%;
+      margin: 0 $gap;
+      background-color: $reverse;
+    }
 
     .item {
       position: relative;
-      display: block;
+      display: flex;
+      justify-content: center;
       width: auto;
       height: 100%;
+      margin: 0 ($gap / 4);
+      transition: margin $dock-size-animation-time;
 
+      &.active {
+
+        > .icon {
+          animation: app-running 1s;
+        }
+
+        > .indicator {
+          visibility: visible;
+        }
+      }
+
+      &.error {
+        > .icon {
+          animation: app-error 1.8s 3;
+        }
+      }
+
+      // 透明层 -> 用于提高 prev | next 元素鼠标事件的阈值
       &::after {
         content: ' ';
         position: absolute;
-        top: 0;
-        left: 100%;
+        bottom: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        // background-color: red;
         z-index: 9;
       }
 
-      &:hover {
+      &:first-child {
+        margin-left: 0;
+      }
 
-        > .icon {
-          transform: scale(1.5);
-          margin: 0 $gap * 1.6;
-          transition: transform $dock-animation-time, margin $dock-animation-time;
-        }
-
-        &::after {
-          transform: scale(1.5);
-        }
-
-        & + .item {
-
-          > .name {
-            visibility: visible;
-            transition: visibility 0s;
-          }
-
-          > .icon {
-            transform: scale(1.8);
-            margin: 0 $gap * 2;
-            transition: transform $dock-animation-time, margin $dock-animation-time;
-          }
-
-          & + .item {
-
-            > .icon {
-              transform: scale(1.5);
-              margin: 0 $gap * 2;
-              transition: transform $dock-animation-time, margin $dock-animation-time;
-            }
-          }
-        }
+      &:last-child {
+        margin-right: 0;
       }
 
       .name {
+        $name-height: $gap * 2;
         position: absolute;
-        top: -150%;
+        top: calc(-120% - #{$name-height});
         left: 50%;
         display: block;
         width: auto;
-        height: $gap * 2;
-        line-height: $gap * 2;
-        padding: 0 ($gap / 2);
+        height: $name-height;
+        line-height: $name-height;
+        padding: 0 ($name-height / 4);
         background-color: #ffffffb5;
         border-radius: $radius;
         transform: translateX(-50%);
@@ -100,19 +143,59 @@ $dock-animation-time: 0.088s;
         display: block;
         height: 100%;
         transform-origin: bottom;
-        transition: transform $dock-animation-time, margin $dock-animation-time;
+        transition: transform $dock-icon-animation-time;
+        animation: none;
       }
 
-      .active {
+      .indicator {
         display: block;
-        width: 5px;
-        height: 4px;
+        width: 4px;
+        height: 3px;
         position: absolute;
-        bottom: -6px;
+        bottom: -4px;
         left: 50%;
         transform: translateX(-50%);
         border-radius: 1px;
         background-color: $reverse;
+        visibility: hidden;
+      }
+
+      // 激活项
+      &.hover {
+        @include dockItemSize(2, $dock-icon-animation-time);
+
+        > .name {
+          visibility: visible;
+          transition: visibility 0s;
+        }
+
+        > .icon {
+          @include dockItemIconScale(1.8, $dock-icon-animation-time);
+        }
+      }
+
+      // 前后项
+      &.hoverPrev,
+      &.hoverNext {
+        @include dockItemSize(1.3, $dock-icon-animation-time);
+
+        &::after {
+          height: 180%;
+        }
+
+        > .icon {
+          @include dockItemIconScale(1.5, $dock-icon-animation-time);
+        }
+      }
+
+      // 前后间隔项
+      &.hoverSeparatedPrev,
+      &.hoverSeparatedNext {
+        @include dockItemSize(0.8, $dock-icon-animation-time);
+
+        > .icon {
+          @include dockItemIconScale(1.2, $dock-icon-animation-time);
+        }
       }
     }
   }

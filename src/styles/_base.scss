@@ -27,18 +27,6 @@ body {
   box-sizing: border-box;
 }
 
-*, *:hover {
-  @include transition(
-    background-color .25s linear,
-    color .05s linear,
-    margin .25s linear,
-    opacity .25s linear,
-    filter .25s linear,
-    visibility .25s linear,
-    transform .25s linear
-  );
-}
-
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

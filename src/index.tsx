@@ -2,17 +2,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
-import { MacOS } from './systems/macOS';
-import { Win95 } from './systems/win95';
-import { Windows } from './systems/windows';
+import { applicationStore } from 'stores/application';
+import { optionStore, systemMap } from 'stores/option';
 
 import 'normalize.css';
 import './styles/os.scss';
 
 export const App: React.FC = observer(() => {
-  // return <Win95 />
-  // return <Windows />
-  return <MacOS />
+  const System = systemMap[optionStore.personalize.system]
+  return <System />
 })
 
 ReactDOM.render(<App />, document.getElementById('root'));

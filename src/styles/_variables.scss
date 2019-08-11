@@ -4,11 +4,13 @@ $iconfont-url: '//at.alicdn.com/t/font_190798_rjgpakiecc.css';
 // colors
 $white: #ffffff;
 $black: #000000;
-$blue: #3c77e5;
-$green: #61ca57;
-$red: #ee6c60;
-$yellow: #f6c050;
 $grey: #555555;
+$primary: #3277e2;
+
+$info: #3c77e5;
+$success: #61ca57;
+$error: #ee6c60;
+$warning: #f6c050;
 
 // font
 $monospace: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -28,18 +30,19 @@ $font-size-h5: 1rem;
 $font-size-h6: $font-size-small;
 $line-height-base: 1.4;
 
-// theme colors
-$primary: $blue;
+// os colors
 $normal: var(--normal);
+$normal-translucent: var(--normal-translucent);
 $reverse: var(--reverse);
+$reverse-translucent: var(--reverse-translucent);
 
 $body-bg: var(--body-bg);
 $window-bg: var(--window-bg);
 $window-hover-bg: var(--window-hover-bg);
 
 // text
-$text: var(--text-color);
-$text-reversal: var(--text-reversal);
+$text: var(--reverse);
+$text-reversal: var(--normal);
 $text-dark: var(--text-dark);
 $text-darken: var(--text-darken);
 $text-light: var(--text-light);
@@ -53,7 +56,10 @@ $radius: 4px;
 
 // size
 $header-height: 1.6rem;
-$dock-height-default: 4rem;
+$dock-height-normal: 4rem;
+$dock-height-small: 3rem;
+$desktop-icon-size-normal: 3.5rem;
+$desktop-icon-size-small: 2.5rem;
 
 // index
 $base-index: 0;

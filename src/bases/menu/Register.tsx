@@ -2,7 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { IMenuItemProps } from './Item';
-import menuStore, { IMenuRegisterOptions } from '../../../stores/menu';
+import menuStore, { IMenuRegisterOptions } from 'stores/menu';
 
 export interface IMenuRegisterProps {
   children: React.ReactElement

@@ -2,8 +2,8 @@
 @mixin create-theme($normal, $reverse) {
   #{--normal}: $normal;
   #{--reverse}: $reverse;
-  #{--module-bg}: rgba($normal, 0.6);
-  #{--module-hover-bg}: $normal;
+  #{--normal-translucent}: rgba($normal, 0.5);
+  #{--reverse-translucent}: rgba($reverse, 0.5);
 }
 
 #root {
