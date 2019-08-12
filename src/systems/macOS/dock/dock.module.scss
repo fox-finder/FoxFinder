@@ -45,7 +45,7 @@ $dock-size-animation-time: .0888s;
   height: $dock-height-normal;
   display: flex;
   justify-content: center;
-  z-index: $layout-dock-index;
+  z-index: $layout-berth-index;
 
   &.small {
     height: $dock-height-small;
@@ -145,6 +145,7 @@ $dock-size-animation-time: .0888s;
         transform-origin: bottom;
         transition: transform $dock-icon-animation-time;
         animation: none;
+        filter: drop-shadow(0px 0px 1px $reverse-translucent);
       }
 
       .indicator {

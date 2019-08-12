@@ -35,45 +35,6 @@ export const Desktop: React.FC = () => {
           className={styles.desktop}
           style={{ backgroundImage: `url('/images/wallpapers/Sierra.jpg')` }}
         >
-          <Draggable
-            handle=".handleTest"
-            defaultPosition={{
-              x: 300,
-              y: 200
-            }}
-          >
-            <Window
-              chrome
-              width={700}
-              height={400}
-              padding={10}
-            >
-              <TitleBar title="Setting" className="handleTest" controls/>
-              <SegmentedControl box>
-                <SegmentedControlItem
-                  key="general"
-                  title="通用设置"
-                  selected={true}
-                >
-                  <span>通用设置、是否开启音效、动画、缩略图</span>
-                </SegmentedControlItem>
-                <SegmentedControlItem
-                  key="theme"
-                  title="个性化设置"
-                  selected={false}
-                >
-                  <span>主题、系统风格、壁纸设置</span>
-                </SegmentedControlItem>
-                <SegmentedControlItem
-                  key="group"
-                  title="权限设置"
-                  selected={false}
-                >
-                  <span>用户、用户组</span>
-                </SegmentedControlItem>
-              </SegmentedControl>
-            </Window>
-          </Draggable>
         </div>
       </ContextMenuTrigger>
       <ContextMenu id="some_unique_identifier">

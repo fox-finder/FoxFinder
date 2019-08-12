@@ -5,7 +5,7 @@ export const mockApplications: IApplication[] = [
   {
     name: 'Finder',
     type: ApplicationType.App,
-    icon: 'https://quietshu.github.io/cssosx/images/Finder.png',
+    icon: '/images/icons/finder.png',
     status: ApplicationStatus.Running,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -18,7 +18,7 @@ export const mockApplications: IApplication[] = [
   {
     name: "Launchpad",
     type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/Launchpad.png",
+    icon: "/images/icons/launchpad.png",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -28,35 +28,22 @@ export const mockApplications: IApplication[] = [
     protected: true,
   },
   {
-    name: "Chrome",
+    name: "Setting",
     type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/Chrome.png",
+    icon: "/images/icons/settings.png",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
     pinBerth: true,
-    protected: false,
+    protected: true,
     iconContextMenu: []
   },
   {
-    name: "AppLauncher",
+    name: "App Store",
     type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/AppLauncher.png",
-    status: ApplicationStatus.Normal,
-    window: {
-      status: ApplicationWindowStatus.Normal,
-    },
-    pinDesktop: true,
-    pinBerth: false,
-    protected: false,
-    iconContextMenu: []
-  },
-  {
-    name: "AppStore",
-    type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/AppStore.png",
+    icon: "/images/icons/app-store.png",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -66,41 +53,84 @@ export const mockApplications: IApplication[] = [
     protected: true,
   },
   {
-    name: "iBooks",
+    name: "Terminal",
     type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/iBooks.png",
+    icon: "/images/icons/icons8-command_line.png",
+    status: ApplicationStatus.Normal,
+    window: {
+      status: ApplicationWindowStatus.Normal,
+    },
+    pinDesktop: true,
+    pinBerth: true,
+    protected: false,
+    iconContextMenu: []
+  },
+  {
+    name: "TickTick",
+    type: ApplicationType.Iframe,
+    icon: "/images/icons/dida-logo.png",
+    data: 'https://dida365.com/#q/all/tasks',
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: false,
-    pinBerth: false,
+    pinBerth: true,
     protected: false,
     iconContextMenu: []
   },
   {
-    name: "Messages",
+    name: "Mail",
     type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/Messages.png",
+    icon: "/images/icons/icons8-message_squared.png",
     status: ApplicationStatus.Running,
     window: {
       status: ApplicationWindowStatus.Normal,
     },
-    pinDesktop: false,
+    pinDesktop: true,
     pinBerth: false,
     protected: false,
     iconContextMenu: []
   },
   {
-    name: "Evernote",
-    type: ApplicationType.App,
-    icon: "https://quietshu.github.io/cssosx/images/Evernote.png",
+    name: "PhotoShop",
+    type: ApplicationType.Iframe,
+    icon: "/images/icons/icons8-adobe_photoshop.png",
+    data: 'https://ps.gaoding.com',
     status: ApplicationStatus.Error,
     window: {
       status: ApplicationWindowStatus.Normal,
     },
-    pinDesktop: false,
+    pinDesktop: true,
     pinBerth: false,
+    protected: false,
+    iconContextMenu: []
+  },
+  {
+    name: "Clock",
+    type: ApplicationType.Widget,
+    icon: "/images/icons/icons8-clock_8.png",
+    status: ApplicationStatus.Running,
+    window: {
+      status: ApplicationWindowStatus.Normal,
+    },
+    autoRun: true,
+    pinDesktop: true,
+    pinBerth: false,
+    protected: false,
+    iconContextMenu: []
+  },
+  {
+    name: "Weibo",
+    type: ApplicationType.Link,
+    icon: "/images/icons/icons8-weibo.png",
+    status: ApplicationStatus.Normal,
+    window: {
+      status: ApplicationWindowStatus.Normal,
+    },
+    autoRun: false,
+    pinDesktop: false,
+    pinBerth: true,
     protected: false,
     iconContextMenu: []
   }
