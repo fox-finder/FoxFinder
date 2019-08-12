@@ -3,8 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { MenuRegister } from 'bases/menu/Register';
 import { optionStore } from 'stores/option';
-import { AppIcons, IDesktopAppIconsProps } from "./AppIcons";
-import { AppWindows, IDesktopAppWindowsProps } from "./AppWindows";
+import { AppIcons, IDesktopAppIconsProps } from "./Icons";
+import { AppWindows, IDesktopAppWindowsProps } from "./Windows";
 import styles from './desktop.module.scss';
 
 interface IDesktopProps {

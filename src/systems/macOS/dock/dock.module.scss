@@ -1,8 +1,8 @@
 
 @import 'styles/init.scss';
 
-$dock-icon-animation-time: .0888s;
-$dock-size-animation-time: .0888s;
+$dock-icon-animation-time: .0666s;
+$dock-size-animation-time: .0666s;
 
 // 元素放大器
 @mixin dockItemSize($scale, $animation-time) {

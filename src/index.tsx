@@ -14,3 +14,12 @@ export const App: React.FC = observer(() => {
 })
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+// (document.body as any).onbeforeunload = function (event: any) {
+//   var rel = "asdfawfewf";
+//   if (!window.event) {
+//     event.returnValue = rel;
+//   } else {
+//     (window.event as any).returnValue = rel;
+//   }
+// };

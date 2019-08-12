@@ -1,12 +1,14 @@
 
 import { IApplication, ApplicationType, ApplicationStatus, ApplicationWindowStatus } from 'types/application'
+import { Exploer, ExploerElement } from 'modules/exploer'
 
 export const mockApplications: IApplication[] = [
   {
-    name: 'Finder',
+    name: 'Exploer',
     type: ApplicationType.App,
-    icon: '/images/icons/finder.png',
+    icon: '/images/icons/exploer.svg',
     status: ApplicationStatus.Running,
+    component: ExploerElement,
     window: {
       status: ApplicationWindowStatus.Normal,
     },
@@ -18,7 +20,7 @@ export const mockApplications: IApplication[] = [
   {
     name: "Launchpad",
     type: ApplicationType.App,
-    icon: "/images/icons/launchpad.png",
+    icon: "/images/icons/launchpad.svg",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -30,7 +32,7 @@ export const mockApplications: IApplication[] = [
   {
     name: "Setting",
     type: ApplicationType.App,
-    icon: "/images/icons/settings.png",
+    icon: "/images/icons/settings.svg",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -41,9 +43,9 @@ export const mockApplications: IApplication[] = [
     iconContextMenu: []
   },
   {
-    name: "App Store",
+    name: "Cloud Store",
     type: ApplicationType.App,
-    icon: "/images/icons/app-store.png",
+    icon: "/images/icons/store.svg",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -55,7 +57,7 @@ export const mockApplications: IApplication[] = [
   {
     name: "Terminal",
     type: ApplicationType.App,
-    icon: "/images/icons/icons8-command_line.png",
+    icon: "/images/icons/terminal.svg",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -68,9 +70,9 @@ export const mockApplications: IApplication[] = [
   {
     name: "TickTick",
     type: ApplicationType.Iframe,
-    icon: "/images/icons/dida-logo.png",
+    icon: "/images/icons/todo.svg",
     data: 'https://dida365.com/#q/all/tasks',
-    status: ApplicationStatus.Normal,
+    status: ApplicationStatus.Running,
     window: {
       status: ApplicationWindowStatus.Normal,
     },
@@ -81,8 +83,9 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Mail",
-    type: ApplicationType.App,
-    icon: "/images/icons/icons8-message_squared.png",
+    type: ApplicationType.Iframe,
+    icon: "/images/icons/mail.svg",
+    data: 'https://mail.qq.com',
     status: ApplicationStatus.Running,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -95,7 +98,7 @@ export const mockApplications: IApplication[] = [
   {
     name: "PhotoShop",
     type: ApplicationType.Iframe,
-    icon: "/images/icons/icons8-adobe_photoshop.png",
+    icon: "/images/icons/photoshop.svg",
     data: 'https://ps.gaoding.com',
     status: ApplicationStatus.Error,
     window: {
@@ -109,7 +112,7 @@ export const mockApplications: IApplication[] = [
   {
     name: "Clock",
     type: ApplicationType.Widget,
-    icon: "/images/icons/icons8-clock_8.png",
+    icon: "/images/icons/clock.svg",
     status: ApplicationStatus.Running,
     window: {
       status: ApplicationWindowStatus.Normal,
@@ -123,7 +126,50 @@ export const mockApplications: IApplication[] = [
   {
     name: "Weibo",
     type: ApplicationType.Link,
-    icon: "/images/icons/icons8-weibo.png",
+    icon: "/images/icons/weibo.svg",
+    status: ApplicationStatus.Normal,
+    window: {
+      status: ApplicationWindowStatus.Normal,
+    },
+    autoRun: false,
+    pinDesktop: false,
+    pinBerth: true,
+    protected: false,
+    iconContextMenu: []
+  },
+  {
+    name: "Monitor",
+    type: ApplicationType.Widget,
+    icon: "/images/icons/cpu.svg",
+    status: ApplicationStatus.Normal,
+    window: {
+      status: ApplicationWindowStatus.Normal,
+    },
+    autoRun: false,
+    pinDesktop: false,
+    pinBerth: true,
+    protected: false,
+    iconContextMenu: []
+  },
+  {
+    name: "Github",
+    type: ApplicationType.Link,
+    icon: "/images/icons/github.svg",
+    data: 'https://github.com/surmon-china',
+    status: ApplicationStatus.Normal,
+    window: {
+      status: ApplicationWindowStatus.Normal,
+    },
+    autoRun: false,
+    pinDesktop: false,
+    pinBerth: true,
+    protected: false,
+    iconContextMenu: []
+  },
+  {
+    name: "Weather",
+    type: ApplicationType.Widget,
+    icon: "/images/icons/weather.svg",
     status: ApplicationStatus.Normal,
     window: {
       status: ApplicationWindowStatus.Normal,

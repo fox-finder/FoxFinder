@@ -98,7 +98,7 @@
         .indicator {
           visibility: hidden;
           position: absolute;
-          bottom: -7px;
+          bottom: -5px;
           right: calc(50% - 2px);
           display: block;
           background-color: $success;
@@ -121,6 +121,12 @@
   }
 
   .windows {
+    // display: inline-flex;
 
+    .item {
+      position: absolute;
+      top: $header-height;
+      left: 0;
+    }
   }
 }

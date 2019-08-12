@@ -32,11 +32,12 @@ export interface IApplicationBase<T = any> {
   icon: string // 图标地址或 base64
   type: ApplicationType // 应用类型
   data?: string // 应用数据
-  component?: React.ComponentClass<T> | React.FunctionComponent<T> // 应用组件
+  component?: React.ComponentClass<T> | React.FunctionComponent<T> | React.ReactElement // 应用组件
   autoRun?: boolean // 是否自动运行（开机启动）
   pinDesktop: boolean // 是否贴在桌面
   pinBerth: boolean // 是否贴在任务栏
   protected: boolean // 是否受到操作保护，保证应用不被删除，仅可执行有限操作...等等
+  hideActiveStatus?: boolean // 启动后隐藏活动状态
   iconContextMenu?: [] // 图标上下文菜单
 }
 
