@@ -1,15 +1,15 @@
 
 import { IApplication, ApplicationType, ApplicationStatus, ApplicationWindowStatus } from 'types/application'
-import { Exploer, ExploerElement } from 'modules/exploer'
+import { Exploer, ExploerElement } from 'natives/finder'
 
 export const mockApplications: IApplication[] = [
   {
-    name: 'Exploer',
-    type: ApplicationType.App,
+    name: 'Finder',
+    type: ApplicationType.Native,
     icon: '/images/icons/exploer.svg',
     status: ApplicationStatus.Running,
     component: ExploerElement,
-    window: {
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
@@ -19,10 +19,10 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Launchpad",
-    type: ApplicationType.App,
+    type: ApplicationType.Native,
     icon: "/images/icons/launchpad.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: false,
@@ -31,10 +31,10 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Setting",
-    type: ApplicationType.App,
+    type: ApplicationType.Native,
     icon: "/images/icons/settings.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
@@ -44,10 +44,10 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Cloud Store",
-    type: ApplicationType.App,
+    type: ApplicationType.Native,
     icon: "/images/icons/store.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
@@ -56,10 +56,10 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Terminal",
-    type: ApplicationType.App,
+    type: ApplicationType.Native,
     icon: "/images/icons/terminal.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
@@ -72,8 +72,8 @@ export const mockApplications: IApplication[] = [
     type: ApplicationType.Iframe,
     icon: "/images/icons/todo.svg",
     data: 'https://dida365.com/#q/all/tasks',
-    status: ApplicationStatus.Running,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: false,
@@ -86,8 +86,8 @@ export const mockApplications: IApplication[] = [
     type: ApplicationType.Iframe,
     icon: "/images/icons/mail.svg",
     data: 'https://mail.qq.com',
-    status: ApplicationStatus.Running,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
@@ -100,8 +100,8 @@ export const mockApplications: IApplication[] = [
     type: ApplicationType.Iframe,
     icon: "/images/icons/photoshop.svg",
     data: 'https://ps.gaoding.com',
-    status: ApplicationStatus.Error,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
     pinDesktop: true,
@@ -111,13 +111,13 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Clock",
-    type: ApplicationType.Widget,
+    type: ApplicationType.Plugin,
     icon: "/images/icons/clock.svg",
-    status: ApplicationStatus.Running,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
-    autoRun: true,
+    autorun: true,
     pinDesktop: true,
     pinBerth: false,
     protected: false,
@@ -127,11 +127,11 @@ export const mockApplications: IApplication[] = [
     name: "Weibo",
     type: ApplicationType.Link,
     icon: "/images/icons/weibo.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
-    autoRun: false,
+    autorun: false,
     pinDesktop: false,
     pinBerth: true,
     protected: false,
@@ -139,13 +139,13 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Monitor",
-    type: ApplicationType.Widget,
+    type: ApplicationType.Plugin,
     icon: "/images/icons/cpu.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
-    autoRun: false,
+    autorun: false,
     pinDesktop: false,
     pinBerth: true,
     protected: false,
@@ -156,11 +156,11 @@ export const mockApplications: IApplication[] = [
     type: ApplicationType.Link,
     icon: "/images/icons/github.svg",
     data: 'https://github.com/surmon-china',
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
-    autoRun: false,
+    autorun: false,
     pinDesktop: false,
     pinBerth: true,
     protected: false,
@@ -168,13 +168,13 @@ export const mockApplications: IApplication[] = [
   },
   {
     name: "Weather",
-    type: ApplicationType.Widget,
+    type: ApplicationType.Plugin,
     icon: "/images/icons/weather.svg",
-    status: ApplicationStatus.Normal,
-    window: {
+    status: ApplicationStatus.Dormancy,
+    windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },
-    autoRun: false,
+    autorun: false,
     pinDesktop: false,
     pinBerth: true,
     protected: false,

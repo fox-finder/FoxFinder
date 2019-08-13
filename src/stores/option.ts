@@ -38,6 +38,7 @@ export interface SystemOptions {
   }
   personalize: {
     system: SystemType // 系统模式
+    darkTheme: boolean // 深色模式
     wallpaper?: string // 墙纸地址
     backgroundColor?: string // 背景色
   }
@@ -59,6 +60,7 @@ export class OptionStore {
   // 个性化设置
   personalize = {
     system: SystemType.MacOS,
+    darkTheme: false,
     backgroundColor: 'red',
     wallpaper: '/images/wallpapers/Sierra.jpg'
   }

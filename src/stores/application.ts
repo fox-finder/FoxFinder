@@ -1,7 +1,8 @@
 
 import { observable, computed, action } from 'mobx';
-import { IApplication, ApplicationWindowStatus, ApplicationStatus } from 'types/application'
+import { IApplication, ApplicationType, ApplicationWindowStatus, ApplicationStatus } from 'types/application'
 import { mockApplications } from 'mock/application'
+import { runLinkApp } from 'bases/renderers/Link'
 
 export class ApplicationStore {
 
@@ -18,7 +19,7 @@ export class ApplicationStore {
 
   // 运行中的应用应用
   @computed get runningApps(): IApplication[] {
-    return this.allApps.filter(app => app.status !== ApplicationStatus.Normal)
+    return this.allApps.filter(app => app.status !== ApplicationStatus.Dormancy)
   }
 
   // 运行时应用 -> 除去任务栏固定应用
@@ -28,7 +29,7 @@ export class ApplicationStore {
 
   // 窗口应用 -> 运行中且窗口可见
   @computed get windowViewApps(): IApplication[] {
-    return this.runningApps.filter(app => ApplicationStore.isVisibleApp(app))
+    return this.runningApps.filter(app => ApplicationStore.isWindowVisible(app))
   }
 
   // 桌面应用
@@ -56,8 +57,13 @@ export class ApplicationStore {
   }
 
   // 运行 app
-  runApp(app: IApplication) {
-    console.log('打开这个 app 的 window 窗口', app)
+  @action.bound runApp(app: IApplication) {
+    if (ApplicationStore.isLinkType(app)) {
+      runLinkApp(app)
+    } else {
+      app.status = ApplicationStatus.Running
+      console.log('打开这个 app 的 window 窗口', app)
+    }
   }
 
   // 关闭 app
@@ -71,16 +77,36 @@ export class ApplicationStore {
     console.log('切换这个 app 的 window 窗口大小状态', app, targetWindowType)
   }
 
-  static isRunningApp(app: IApplication): boolean {
-    return app.status !== ApplicationStatus.Normal
+  static isRunningStatus(app: IApplication): boolean {
+    return app.status !== ApplicationStatus.Dormancy
   }
 
-  static isErringApp(app: IApplication): boolean {
+  static isErringStatus(app: IApplication): boolean {
     return app.status === ApplicationStatus.Error
   }
 
-  static isVisibleApp(app: IApplication): boolean {
-    return app.window.status !== ApplicationWindowStatus.Minimize
+  static isWindowVisible(app: IApplication): boolean {
+    return app.windowStatus.status !== ApplicationWindowStatus.Minimize
+  }
+
+  static verifyType(app: IApplication, type: ApplicationType): boolean {
+    return app.type === type
+  }
+
+  static isLinkType(app: IApplication): boolean {
+    return ApplicationStore.verifyType(app, ApplicationType.Link)
+  }
+
+  static isPluginType(app: IApplication): boolean {
+    return ApplicationStore.verifyType(app, ApplicationType.Plugin)
+  }
+
+  static isIframeType(app: IApplication): boolean {
+    return ApplicationStore.verifyType(app, ApplicationType.Iframe)
+  }
+
+  static isNativeType(app: IApplication): boolean {
+    return ApplicationStore.verifyType(app, ApplicationType.Native)
   }
 }
 

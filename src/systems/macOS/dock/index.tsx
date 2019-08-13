@@ -4,16 +4,18 @@ import classNames from 'classnames';
 import { optionStore, GeneralSize } from 'stores/option';
 import { applicationStore, ApplicationStore } from 'stores/application';
 import { IApplication, ApplicationType, ApplicationStatus } from 'types/application'
-import { Background } from 'bases/background'
+import { Background } from 'bases/components/background'
 
 import { DockItem, DockSeparator } from './Itme';
 import styles from './dock.module.scss';
 
-type THoverIndex = number | null | void
+type TAppIndex = number | null | void
 
 export const Dock: React.FC = () => {
 
-  const [hoverIndex, setHoverIndex] = React.useState<THoverIndex>();
+  const [hoverIndex, setHoverIndex] = React.useState<TAppIndex>();
+  // TODO: 右键上下文菜单的绑定及 blur 事件的设计
+  const [contextMenuIndex, setContextMenuIndex] = React.useState<TAppIndex>();
 
   function getHoverClassName(index: number) {
     if (hoverIndex != null) {
@@ -27,6 +29,8 @@ export const Dock: React.FC = () => {
       return classNameMap[index]
     }
   }
+
+  // 当没有应用时，隐藏 dock
 
   return (
     <div id="dock" className={classNames(styles.dock, optionStore.isSmallSizeBerth && styles.small)}>
@@ -44,10 +48,11 @@ export const Dock: React.FC = () => {
               <DockItem
                 name={app.name}
                 icon={app.icon}
-                active={ApplicationStore.isRunningApp(app)}
-                error={ApplicationStore.isErringApp(app)}
+                active={ApplicationStore.isRunningStatus(app)}
+                error={ApplicationStore.isErringStatus(app)}
                 className={getHoverClassName(index)}
-                onClick={() => console.log('点击了 app', app)}
+                onClick={() => applicationStore.runApp(app)}
+                onContextmenu={() => console.log('点击了 app 的右键菜单', app)}
                 onHover={() => setHoverIndex(index)}
                 onCancelHover={() => setHoverIndex(null)}
               />

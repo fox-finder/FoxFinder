@@ -4,9 +4,9 @@ import { observer } from 'mobx-react';
 import { optionStore } from 'stores/option';
 import menuStore from 'stores/menu';
 import { Header } from 'bases/header';
+import { Desktop } from 'bases/desktop'
 import { ContextMenu } from 'bases/menu/ContextMenu';
 import { Dock } from './dock';
-import { Desktop } from './desktop';
 
 function test() {
   console.log('测试点击')
@@ -26,7 +26,9 @@ export const MacOS: React.FC = observer(() => {
       {!optionStore.general.hideHeader && (
         <Header />
       )}
-      <Desktop />
+      <Desktop
+        appIconsProps={{ isRightStart: !optionStore.isLeftDirectionWithIcon }}
+      />
       {!optionStore.general.hideBerth && (
         <Dock />
       )}

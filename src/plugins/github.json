@@ -1,0 +1,10 @@
+
+{
+  "name": "Github",
+  "type": "link",
+  "icon": "/images/icons/github.svg",
+  "data": "https://github.com/surmon-china",
+  "autorun": false,
+  "protected": false,
+  "iconContextMenu": []
+}

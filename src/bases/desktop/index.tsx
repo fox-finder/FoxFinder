@@ -9,7 +9,7 @@ import styles from './desktop.module.scss';
 
 interface IDesktopProps {
   appIconsProps?: IDesktopAppIconsProps
-  appWindowsProps: IDesktopAppWindowsProps
+  appWindowsProps?: IDesktopAppWindowsProps
 }
 
 export const Desktop: React.FC<IDesktopProps> = (props) => {

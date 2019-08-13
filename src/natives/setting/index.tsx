@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { SegmentedControl, SegmentedControlItem } from 'react-desktop/macOs';
-import { IApplication, IApplicationBase, ApplicationType, ApplicationStatus } from 'types/application';
+import { IApplication, IApplicationStandard, ApplicationType, ApplicationStatus } from 'types/application';
 
 export interface ISettingProps {
   title: string
@@ -36,13 +36,13 @@ export const Setting: React.FC<ISettingProps> = (props) => {
   );
 }
 
-export const SettingApp: IApplicationBase<ISettingProps> = {
-  name: '设置',
-  type: ApplicationType.App,
-  icon: 'https://quietshu.github.io/cssosx/images/Finder.png',
-  component: Setting,
-  pinDesktop: true,
-  pinBerth: true,
-  protected: true,
-  iconContextMenu: []
-}
+// export const SettingApp: IApplicationStandard = {
+//   name: '设置',
+//   type: ApplicationType.Native,
+//   icon: 'https://quietshu.github.io/cssosx/images/Finder.png',
+//   component: Setting,
+//   pinDesktop: true,
+//   pinBerth: true,
+//   protected: true,
+//   iconContextMenu: []
+// }

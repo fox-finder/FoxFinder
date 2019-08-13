@@ -13,7 +13,7 @@ export const AppIcons: React.FC<IDesktopAppIconsProps> = (props) => {
   return (
     <div
       className={classNames(
-        styles.appIcons,
+        styles.icons,
         props.isRightStart && styles.rightStart,
         optionStore.isSmallSizeIcon && styles.small,
       )}
@@ -23,7 +23,7 @@ export const AppIcons: React.FC<IDesktopAppIconsProps> = (props) => {
           key={index}
           className={classNames(
             styles.item,
-            ApplicationStore.isRunningApp(app) && styles.running,
+            ApplicationStore.isRunningStatus(app) && styles.running,
           )}
         >
           <p className={styles.icon}>

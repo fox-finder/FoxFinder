@@ -10,6 +10,7 @@ export interface IProps {
   active?: boolean // is activited
   error?: boolean // app error status
   onClick(): void
+  onContextmenu(): void
   onHover(): void
   onCancelHover(): void
 }
@@ -19,6 +20,8 @@ export const DockItem: React.FC<IProps> = (props) => {
     <li
       onMouseEnter={props.onHover}
       onMouseLeave={props.onCancelHover}
+      onClickCapture={props.onClick}
+      onContextMenuCapture={props.onContextmenu}
       className={cns(
         styles.item,
         props.className,

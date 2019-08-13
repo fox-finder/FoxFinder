@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Background } from 'bases/background'
+import { Background } from 'bases/components/background'
 
 import { Menu } from './Menu';
 import { Tray } from './Tray';

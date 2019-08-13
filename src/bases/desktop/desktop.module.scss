@@ -11,24 +11,24 @@
   z-index: $base-index;
 
   &.smallBerth {
-    .appIcons {
+    .icons {
       bottom: $dock-height-small;
     }
   }
 
   &.hiddenHeader {
-    .appIcons {
+    .icons {
       top: 0;
     }
   }
 
   &.hideBerth {
-    .appIcons {
+    .icons {
       bottom: 0;
     }
   }
 
-  .appIcons {
+  .icons {
     position: absolute;
     left: 0;
     top: $header-height;
@@ -121,7 +121,6 @@
   }
 
   .windows {
-    // display: inline-flex;
 
     .item {
       position: absolute;

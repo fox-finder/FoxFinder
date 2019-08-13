@@ -1,19 +1,36 @@
 
 import React from 'react';
+import classNames from 'classnames';
+import { observer } from "mobx-react"
 import Draggable, { DraggableCore } from 'react-draggable';
-import { applicationStore } from 'stores/application';
-import { IApplication } from 'types/application';
+import { IApplication, ApplicationType } from 'types/application';
+import { applicationStore, ApplicationStore } from 'stores/application';
+import { optionStore } from 'stores/option';
+import { PluginApp } from 'bases/renderers/Plugin'
+import { IframeApp } from 'bases/renderers/Iframe'
+import { Window } from 'bases/components/window';
 import styles from './desktop.module.scss';
+
+export interface IDesktopAppWindowsProps {}
 
 export function getAppWindowHandleClassName(appName: string) {
   return appName + '-' + 'handle'
 }
 
-export interface IDesktopAppWindowsProps {
-  appRender(app: IApplication): React.ReactElement
+function renderApp(app: IApplication) {
+  if (ApplicationStore.isPluginType(app)) {
+    return <PluginApp app={app} />
+  }
+  if (ApplicationStore.isIframeType(app)) {
+    return <IframeApp app={app} />
+  }
+  if (ApplicationStore.isNativeType(app)) {
+    return app.component
+  }
+  return (<span>应用出错啦</span>)
 }
 
-export const AppWindows: React.FC<IDesktopAppWindowsProps> = (props) => {
+export const AppWindows = observer(function AppWindows(props: IDesktopAppWindowsProps) {
   return (
     <div className={styles.windows}>
       {applicationStore.windowViewApps.map((app, index) => (
@@ -26,9 +43,16 @@ export const AppWindows: React.FC<IDesktopAppWindowsProps> = (props) => {
             y: 30
           }}
         >
-          {props.appRender(app)}
+          <div className={styles.item}>
+            <Window
+              title={app.name}
+              handleClassName={getAppWindowHandleClassName(app.name)}
+            >
+              {renderApp(app) as any}
+            </Window>
+          </div>
         </Draggable>
       ))}
     </div>
   );
-}
+})
