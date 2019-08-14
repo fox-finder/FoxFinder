@@ -1,13 +1,13 @@
 
 
 import React from 'react';
-import { IApplication } from 'types/application';
+import { IRuntimeApplication } from 'types/application';
 import { ApplicationStore } from 'stores/application';
 import { PluginApp } from './Plugin';
 import { IframeApp } from './Iframe';
 
 export interface IAppRendererProps {
-  app: IApplication
+  app: IRuntimeApplication
 }
 
 export const AppRenderer: React.FC<IAppRendererProps> = ({ app }) => {

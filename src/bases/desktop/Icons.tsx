@@ -18,9 +18,9 @@ export const AppIcons: React.FC<IDesktopAppIconsProps> = (props) => {
         optionStore.isSmallSizeIcon && styles.small,
       )}
     >
-      {applicationStore.disktopViewApps.map((app, index) => (
+      {applicationStore.disktopViewApps.map(app => (
         <div
-          key={index}
+          key={app.id}
           onDoubleClickCapture={() => applicationStore.runApp(app)}
           className={classNames(
             styles.item,

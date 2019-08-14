@@ -1,6 +1,6 @@
 
-import { IApplication } from 'types/application';
+import { IRuntimeApplication } from 'types/application';
 
-export function runLinkApp(app: IApplication): void {
+export function runLinkApp(app: IRuntimeApplication): void {
   window.open(app.data)
 }

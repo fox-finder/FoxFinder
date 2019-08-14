@@ -18,9 +18,9 @@ export function getAppWindowHandleClassName(appName: string) {
 export const AppWindows = observer(function AppWindows(props: IDesktopAppWindowsProps) {
   return (
     <div className={styles.windows}>
-      {applicationStore.windowViewApps.map((app, index) => (
+      {applicationStore.windowViewApps.map(app => (
         <Draggable
-          key={index}
+          key={app.id}
           defaultClassName={styles.item}
           handle={`.${getAppWindowHandleClassName(app.name)}`}
           defaultPosition={{
@@ -31,6 +31,10 @@ export const AppWindows = observer(function AppWindows(props: IDesktopAppWindows
           <div className={styles.item}>
             <Window
               title={app.name}
+              border={app.window && app.window.border}
+              resize={app.window && app.window.resize}
+              width={app.window && app.window.defaultSize && app.window.defaultSize.width}
+              height={app.window && app.window.defaultSize && app.window.defaultSize.height}
               handleClassName={getAppWindowHandleClassName(app.name)}
             >
               <AppRenderer app={app} />

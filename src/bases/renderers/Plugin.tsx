@@ -1,13 +1,19 @@
 
 import React from 'react';
-import classNames from 'classnames';
 import Frame, { FrameContextConsumer } from 'react-frame-component'
-import { IApplication } from 'types/application';
 import { IAppRendererProps } from './';
+import styles from './renderer.module.scss';
 
-export const PluginApp: React.FC<IAppRendererProps> = (props) => {
-
+export const PluginApp: React.FC<IAppRendererProps> = ({ app }) => {
   return (
-    <span>挂件啊固件 {props.app.name}</span>
+    <Frame className={styles.iframe}>
+      <FrameContextConsumer>
+        {({ document, window }: any) => {
+          app.data += '<style>body{margin:0}</style>'
+          setTimeout(() => document.write(app.data))
+          // return <div dangerouslySetInnerHTML={{ __html: app.data || '' }} />
+        }}
+      </FrameContextConsumer>
+    </Frame>
   );
 }

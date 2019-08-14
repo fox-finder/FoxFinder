@@ -8,6 +8,7 @@ export const MacOS: React.FC<IWindowProps> = (props) => {
   return (
     <Window
       chrome
+      className={styles.window}
       width={700}
       height={400}
       padding={0}

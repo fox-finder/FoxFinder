@@ -1,14 +1,10 @@
 
 import React from 'react';
+import { IAppRendererProps } from 'bases/renderers';
 import { SegmentedControl, SegmentedControlItem } from 'react-desktop/macOs';
-import { IApplication, IApplicationStandard, ApplicationType, ApplicationStatus } from 'types/application';
+import { ICompleteApplication, ApplicationType } from 'types/application';
 
-export interface ISettingProps {
-  title: string
-  children: React.ReactElement
-}
-
-export const Setting: React.FC<ISettingProps> = (props) => {
+export const Setting: React.FC<IAppRendererProps> = ({ app }) => {
   return (
     <SegmentedControl box>
       <SegmentedControlItem
@@ -36,13 +32,15 @@ export const Setting: React.FC<ISettingProps> = (props) => {
   );
 }
 
-// export const SettingApp: IApplicationStandard = {
-//   name: '设置',
-//   type: ApplicationType.Native,
-//   icon: 'https://quietshu.github.io/cssosx/images/Finder.png',
-//   component: Setting,
-//   pinDesktop: true,
-//   pinBerth: true,
-//   protected: true,
-//   iconContextMenu: []
-// }
+export const SettingPackage: ICompleteApplication = {
+  name: 'Setting',
+  id: 'os-setting',
+  type: ApplicationType.Native,
+  icon: '/images/icons/settings.svg',
+  component: Setting,
+  autorun: false,
+  pinDesktop: true,
+  pinBerth: true,
+  protected: true,
+  iconContextMenu: []
+}

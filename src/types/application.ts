@@ -1,10 +1,5 @@
 
-export type ApplicationComponent =
-  | React.ComponentClass<any>
-  | React.FunctionComponent<any>
-  // | React.Component
-  // | React.ClassicComponent
-  // | React.ReactElement
+export type ApplicationComponent = React.ComponentClass<any> | React.FunctionComponent<any>
 
 export enum ApplicationType {
   Native = 'app', // 系统自带应用
@@ -32,18 +27,15 @@ export interface IApplicationWindow {
   // defaultPosition?: { x: number, y: number } // 默认位置
 }
 
-/**
- * @description Standard interface for -> third app | store app | base app
- */
-export interface IApplicationStandard {
+// Standard interface for -> third app | store app | base app
+export interface IStandardApplication {
   name: string
+  id: string // 唯一 ID
   description?: string // App description (markdown format string)
   icon: string // Icon resource src | Base64 string
   type: ApplicationType
-  data?: string // App data -> url | path | jscode |other
-  autorun?: boolean // Autorun when bootstrap
+  data?: string // App data -> url | path | htmlcode |other
   hideBerthActiveStatus?: boolean // Hide active status when active
-  iconContextMenu?: [] // Icon context menu list
   window?: {
     border: boolean // 是否有边框
     resize: boolean // 是否可以调整窗口尺寸
@@ -55,14 +47,17 @@ export interface IApplicationStandard {
   }
 }
 
-export interface IApplicationNative extends IApplicationStandard {
+// Complete interface for system
+export interface ICompleteApplication extends IStandardApplication {
   component?: ApplicationComponent // Native app component
-}
-
-export interface IApplication extends IApplicationNative {
+  iconContextMenu?: [] // Icon context menu list
+  autorun: boolean // Autorun when bootstrap
   protected: boolean // 是否是系统 app，受到操作保护，保证应用不被删除，仅可执行有限操作...
   pinDesktop: boolean // 是否贴在桌面
   pinBerth: boolean // 是否贴在任务栏
+}
+
+export interface IRuntimeApplication extends ICompleteApplication {
   status: ApplicationStatus // 应用状态
   windowStatus: IApplicationWindow // 窗口配置
 }

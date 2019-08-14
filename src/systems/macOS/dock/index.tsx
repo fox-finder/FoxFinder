@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { optionStore, GeneralSize } from 'stores/option';
 import { applicationStore, ApplicationStore } from 'stores/application';
-import { IApplication, ApplicationType, ApplicationStatus } from 'types/application'
+import { IRuntimeApplication, ApplicationType, ApplicationStatus } from 'types/application'
 import { Background } from 'bases/materials/background'
 
 import { DockItem, DockSeparator } from './Itme';
@@ -16,6 +16,10 @@ export const Dock: React.FC = () => {
   const [hoverIndex, setHoverIndex] = React.useState<TAppIndex>();
   // TODO: 右键上下文菜单的绑定及 blur 事件的设计
   const [contextMenuIndex, setContextMenuIndex] = React.useState<TAppIndex>();
+
+  if (!applicationStore.berthViewApps.length) {
+    return null
+  }
 
   function getHoverClassName(index: number) {
     if (hoverIndex != null) {
@@ -44,7 +48,7 @@ export const Dock: React.FC = () => {
           const nextApp = apps[index + 1]
           const renderSeparator = app.pinBerth && nextApp && !nextApp.pinBerth
           return (
-            <React.Fragment key={index}>
+            <React.Fragment key={app.id}>
               <DockItem
                 name={app.name}
                 icon={app.icon}

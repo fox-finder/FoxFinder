@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Weibo",
+    "id": "sina-weibo",
+    "description": "新浪微博快捷方式",
+    "icon": "/images/icons/weibo.svg",
+    "type": "link",
+    "data": "https://weibo.com"
+  },
+  {
+    "name": "Github",
+    "id": "github-link",
+    "description": "Github 链接",
+    "icon": "/images/icons/github.svg",
+    "type": "link",
+    "data": "https://github.com/surmon-china"
+  },
+  {
+    "name": "TickTick",
+    "id": "ticktick",
+    "description": "滴答清单",
+    "icon": "/images/icons/todo.svg",
+    "type": "iframe",
+    "data": "https://dida365.com/#q/all/tasks",
+    "window": {
+      "border": true,
+      "resize": true,
+      "defaultFullScreen": false,
+      "defaultSize": {
+        "width": "800px",
+        "height": "600px"
+      }
+    }
+  },
+  {
+    "name": "PhotoShop",
+    "id": "web-photoShop",
+    "description": "在线 PS",
+    "icon": "/images/icons/photoshop.svg",
+    "type": "iframe",
+    "data": "https://ps.gaoding.com",
+    "window": {
+      "border": true,
+      "resize": true,
+      "defaultFullScreen": true
+    }
+  },
+  {
+    "name": "Monitor",
+    "id": "machine-monitor",
+    "description": "硬件物理监控器",
+    "icon": "/images/icons/cpu.svg",
+    "type": "plugin",
+    "data": "<html><body><h1>我是监控器内容</h1></body></html>",
+    "window": {
+      "border": false,
+      "resize": false,
+      "defaultSize": {
+        "width": "400px",
+        "height": "300px"
+      }
+    }
+  },
+  {
+    "name": "QQ Mail",
+    "id": "qq-mail",
+    "description": "腾讯邮箱",
+    "icon": "/images/icons/mail.svg",
+    "type": "iframe",
+    "data": "https://mail.qq.com",
+    "window": {
+      "border": true,
+      "resize": true,
+      "defaultSize": {
+        "width": "400px",
+        "height": "300px"
+      }
+    }
+  },
+  {
+    "name": "Clock",
+    "id": "disktop-clock",
+    "description": "桌面时钟",
+    "icon": "/images/icons/clock.svg",
+    "type": "plugin",
+    "data": "<style>body{background:transparent;overflow:hidden}.clock{position:absolute;opacity:1}.fill .clock{left:50%;top:50%}.centre{position:absolute;top:50%;left:50%;width:0;height:0}.expand{position:absolute;top:0;left:0;transform:translate(-50%,-50%)}.anchor{position:absolute;top:0;left:0;width:0;height:0}.element{position:absolute;top:0;left:0}.round{border-radius:296px}.circle-1{background:white;width:12px;height:12px}.circle-2{background:#FA9F22;width:8px;height:8px}.circle-3{background:black;width:4px;height:4px}.second{transform:rotate(180deg)}.minute{transform:rotate(54deg)}.second-hand{width:2px;height:164px;background:#FA9F22;transform:translate(-50%,-100%)translateY(24px)}.hour{transform:rotate(304.5deg)}.thin-hand{width:4px;height:50px;background:white;transform:translate(-50%,-100%)}.fat-hand{width:10px;height:57px;border-radius:10px;background:white;transform:translate(-50%,-100%)translateY(-18px)}.minute-hand{height:112px}.hour-text{position:absolute;font:40px Hei,Helvetica,Arial,sans-serif;color:white;transform:translate(-50%,-50%)}.hour-10{padding-left:0.4ex}.hour-11{padding-left:0.25ex}.minute-text{position:absolute;font:12px Avenir Next,Helvetica,Arial,sans-serif;color:white;transform:translate(-50%,-50%)}.minute-line{background:white;width:1px;height:9px;transform:translate(-50%,-100%)translateY(-131px);opacity:0.34}.file{opacity:0.9}.element.fat-hand{height:50px}.element.fat-hand.minute-hand{height:70px}</style><div class=\"fill\"><div class=\"reference\"></div><div class=\"clock\"id=\"utility-clock\"style=\"transform: scale(2.523);\"><div class=\"centre\"><div class=\"dynamic\"><div class=\"anchor\"style=\"transform: rotate(6deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(12deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(18deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(24deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -116.9px; left: 67.5px;\">05</div><div class=\"anchor\"style=\"transform: rotate(36deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(42deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(48deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(54deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -67.5px; left: 116.9px;\">10</div><div class=\"anchor\"style=\"transform: rotate(66deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(72deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(78deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(84deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 0px; left: 135px;\">15</div><div class=\"anchor\"style=\"transform: rotate(96deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(102deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(108deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(114deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 67.5px; left: 116.9px;\">20</div><div class=\"anchor\"style=\"transform: rotate(126deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(132deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(138deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(144deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 116.9px; left: 67.5px;\">25</div><div class=\"anchor\"style=\"transform: rotate(156deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(162deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(168deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(174deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 135px; left: 0px;\">30</div><div class=\"anchor\"style=\"transform: rotate(186deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(192deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(198deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(204deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 116.9px; left: -67.5px;\">35</div><div class=\"anchor\"style=\"transform: rotate(216deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(222deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(228deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(234deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 67.5px; left: -116.9px;\">40</div><div class=\"anchor\"style=\"transform: rotate(246deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(252deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(258deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(264deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 0px; left: -135px;\">45</div><div class=\"anchor\"style=\"transform: rotate(276deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(282deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(288deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(294deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -67.5px; left: -116.9px;\">50</div><div class=\"anchor\"style=\"transform: rotate(306deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(312deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(318deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(324deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -116.9px; left: -67.5px;\">55</div><div class=\"anchor\"style=\"transform: rotate(336deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(342deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(348deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(354deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -135px; left: 0px;\">60</div><div class=\"hour-text hour-1\"style=\"top: -90.9px; left: 52.5px;\">1</div><div class=\"hour-text hour-2\"style=\"top: -52.5px; left: 90.9px;\">2</div><div class=\"hour-text hour-3\"style=\"top: 0px; left: 105px;\">3</div><div class=\"hour-text hour-4\"style=\"top: 52.5px; left: 90.9px;\">4</div><div class=\"hour-text hour-5\"style=\"top: 90.9px; left: 52.5px;\">5</div><div class=\"hour-text hour-6\"style=\"top: 105px; left: 0px;\">6</div><div class=\"hour-text hour-7\"style=\"top: 90.9px; left: -52.5px;\">7</div><div class=\"hour-text hour-8\"style=\"top: 52.5px; left: -90.9px;\">8</div><div class=\"hour-text hour-9\"style=\"top: 0px; left: -105px;\">9</div><div class=\"hour-text hour-10\"style=\"top: -52.5px; left: -90.9px;\">10</div><div class=\"hour-text hour-11\"style=\"top: -90.9px; left: -52.5px;\">11</div><div class=\"hour-text hour-12\"style=\"top: -105px; left: 0px;\">12</div><div class=\"anchor\"style=\"transform: rotate(6deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(12deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(18deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(24deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -116.9px; left: 67.5px;\">05</div><div class=\"anchor\"style=\"transform: rotate(36deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(42deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(48deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(54deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -67.5px; left: 116.9px;\">10</div><div class=\"anchor\"style=\"transform: rotate(66deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(72deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(78deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(84deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 0px; left: 135px;\">15</div><div class=\"anchor\"style=\"transform: rotate(96deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(102deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(108deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(114deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 67.5px; left: 116.9px;\">20</div><div class=\"anchor\"style=\"transform: rotate(126deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(132deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(138deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(144deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 116.9px; left: 67.5px;\">25</div><div class=\"anchor\"style=\"transform: rotate(156deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(162deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(168deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(174deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 135px; left: 0px;\">30</div><div class=\"anchor\"style=\"transform: rotate(186deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(192deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(198deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(204deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 116.9px; left: -67.5px;\">35</div><div class=\"anchor\"style=\"transform: rotate(216deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(222deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(228deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(234deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 67.5px; left: -116.9px;\">40</div><div class=\"anchor\"style=\"transform: rotate(246deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(252deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(258deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(264deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: 0px; left: -135px;\">45</div><div class=\"anchor\"style=\"transform: rotate(276deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(282deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(288deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(294deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -67.5px; left: -116.9px;\">50</div><div class=\"anchor\"style=\"transform: rotate(306deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(312deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(318deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(324deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -116.9px; left: -67.5px;\">55</div><div class=\"anchor\"style=\"transform: rotate(336deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(342deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(348deg);\"><div class=\"element minute-line\"></div></div><div class=\"anchor\"style=\"transform: rotate(354deg);\"><div class=\"element minute-line\"></div></div><div class=\"minute-text\"style=\"top: -135px; left: 0px;\">60</div><div class=\"hour-text hour-1\"style=\"top: -90.9px; left: 52.5px;\">1</div><div class=\"hour-text hour-2\"style=\"top: -52.5px; left: 90.9px;\">2</div><div class=\"hour-text hour-3\"style=\"top: 0px; left: 105px;\">3</div><div class=\"hour-text hour-4\"style=\"top: 52.5px; left: 90.9px;\">4</div><div class=\"hour-text hour-5\"style=\"top: 90.9px; left: 52.5px;\">5</div><div class=\"hour-text hour-6\"style=\"top: 105px; left: 0px;\">6</div><div class=\"hour-text hour-7\"style=\"top: 90.9px; left: -52.5px;\">7</div><div class=\"hour-text hour-8\"style=\"top: 52.5px; left: -90.9px;\">8</div><div class=\"hour-text hour-9\"style=\"top: 0px; left: -105px;\">9</div><div class=\"hour-text hour-10\"style=\"top: -52.5px; left: -90.9px;\">10</div><div class=\"hour-text hour-11\"style=\"top: -90.9px; left: -52.5px;\">11</div><div class=\"hour-text hour-12\"style=\"top: -105px; left: 0px;\">12</div></div><div class=\"expand round circle-1\"></div><div class=\"anchor hour\"style=\"transform: rotate(27.9253deg);\"><div class=\"element thin-hand\"></div><div class=\"element fat-hand\"></div></div><div class=\"anchor minute\"style=\"transform: rotate(335.104deg);\"><div class=\"element thin-hand\"></div><div class=\"element fat-hand minute-hand\"></div></div><div class=\"anchor second\"style=\"transform: rotate(20106.2deg);\"><div class=\"element second-hand\"></div></div><div class=\"expand round circle-2\"></div><div class=\"expand round circle-3\"></div></div></div></div><script>var clock=document.querySelector(\"#utility-clock\");function utilityClock(e){for(var t,n,i,o=e.querySelector(\".dynamic\"),c=e.querySelector(\".hour\"),r=e.querySelector(\".minute\"),a=e.querySelector(\".second\"),l=function(e){var t=document.createElement(\"div\");t.className=\"minute-text\",t.innerHTML=(e<10?\"0\":\"\")+e,d(t,e/60,135),o.appendChild(t)},s=function(e){var t=document.createElement(\"div\");t.className=\"anchor\";var n=document.createElement(\"div\");n.className=\"element minute-line\",u(t,e),t.appendChild(n),o.appendChild(t)},d=function(e,t,n){var i=2*t*Math.PI;e.style.top=(-n*Math.cos(i)).toFixed(1)+\"px\",e.style.left=(n*Math.sin(i)).toFixed(1)+\"px\"},u=function(e,t){e.style.transform=e.style.webkitTransform=\"rotate(\"+6*t+\"deg)\"},m=function(){var e=new Date,t=3600*e.getHours()+60*e.getMinutes()+1*e.getSeconds()+e.getMilliseconds()/1e3;u(a,t),u(r,t/60),u(c,t/60/12),requestAnimationFrame(m)},f=1;f<=60;f++)(t=f)%5==0?l(t):s(t);for(f=1;f<=12;f++)n=f,i=void 0,(i=document.createElement(\"div\")).className=\"hour-text hour-\"+n,i.innerHTML=n,d(i,n/12,105),o.appendChild(i);m()}function autoResize(t,n){function e(){var e=Math.min(window.innerWidth,window.innerHeight)/n;t.style.transform=t.style.webkitTransform=\"scale(\"+e.toFixed(3)+\")\"}e(),window.addEventListener(\"resize\",e)}utilityClock(clock),clock.parentNode.classList.contains(\"fill\")&&autoResize(clock,327);</script>",
+    "window": {
+      "border": false,
+      "resize": false,
+      "defaultSize": {
+        "width": "200px",
+        "height": "200px"
+      }
+    }
+  },
+  {
+    "name": "Weather",
+    "id": "disktop-weather",
+    "description": "桌面天气",
+    "icon": "/images/icons/weather.svg",
+    "type": "plugin",
+    "data": "<div id=\"weather-view-he\"></div><script>WIDGET = {ID: 'mwjT55sjDg'};</script><script type=\"text/javascript\" src=\"https://apip.weatherdt.com/view/static/js/r.js?v=1111\"></script>",
+    "window": {
+      "border": false,
+      "resize": false,
+      "defaultSize": {
+        "width": "410px",
+        "height": "200px"
+      }
+    }
+  }
+]
