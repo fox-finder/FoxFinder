@@ -21,6 +21,7 @@ export const AppIcons: React.FC<IDesktopAppIconsProps> = (props) => {
       {applicationStore.disktopViewApps.map((app, index) => (
         <div
           key={index}
+          onDoubleClickCapture={() => applicationStore.runApp(app)}
           className={classNames(
             styles.item,
             ApplicationStore.isRunningStatus(app) && styles.running,

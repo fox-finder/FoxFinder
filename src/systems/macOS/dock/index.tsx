@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { optionStore, GeneralSize } from 'stores/option';
 import { applicationStore, ApplicationStore } from 'stores/application';
 import { IApplication, ApplicationType, ApplicationStatus } from 'types/application'
-import { Background } from 'bases/components/background'
+import { Background } from 'bases/materials/background'
 
 import { DockItem, DockSeparator } from './Itme';
 import styles from './dock.module.scss';

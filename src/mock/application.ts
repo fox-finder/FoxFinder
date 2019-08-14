@@ -1,6 +1,6 @@
 
 import { IApplication, ApplicationType, ApplicationStatus, ApplicationWindowStatus } from 'types/application'
-import { Exploer, ExploerElement } from 'natives/finder'
+import { Finder } from 'natives/finder'
 
 export const mockApplications: IApplication[] = [
   {
@@ -8,7 +8,7 @@ export const mockApplications: IApplication[] = [
     type: ApplicationType.Native,
     icon: '/images/icons/exploer.svg',
     status: ApplicationStatus.Running,
-    component: ExploerElement,
+    component: Finder,
     windowStatus: {
       status: ApplicationWindowStatus.Normal,
     },

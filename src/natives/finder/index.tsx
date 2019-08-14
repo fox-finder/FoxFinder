@@ -1,12 +1,11 @@
 
 import React from 'react';
+import { IAppRendererProps } from 'bases/renderers';
 
-export const Exploer: React.FC = () => {
+export const Finder: React.FC<IAppRendererProps> = ({ app }) => {
   return (
     <div>
-      <span>哎呀 我可是文件浏览器啊</span>
+      <span>I am Finder app component, {JSON.stringify(app)}</span>
     </div>
   );
 }
-
-export const ExploerElement = <Exploer />

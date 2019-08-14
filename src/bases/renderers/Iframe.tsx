@@ -1,12 +1,9 @@
 
 import React from 'react';
 import { IApplication } from 'types/application';
+import { IAppRendererProps } from './';
 
-interface IIframeAppProps {
-  app: IApplication
-}
-
-export const IframeApp: React.FC<IIframeAppProps> = (props) => {
+export const IframeApp: React.FC<IAppRendererProps> = (props) => {
   return (
     <iframe
       src={props.app.data}

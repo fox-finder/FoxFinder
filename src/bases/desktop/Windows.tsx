@@ -3,31 +3,16 @@ import React from 'react';
 import classNames from 'classnames';
 import { observer } from "mobx-react"
 import Draggable, { DraggableCore } from 'react-draggable';
-import { IApplication, ApplicationType } from 'types/application';
 import { applicationStore, ApplicationStore } from 'stores/application';
 import { optionStore } from 'stores/option';
-import { PluginApp } from 'bases/renderers/Plugin'
-import { IframeApp } from 'bases/renderers/Iframe'
-import { Window } from 'bases/components/window';
+import { AppRenderer } from 'bases/renderers'
+import { Window } from 'bases/materials/window';
 import styles from './desktop.module.scss';
 
 export interface IDesktopAppWindowsProps {}
 
 export function getAppWindowHandleClassName(appName: string) {
   return appName + '-' + 'handle'
-}
-
-function renderApp(app: IApplication) {
-  if (ApplicationStore.isPluginType(app)) {
-    return <PluginApp app={app} />
-  }
-  if (ApplicationStore.isIframeType(app)) {
-    return <IframeApp app={app} />
-  }
-  if (ApplicationStore.isNativeType(app)) {
-    return app.component
-  }
-  return (<span>应用出错啦</span>)
 }
 
 export const AppWindows = observer(function AppWindows(props: IDesktopAppWindowsProps) {
@@ -48,7 +33,7 @@ export const AppWindows = observer(function AppWindows(props: IDesktopAppWindows
               title={app.name}
               handleClassName={getAppWindowHandleClassName(app.name)}
             >
-              {renderApp(app) as any}
+              <AppRenderer app={app} />
             </Window>
           </div>
         </Draggable>

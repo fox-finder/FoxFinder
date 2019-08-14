@@ -1,13 +1,6 @@
 
-import { MacOS } from 'systems/macOS';
-import { Win95 } from 'systems/win95';
-import { Windows } from 'systems/windows';
-
-export enum SystemType {
-  MacOS = 'macOS',
-  Windows = 'windows',
-  Win95 = 'win95'
-}
+import { ApplicationComponent } from 'types/application';
+import { SystemType } from 'types/system';
 
 export enum GeneralSize {
   Normal = 'normal',
@@ -20,11 +13,9 @@ export enum DesktopIconStartDirection {
   Right = 'right',
 }
 
-export const systemMap = {
-  [SystemType.MacOS]: MacOS,
-  [SystemType.Windows]: Windows,
-  [SystemType.Win95]: Win95,
-} 
+export type NormalizeComponentMap = {
+  [key in SystemType]: ApplicationComponent
+}
 
 export interface SystemOptions {
   general: {
@@ -79,6 +70,10 @@ export class OptionStore {
 
   get isRightDirectionWithIcon(): boolean {
     return this.general.iconStartDirection === DesktopIconStartDirection.Right
+  }
+
+  static normalizeComponent(componentMap: NormalizeComponentMap) {
+    return componentMap[optionStore.personalize.system]
   }
 }
 

@@ -1,4 +1,11 @@
 
+export type ApplicationComponent =
+  | React.ComponentClass<any>
+  | React.FunctionComponent<any>
+  // | React.Component
+  // | React.ClassicComponent
+  // | React.ReactElement
+
 export enum ApplicationType {
   Native = 'app', // 系统自带应用
   Link = 'link', // 外链
@@ -49,7 +56,7 @@ export interface IApplicationStandard {
 }
 
 export interface IApplicationNative extends IApplicationStandard {
-  component?: React.ComponentClass<any> | React.FunctionComponent<any> | React.ReactElement // Native app component
+  component?: ApplicationComponent // Native app component
 }
 
 export interface IApplication extends IApplicationNative {
