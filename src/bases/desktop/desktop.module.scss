@@ -121,11 +121,21 @@
   }
 
   .windows {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
 
     .item {
-      position: absolute;
-      top: $header-height;
-      left: 0;
+      pointer-events: all;
+
+      &.fullscreen {
+        width: 100% !important;
+        height: 100% !important;
+        transform: translate(0, 0) !important;
+      }
     }
   }
 }

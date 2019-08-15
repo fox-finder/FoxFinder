@@ -2,10 +2,19 @@
 @import 'styles/init.scss';
 
 .window {
+  width: 100%;
+  height: 100%;
 
   &.noBorder {
     &:hover {
-      outline: 1px dashed #eee;
+      outline: 1px dashed $normal-translucent;
+    }
+  }
+
+  .handle {
+
+    &.macOS {
+      padding: 8px !important;
     }
   }
 

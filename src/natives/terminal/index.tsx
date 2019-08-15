@@ -19,5 +19,9 @@ export const TerminalPackage: ICompleteApplication = {
   pinDesktop: true,
   pinBerth: true,
   protected: false,
+  window: {
+    border: true,
+    resize: true
+  },
   iconContextMenu: []
 }

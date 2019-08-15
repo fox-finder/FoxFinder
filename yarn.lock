@@ -4067,6 +4067,11 @@ fast-levenshtein@~2.0.4:
   resolved "https://registry.npm.taobao.org/fast-levenshtein/download/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fast-memoize@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.npm.taobao.org/fast-memoize/download/fast-memoize-2.5.1.tgz#c3519241e80552ce395e1a32dcdde8d1fd680f5d"
+  integrity sha1-w1GSQegFUs45Xhoy3N3o0f1oD10=
+
 faye-websocket@^0.10.0:
   version "0.10.0"
   resolved "https://registry.npm.taobao.org/faye-websocket/download/faye-websocket-0.10.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffaye-websocket%2Fdownload%2Ffaye-websocket-0.10.0.tgz#4e492f8d04dfb6f89003507f6edbf2d501e7c6f4"
@@ -8264,6 +8269,20 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+re-resizable@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.npm.taobao.org/re-resizable/download/re-resizable-5.0.1.tgz#66756a7aa0583b199e23e23f12a71c546031146d"
+  integrity sha1-ZnVqeqBYOxmeI+I/EqccVGAxFG0=
+  dependencies:
+    fast-memoize "^2.5.1"
+
+re-resizable@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npm.taobao.org/re-resizable/download/re-resizable-6.0.0.tgz#84258f098b0dde214a39ca6d9ca9959aeefbc26d"
+  integrity sha1-hCWPCYsN3iFKOcptnKmVmu77wm0=
+  dependencies:
+    fast-memoize "^2.5.1"
+
 react-app-polyfill@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/react-app-polyfill/download/react-app-polyfill-1.0.1.tgz#809a858e44f9564c7f4205e173076f90048274f1"
@@ -8332,7 +8351,7 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-react-draggable@^3.3.0:
+react-draggable@3.3.0, react-draggable@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npm.taobao.org/react-draggable/download/react-draggable-3.3.0.tgz#2ed7ea3f92e7d742d747f9e6324860606cd4d997"
   integrity sha1-LtfqP5Ln10LXR/nmMkhgYGzU2Zc=
@@ -8359,6 +8378,15 @@ react-is@^16.8.1, react-is@^16.8.4:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha1-W7weLSkUHJ+9/tRWND/ivEMKahY=
+
+react-rnd@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npm.taobao.org/react-rnd/download/react-rnd-10.0.0.tgz#2f902f67fb2d1efa16aa47b34bf121ee2823092a"
+  integrity sha1-L5AvZ/stHvoWqkezS/Eh7igjCSo=
+  dependencies:
+    re-resizable "5.0.1"
+    react-draggable "3.3.0"
+    tslib "1.10.0"
 
 react-scripts@3.0.1:
   version "3.0.1"
@@ -9812,7 +9840,7 @@ ts-pnp@1.1.2, ts-pnp@^1.0.0:
   resolved "https://registry.npm.taobao.org/ts-pnp/download/ts-pnp-1.1.2.tgz#be8e4bfce5d00f0f58e0666a82260c34a57af552"
   integrity sha1-vo5L/OXQDw9Y4GZqgiYMNKV69VI=
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha1-w8GflZc/sKYpc/sJ2Q2WHuQ+XIo=

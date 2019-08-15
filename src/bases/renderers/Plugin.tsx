@@ -4,14 +4,20 @@ import Frame, { FrameContextConsumer } from 'react-frame-component'
 import { IAppRendererProps } from './';
 import styles from './renderer.module.scss';
 
+const injectCss = `
+  body { margin: 0 }
+`
+
 export const PluginApp: React.FC<IAppRendererProps> = ({ app }) => {
   return (
-    <Frame className={styles.iframe}>
+    <Frame className={styles.iframe} sandbox="allow-scripts allow-same-origin allow-forms">
       <FrameContextConsumer>
         {({ document, window }: any) => {
-          app.data += '<style>body{margin:0}</style>'
-          setTimeout(() => document.write(app.data))
-          // return <div dangerouslySetInnerHTML={{ __html: app.data || '' }} />
+          const code = `
+            <style>${injectCss}</style>
+            ${app.data}
+          `
+          setTimeout(() => document.write(code))
         }}
       </FrameContextConsumer>
     </Frame>

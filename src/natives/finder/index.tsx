@@ -21,5 +21,10 @@ export const FinderPackage: ICompleteApplication = {
   pinDesktop: true,
   pinBerth: true,
   protected: true,
+  window: {
+    border: true,
+    resize: true,
+    defaultFullScreen: true
+  },
   iconContextMenu: []
 }

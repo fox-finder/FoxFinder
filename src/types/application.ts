@@ -22,9 +22,9 @@ export enum ApplicationWindowStatus {
 }
 
 export interface IApplicationWindow {
-  status: ApplicationWindowStatus // 窗口状态
-  // defaultSize?: { width: number, height: number } // 默认尺寸
-  // defaultPosition?: { x: number, y: number } // 默认位置
+  status: ApplicationWindowStatus // 窗口显示状态
+  active: boolean // 窗口激活状态
+  index: number // 窗口层级
 }
 
 // Standard interface for -> third app | store app | base app
@@ -41,8 +41,8 @@ export interface IStandardApplication {
     resize: boolean // 是否可以调整窗口尺寸
     defaultFullScreen?: boolean // 是否默认全屏打开
     defaultSize?: { // 指定尺寸
-      width?: string
-      height?: string
+      width: string
+      height: string
     }
   }
 }

@@ -105,19 +105,22 @@ export class ApplicationStore {
       runLinkApp(app)
     } else {
       app.status = ApplicationStatus.Running
+      app.windowStatus.status = ApplicationWindowStatus.Normal
       console.log('打开这个 app 的 window 窗口, 并把窗口激活', app)
     }
   }
 
   // 关闭 app
-  closeApp(app: IRuntimeApplication) {
+  @action.bound closeApp(app: IRuntimeApplication) {
     this.pushHistory(app)
     app.status = ApplicationStatus.Dormancy
+    app.windowStatus.status = ApplicationWindowStatus.Normal
     console.log('关闭这个 app 的 window 窗口', app)
   }
 
   // 切换 app 窗口状态
-  updateAppWindowStatus(app: IRuntimeApplication, targetWindowStatus: ApplicationWindowStatus) {
+  @action.bound redrawAppWindow(app: IRuntimeApplication, targetWindowStatus: ApplicationWindowStatus) {
+    app.windowStatus.status = targetWindowStatus
     console.log('切换这个 app 的 window 窗口大小状态', app, targetWindowStatus)
   }
 
@@ -131,6 +134,10 @@ export class ApplicationStore {
 
   static isWindowVisible(app: IRuntimeApplication): boolean {
     return app.windowStatus.status !== ApplicationWindowStatus.Minimize
+  }
+
+  static isWindowMax(app: IRuntimeApplication): boolean {
+    return app.windowStatus.status === ApplicationWindowStatus.Maximize
   }
 
   static verifyType(app: IRuntimeApplication, type: ApplicationType): boolean {

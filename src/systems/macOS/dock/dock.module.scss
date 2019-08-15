@@ -46,6 +46,7 @@ $dock-size-animation-time: .0666s;
   display: flex;
   justify-content: center;
   z-index: $layout-berth-index;
+  pointer-events: none;
 
   &.small {
     height: $dock-height-small;
@@ -67,6 +68,7 @@ $dock-size-animation-time: .0666s;
     padding-bottom: calc((#{$gap} / 2) + #{$radius});
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    pointer-events: all;
     transition: width $dock-size-animation-time;
 
     .separator {

@@ -42,5 +42,9 @@ export const SettingPackage: ICompleteApplication = {
   pinDesktop: true,
   pinBerth: true,
   protected: true,
+  window: {
+    border: true,
+    resize: true
+  },
   iconContextMenu: []
 }

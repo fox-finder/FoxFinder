@@ -26,6 +26,9 @@ export interface SystemOptions {
     berthSize: GeneralSize // 任务栏尺寸
     iconSize: GeneralSize // 图标尺寸
     iconStartDirection: DesktopIconStartDirection // 图标起始方向
+    // 高级设置
+    defaultWindowWidth: string
+    defaultWindowHeight: string
   }
   personalize: {
     system: SystemType // 系统模式
@@ -45,7 +48,9 @@ export class OptionStore {
     hideBerth: false,
     berthSize: GeneralSize.Normal,
     iconSize: GeneralSize.Normal,
-    iconStartDirection: DesktopIconStartDirection.Auto
+    iconStartDirection: DesktopIconStartDirection.Auto,
+    defaultWindowWidth: '50vw',
+    defaultWindowHeight: '50vh'
   }
 
   // 个性化设置
