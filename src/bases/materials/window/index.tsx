@@ -12,11 +12,13 @@ export interface IWindowProps {
   title: string
   border?: boolean
   maximized?: boolean
+  actived?: boolean
   handleClassName: string
+  onActivate?(): void
   onClose(): void
   onMaximize?(): void
   onMinimize?(): void
-  onRecover?(): void
+  onToggle?(): void
   children?: React.ReactElement
 }
 

@@ -4,7 +4,7 @@ import Frame, { FrameContextConsumer } from 'react-frame-component'
 import { IAppRendererProps } from './';
 import styles from './renderer.module.scss';
 
-const injectCss = `
+const injectCSS = `
   body { margin: 0 }
 `
 
@@ -14,8 +14,8 @@ export const PluginApp: React.FC<IAppRendererProps> = ({ app }) => {
       <FrameContextConsumer>
         {({ document, window }: any) => {
           const code = `
-            <style>${injectCss}</style>
-            ${app.data}
+            <style>${injectCSS}</style>
+            ${app.$.data}
           `
           setTimeout(() => document.write(code))
         }}

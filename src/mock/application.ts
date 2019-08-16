@@ -1,4 +1,4 @@
 
-import { IRuntimeApplication } from 'types/application'
+import { IStandardApplication } from 'types/application'
 
-export const mockApplications: IRuntimeApplication[] = []
+export const mockApplications: IStandardApplication[] = []

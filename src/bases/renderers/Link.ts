@@ -1,6 +1,6 @@
 
-import { IRuntimeApplication } from 'types/application';
+import { App } from 'stores/application';
 
-export function runLinkApp(app: IRuntimeApplication): void {
-  window.open(app.data)
+export function runLinkApp(app: App): void {
+  window.open(app.$.data)
 }

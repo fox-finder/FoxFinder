@@ -13,17 +13,21 @@ export const MacOS: React.FC<IWindowProps> = (props) => {
       width="100%"
       height="100%"
       padding={0}
+      // 当点击的事件目标是三个 controls 时，不 emit 事件
+      onClickCapture={props.onActivate}
+      onMouseDown={props.onActivate}
     >
       <TitleBar
         title={props.title}
         className={classNames(props.handleClassName, styles.handle, styles.macOS)}
         isFullscreen={props.maximized}
+        isWindowFocused={props.actived}
         onCloseClick={props.onClose}
-        onMaximizeClick={props.onMaximize}
         onMinimizeClick={props.onMinimize}
-        onResizeClick={props.onRecover}
+        onMaximizeClick={props.onMaximize}
+        onResizeClick={props.onToggle}
+        onDoubleClick={props.onToggle}
         controls
-        inset
       />
       <div className={styles.content}>
         {props.children}

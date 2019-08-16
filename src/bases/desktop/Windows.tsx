@@ -3,8 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { observer } from "mobx-react"
 import { Rnd } from 'react-rnd';
-import { IRuntimeApplication, ApplicationWindowStatus } from 'types/application';
-import { applicationStore, ApplicationStore } from 'stores/application';
+import { applicationStore, App } from 'stores/application';
 import { optionStore } from 'stores/option';
 import { AppRenderer } from 'bases/renderers'
 import { Window } from 'bases/materials/window';
@@ -12,13 +11,13 @@ import styles from './desktop.module.scss';
 
 export interface IDesktopAppWindowsProps {}
 
-export function getAppWindowHandleClassName(app: IRuntimeApplication) {
-  return app.id + '-' + 'handle'
+export function getAppWindowHandleClassName(app: App) {
+  return app.$.id + '-' + 'handle'
 }
 
-export function getAppWindowResizingProps(app: IRuntimeApplication) {
-  const noBorder = app.window && !app.window.border
-  const isMaxWindow = ApplicationStore.isWindowMax(app)
+export function getAppWindowResizingProps(app: App) {
+  const noBorder = app.$.window && !app.$.window.border
+  const isMaxWindow = app.isWindowMax
 
   if (noBorder || isMaxWindow) {
     return {
@@ -36,8 +35,8 @@ export function getAppWindowResizingProps(app: IRuntimeApplication) {
   }
 }
 
-export function getAppWindowDefaultProps(app: IRuntimeApplication) {
-  const size = app.window && app.window.defaultSize || {
+export function getAppWindowDefaultProps(app: App) {
+  const size = app.$.window && app.$.window.defaultSize || {
     width: optionStore.general.defaultWindowWidth,
     height: optionStore.general.defaultWindowHeight
   }
@@ -51,40 +50,47 @@ export function getAppWindowDefaultProps(app: IRuntimeApplication) {
   return { default:  { ...size, ...position }}
 }
 
+@observer class AppWindow extends React.Component<{ app: App }> {
+  render() {
+    const { app } = this.props
+    return (
+      <Rnd
+        dragHandleClassName={getAppWindowHandleClassName(app)}
+        className={classNames(
+          styles.item,
+          app.isWindowMax && styles.fullscreen,
+          !app.isWindowVisible && styles.hidden
+        )}
+        minWidth={180}
+        minHeight={130}
+        maxWidth="100%"
+        bounds="parent"
+        {...getAppWindowResizingProps(app)}
+        {...getAppWindowDefaultProps(app)}
+      >
+        <Window
+          title={app.$.name}
+          border={app.$.window && app.$.window.border}
+          maximized={app.isWindowMax}
+          actived={app.isActivated}
+          handleClassName={getAppWindowHandleClassName(app)}
+          onClose={app.close}
+          onActivate={app.activate}
+          onMinimize={app.hiddenWindow}
+          onToggle={app.toggleWindowSize}
+        >
+          <AppRenderer app={app} />
+        </Window>
+      </Rnd>
+    )
+  }
+}
+
 export const AppWindows = observer(function AppWindows(props: IDesktopAppWindowsProps) {
   return (
     <div className={styles.windows}>
       {applicationStore.windowViewApps.map(app => (
-        <Rnd
-          key={app.id}
-          dragHandleClassName={getAppWindowHandleClassName(app)}
-          className={classNames(styles.item, ApplicationStore.isWindowMax(app) && styles.fullscreen)}
-          minWidth={180}
-          minHeight={130}
-          maxWidth="100%"
-          bounds="parent"
-          {...getAppWindowResizingProps(app)}
-          {...getAppWindowDefaultProps(app)}
-        >
-          <Window
-            title={app.name}
-            border={app.window && app.window.border}
-            maximized={ApplicationStore.isWindowMax(app)}
-            handleClassName={getAppWindowHandleClassName(app)}
-            onClose={() => applicationStore.closeApp(app)}
-            onMinimize={() => applicationStore.redrawAppWindow(app, ApplicationWindowStatus.Minimize)}
-            onRecover={() => {
-              applicationStore.redrawAppWindow(
-                app,
-                ApplicationStore.isWindowMax(app)
-                  ? ApplicationWindowStatus.Normal
-                  : ApplicationWindowStatus.Maximize
-              )
-            }}
-          >
-            <AppRenderer app={app} />
-          </Window>
-        </Rnd>
+        <AppWindow app={app} key={app.$.id} />
       ))}
     </div>
   );

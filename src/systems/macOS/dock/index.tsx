@@ -1,9 +1,8 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import { optionStore, GeneralSize } from 'stores/option';
-import { applicationStore, ApplicationStore } from 'stores/application';
-import { IRuntimeApplication, ApplicationType, ApplicationStatus } from 'types/application'
+import { optionStore } from 'stores/option';
+import { applicationStore, App } from 'stores/application';
 import { Background } from 'bases/materials/background'
 
 import { DockItem, DockSeparator } from './Itme';
@@ -46,16 +45,16 @@ export const Dock: React.FC = () => {
         {applicationStore.berthViewApps.map((app, index, apps) => {
           // 在固定应用与非固定但运行应用之间加间隔标示
           const nextApp = apps[index + 1]
-          const renderSeparator = app.pinBerth && nextApp && !nextApp.pinBerth
+          const renderSeparator = app.$.pinBerth && nextApp && !nextApp.$.pinBerth
           return (
-            <React.Fragment key={app.id}>
+            <React.Fragment key={app.$.id}>
               <DockItem
-                name={app.name}
-                icon={app.icon}
-                active={ApplicationStore.isRunningStatus(app)}
-                error={ApplicationStore.isErringStatus(app)}
+                name={app.$.name}
+                icon={app.$.icon}
+                active={app.isRunning}
+                error={app.isErring}
                 className={getHoverClassName(index)}
-                onClick={() => applicationStore.runApp(app)}
+                onClick={app.run}
                 onContextmenu={() => console.log('点击了 app 的右键菜单', app)}
                 onHover={() => setHoverIndex(index)}
                 onCancelHover={() => setHoverIndex(null)}

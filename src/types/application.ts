@@ -15,16 +15,15 @@ export enum ApplicationStatus {
   Error = -1,
 }
 
-export enum ApplicationWindowStatus {
-  Minimize = 0,
+export enum ApplicationWindowSize {
   Normal = 1,
-  Maximize = 2,
+  Maximized = 2,
 }
 
 export interface IApplicationWindow {
-  status: ApplicationWindowStatus // 窗口显示状态
-  active: boolean // 窗口激活状态
-  index: number // 窗口层级
+  size: ApplicationWindowSize // 窗口显示状态
+  visible: boolean // 窗口隐藏状态
+  // index: number // 窗口层级
 }
 
 // Standard interface for -> third app | store app | base app
@@ -55,9 +54,4 @@ export interface ICompleteApplication extends IStandardApplication {
   protected: boolean // 是否是系统 app，受到操作保护，保证应用不被删除，仅可执行有限操作...
   pinDesktop: boolean // 是否贴在桌面
   pinBerth: boolean // 是否贴在任务栏
-}
-
-export interface IRuntimeApplication extends ICompleteApplication {
-  status: ApplicationStatus // 应用状态
-  windowStatus: IApplicationWindow // 窗口配置
 }
