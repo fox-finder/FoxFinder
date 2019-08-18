@@ -23,5 +23,7 @@ export const CloudStorePackage: ICompleteApplication = {
     border: true,
     resize: true
   },
+  berthOrder: 2,
+  desktopOrder: 2,
   iconContextMenu: []
 }

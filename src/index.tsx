@@ -6,17 +6,15 @@ import { applicationStore } from 'stores/application';
 import { optionStore, OptionStore } from 'stores/option';
 import { SystemType } from 'types/system';
 import { MacOS } from 'systems/macOS';
-import { Win95 } from 'systems/win95';
 import { Windows } from 'systems/windows';
 
 import 'normalize.css';
 import './styles/os.scss';
 
-export const App: React.FC = observer(() => {
+export const App: React.FC = observer(function App() {
   const System = OptionStore.normalizeComponent({
     [SystemType.MacOS]: MacOS,
     [SystemType.Windows]: Windows,
-    [SystemType.Win95]: Win95,
   })
   return <System />
 })

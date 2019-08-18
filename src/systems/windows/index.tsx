@@ -13,7 +13,7 @@ export const Windows: React.FC = observer(() => {
         height={300}
         padding={20}
       >
-        <TitleBar title="Windows Application" controls />
+        <TitleBar theme="dark" title="Windows Application" controls />
         <Text>I'm Windows</Text>
       </Window>
     </div>

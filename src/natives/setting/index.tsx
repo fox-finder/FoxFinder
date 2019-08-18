@@ -46,5 +46,7 @@ export const SettingPackage: ICompleteApplication = {
     border: true,
     resize: true
   },
+  berthOrder: 1,
+  desktopOrder: 1,
   iconContextMenu: []
 }

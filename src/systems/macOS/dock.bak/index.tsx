@@ -1,16 +1,16 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import { observer, Observer } from 'mobx-react'
 import { optionStore } from 'stores/option';
 import { applicationStore, App } from 'stores/application';
 import { Background } from 'bases/materials/background'
-import { DockItem, DockSeparator } from './Item';
+
+import { DockItem, DockSeparator } from './Itme';
 import styles from './dock.module.scss';
 
 type TAppIndex = number | null | void
 
-export const Dock: React.FC = observer(props => {
+export const Dock: React.FC = () => {
 
   const [hoverIndex, setHoverIndex] = React.useState<TAppIndex>();
   // TODO: 右键上下文菜单的绑定及 blur 事件的设计
@@ -68,4 +68,4 @@ export const Dock: React.FC = observer(props => {
       </Background>
     </div>
   );
-})
+}

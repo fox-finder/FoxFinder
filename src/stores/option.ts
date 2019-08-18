@@ -1,6 +1,20 @@
 
-import { ApplicationComponent } from 'types/application';
+import { Position } from 'react-rnd'
+import { ApplicationComponent, IApplicationWindowSize } from 'types/application';
 import { SystemType } from 'types/system';
+
+export const GLOBAL_OPTIONS = {
+  minWindowWidth: 180,
+  minWindowHeight: 130,
+  defaultWindowSIze: {
+    width: '80%',
+    height: '70%'
+  } as IApplicationWindowSize,
+  defaultWindowPosition: {
+    x: 120,
+    y: 120
+  } as Position
+}
 
 export enum GeneralSize {
   Normal = 'normal',
@@ -26,9 +40,6 @@ export interface SystemOptions {
     berthSize: GeneralSize // 任务栏尺寸
     iconSize: GeneralSize // 图标尺寸
     iconStartDirection: DesktopIconStartDirection // 图标起始方向
-    // 高级设置
-    defaultWindowWidth: string
-    defaultWindowHeight: string
   }
   personalize: {
     system: SystemType // 系统模式
@@ -48,9 +59,7 @@ export class OptionStore {
     hideBerth: false,
     berthSize: GeneralSize.Normal,
     iconSize: GeneralSize.Normal,
-    iconStartDirection: DesktopIconStartDirection.Auto,
-    defaultWindowWidth: '50vw',
-    defaultWindowHeight: '50vh'
+    iconStartDirection: DesktopIconStartDirection.Auto
   }
 
   // 个性化设置

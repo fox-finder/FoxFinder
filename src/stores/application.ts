@@ -1,39 +1,60 @@
 
 import { merge } from 'lodash';
 import { observable, computed, action } from 'mobx';
-import { mockApplications } from 'mock/application'
+import { Position } from 'react-rnd'
+import { mockUserApplications } from 'mock/application'
+import { GLOBAL_OPTIONS } from 'stores/option'
 import { runLinkApp } from 'bases/renderers/Link'
 import {
+  INecessaryApplication,
   IStandardApplication,
   ICompleteApplication,
   ApplicationType,
-  ApplicationWindowSize,
+  ApplicationWindowState,
+  IApplicationWindowSize,
   IApplicationWindow,
-  ApplicationStatus
+  ApplicationState
 } from 'types/application'
 
 import { FinderPackage } from 'natives/finder'
 import { SettingPackage } from 'natives/setting'
 import { CloudStorePackage } from 'natives/store'
 import { TerminalPackage } from 'natives/terminal'
-const plugins = require('mock/store.json')
 
-function getDefaultCompletetOptions() {
+const nativeApps = [
+  FinderPackage,
+  SettingPackage,
+  CloudStorePackage,
+  TerminalPackage
+]
+
+function getDefaultCompletetOptions(): INecessaryApplication {
+  const nativeCount = nativeApps.length
+  const allCount = applicationStore.allApps.length
+  const defaultOrder = allCount < nativeCount
+    ? nativeCount + 1
+    : allCount + 1
+
   return {
     autorun: false,
     protected: false,
     pinDesktop: true,
-    pinBerth: true
+    pinBerth: true,
+    pinPosition: false as false,
+    berthOrder: defaultOrder,
+    desktopOrder: defaultOrder
   }
 }
 
-function getDefaultStatusOptions() {
+function getDefaultWindowOptions(app: ICompleteApplication): IApplicationWindow {
   return {
-    status: ApplicationStatus.Dormancy,
-    windowStatus: {
-      visible: false,
-      size: ApplicationWindowSize.Normal,
-    }
+    visible: false,
+    zIndex: 1,
+    state: ApplicationWindowState.Normal,
+    // TODO: 这里的 lockPosition 需要判断桌面的方向
+    position: app.pinPosition || GLOBAL_OPTIONS.defaultWindowPosition,
+    size: app.window && app.window.defaultSize || GLOBAL_OPTIONS.defaultWindowSIze,
+    $_keepRigid: false
   }
 }
 
@@ -41,16 +62,20 @@ export class App {
 
   @observable $!: ICompleteApplication
    // 应用状态
-  @observable status!: ApplicationStatus
+  @observable state!: ApplicationState
    // 窗口配置
-  @observable windowStatus!: IApplicationWindow
+  @observable window!: IApplicationWindow
 
   @computed get isRunning(): boolean {
-    return this.status !== ApplicationStatus.Dormancy
+    return this.state !== ApplicationState.Dormancy
   }
 
   @computed get isErring(): boolean {
-    return this.status === ApplicationStatus.Error
+    return this.state === ApplicationState.Error
+  }
+
+  @computed get isLockng(): boolean {
+    return !!this.$.pinPosition
   }
 
   @computed get isActivated(): boolean {
@@ -58,15 +83,15 @@ export class App {
   }
 
   @computed get isWindowVisible(): boolean {
-    return this.windowStatus.visible
+    return this.window.visible
   }
 
   @computed get isWindowMax(): boolean {
-    return this.windowStatus.size === ApplicationWindowSize.Maximized
+    return this.window.state === ApplicationWindowState.Maximized
   }
 
   @computed get isWindowNormal(): boolean {
-    return this.windowStatus.size === ApplicationWindowSize.Normal
+    return this.window.state === ApplicationWindowState.Normal
   }
 
   @computed get isLinkType(): boolean {
@@ -90,19 +115,18 @@ export class App {
   }
 
   @action private init(app: ICompleteApplication) {
-    this.$ = app
-    const { status, windowStatus } = getDefaultStatusOptions()
-    this.status = status
-    this.windowStatus = {
-      ...windowStatus,
-      size: this.getDefaultWindowSize()
+    this.$ = { ...app }
+    this.state = ApplicationState.Dormancy
+    this.window = {
+      ...getDefaultWindowOptions(app),
+      state: this.getDefaultWindowSize()
     }
   }
 
-  @action private getDefaultWindowSize(): ApplicationWindowSize {
+  @action private getDefaultWindowSize(): ApplicationWindowState {
     return this.$.window && this.$.window.defaultFullScreen
-      ? ApplicationWindowSize.Maximized
-      : ApplicationWindowSize.Normal
+      ? ApplicationWindowState.Maximized
+      : ApplicationWindowState.Normal
   }
 
   @action.bound run(): void {
@@ -119,30 +143,39 @@ export class App {
 
     // 首次运行 -> 重置窗口
     if (!this.isRunning) {
-      this.windowStatus.size = this.getDefaultWindowSize()
+      this.window.state = this.getDefaultWindowSize()
     }
-    // 运行（打开窗口）-> 显示窗口 -> 激活窗口
-    this.status = ApplicationStatus.Running
+    // 运行（打开窗口）-> 显示窗口 -> 激活窗口及 zindex
+    this.state = ApplicationState.Running
     this.visibleWindow()
     this.activate()
   }
 
   @action.bound close() {
     // 休眠状态（关闭窗口） -> 重置窗口
-    this.status = ApplicationStatus.Dormancy
-    this.windowStatus.size = this.getDefaultWindowSize()
+    // TODO: 要失去焦点
+    this.state = ApplicationState.Dormancy
   }
 
   @action.bound activate() {
+    this.updateZIndex(applicationStore.maxDesktopZIndex)
     applicationStore.activateApp(this)
   }
 
+  @action.bound lock() {
+    this.$.pinPosition = { ...this.window.position }
+  }
+
+  @action.bound unlock() {
+    this.$.pinPosition = false
+  }
+
   @action.bound visibleWindow() {
-    this.windowStatus.visible = true
+    this.window.visible = true
   }
 
   @action.bound hiddenWindow() {
-    this.windowStatus.visible = false
+    this.window.visible = false
   }
 
   @action.bound toggleWindowVisible() {
@@ -151,19 +184,38 @@ export class App {
       : this.visibleWindow()
   }
 
-  @action.bound redrawWindow(windowSize: ApplicationWindowSize) {
-    this.windowStatus.size = windowSize
+  @action.bound resizeWindow(size: IApplicationWindowSize) {
+    this.window.size = size
+  }
+
+  @action.bound repositionWindow(position: Position) {
+    this.window.position = position
+  }
+
+  @action.bound redrawWindowState(windowSize: ApplicationWindowState) {
+    this.window.state = windowSize
+  }
+
+  @action.bound updateKeepRigid(value: boolean) {
+    this.window.$_keepRigid = value
+  }
+
+  @action.bound updateZIndex(zIndex: number) {
+    this.window.zIndex = zIndex
   }
 
   @action.bound maximizedWindow() {
-    this.redrawWindow(ApplicationWindowSize.Maximized)
+    this.updateKeepRigid(false)
+    this.redrawWindowState(ApplicationWindowState.Maximized)
   }
 
   @action.bound recoverWindow() {
-    this.redrawWindow(ApplicationWindowSize.Normal)
+    this.updateKeepRigid(false)
+    this.redrawWindowState(ApplicationWindowState.Normal)
   }
 
   @action.bound toggleWindowSize() {
+    this.updateKeepRigid(false)
     this.isWindowMax
       ? this.recoverWindow()
       : this.maximizedWindow()
@@ -187,15 +239,14 @@ export class ApplicationStore {
   @observable activeAppId: string | null = null
 
   constructor() {
-    this.initNativeApps([
-      FinderPackage,
-      SettingPackage,
-      CloudStorePackage,
-      TerminalPackage
-    ])
-    // TODO: mock
-    plugins.map(this.registerStandardApp)
-    // this.getApps().then(apps => plugins.map(this.registerCompleteApp))
+    this.initNativeApps(nativeApps)
+    setTimeout(() => {
+      // TODO: mock promise
+      require('mock/store.json').map(this.registerStandardApp)
+      mockUserApplications.map(this.registerCompleteApp)
+      // this.getApps().then(apps => plugins.map(this.registerCompleteApp))
+    }, 500)
+    setTimeout(this.bootstrap, 800)
   }
 
   // 任务栏固定应用
@@ -203,9 +254,9 @@ export class ApplicationStore {
     return this.allApps.filter(app => app.$.pinBerth)
   }
 
-  // 运行中的应用应用
+  // 运行中的应用
   @computed get runningApps(): App[] {
-    return this.allApps.filter(app => app.status !== ApplicationStatus.Dormancy)
+    return this.allApps.filter(app => app.state !== ApplicationState.Dormancy)
   }
 
   // 运行时应用 -> 除去任务栏固定应用
@@ -231,20 +282,42 @@ export class ApplicationStore {
     ]
   }
 
+  // 可见应用
+  @computed get windowVisibleApps(): App[] {
+    return this.windowViewApps.filter(app => app.window.visible)
+  }
+
+  @computed get maxDesktopZIndex(): number {
+    return this.windowVisibleApps.length
+  }
+
+  // 启动
+  @action.bound private bootstrap() {
+    this.allApps.filter(app => app.$.autorun).map(app => app.run())
+  }
+
   // 更新历史应用
-  @action.bound private pushHistory(app: App) {
+  @action private pushHistory(app: App) {
     this.historyApps.unshift(app)
     this.historyApps.splice(18, 1000)
   }
 
   // 初始化系统应用
-  @action.bound private initNativeApps(apps: ICompleteApplication[]) {
+  @action private initNativeApps(apps: ICompleteApplication[]) {
     apps.map(this.registerCompleteApp)
   }
 
-  // 激活某个应用
+  // 激活某个应用 -> 更新 ID -> 更新所有窗的 zIndex - 1
   @action.bound activateApp(app: App) {
+    if (app.isActivated) {
+      return
+    }
     this.activeAppId = app.$.id
+    this.windowVisibleApps.forEach(app => {
+      const targetZIndex = app.window.zIndex - 1
+      app.updateZIndex(targetZIndex < 0 ? 0 : targetZIndex)
+    })
+    app.updateZIndex(this.maxDesktopZIndex)
   }
 
   // 注册完整应用

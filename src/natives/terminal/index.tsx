@@ -23,5 +23,7 @@ export const TerminalPackage: ICompleteApplication = {
     border: true,
     resize: true
   },
+  berthOrder: 3,
+  desktopOrder: 3,
   iconContextMenu: []
 }

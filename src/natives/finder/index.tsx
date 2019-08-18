@@ -23,8 +23,9 @@ export const FinderPackage: ICompleteApplication = {
   protected: true,
   window: {
     border: true,
-    resize: true,
-    defaultFullScreen: true
+    resize: true
   },
+  berthOrder: 0,
+  desktopOrder: 0,
   iconContextMenu: []
 }

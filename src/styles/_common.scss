@@ -6,3 +6,8 @@
   z-index: $base-index;
   overflow: hidden;
 }
+
+.disabled-animation {
+  animation: none !important;
+  transition: none !important;
+}
