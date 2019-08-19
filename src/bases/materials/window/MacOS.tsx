@@ -22,8 +22,8 @@ export const MacOS: React.FC<IWindowProps> = (props) => {
       width="100%"
       height="100%"
       padding={0}
-      onClick={handleActivateEvent}
       onMouseDown={handleActivateEvent}
+      isWindowFocused={props.actived}
     >
       <TitleBar
         title={props.title}

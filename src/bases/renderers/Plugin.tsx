@@ -8,22 +8,35 @@ const injectCSS = `
   body { margin: 0 }
 `
 
-export const PluginApp: React.FC<IAppRendererProps> = ({ app }) => {
-  return (
-    <Frame className={styles.iframe} sandbox="allow-scripts allow-same-origin allow-forms">
-      <FrameContextConsumer>
-        {({ document, window }: any) => {
-          window.close = app.close;
-          window.activate = app.activate;
-          window.hiddenWindow = app.hiddenWindow;
-          window.maximizedWindow = app.maximizedWindow;
-          const code = `
-            <style>${injectCSS}</style>
-            ${app.$.data}
-          `
-          setTimeout(() => document.write(code))
-        }}
-      </FrameContextConsumer>
-    </Frame>
-  );
+export class PluginApp extends React.Component<IAppRendererProps> {
+
+  shouldComponentUpdate() {
+    return false
+  }
+
+  render() {
+    const { app } = this.props
+    return (
+      <Frame className={styles.iframe} sandbox="allow-scripts allow-same-origin allow-forms">
+        <FrameContextConsumer>
+          {({ document, window }: any) => {
+            window.close = app.close
+            window.activate = app.activate
+            window.hiddenWindow = app.hiddenWindow
+            window.maximizedWindow = app.maximizedWindow
+            // window.osConfirm = 
+            // window.dialog = 
+            const code = `
+              <style>${injectCSS}</style>
+              ${app.$.data}
+            `
+            setTimeout(() => {
+              document.write(code)
+              document.addEventListener('mousedown', app.activate)
+            })
+          }}
+        </FrameContextConsumer>
+      </Frame>
+    )
+  }
 }
