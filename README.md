@@ -1,10 +1,10 @@
 
-## OS
+## FoxFinder
 
-Web OS client by react.
+FoxFinder.
 
 ### Development setup
 
 ```bash
-npm start
+cd client & npm start
 ```
