@@ -5,7 +5,7 @@ import { ICompleteApplication, ApplicationType } from 'types/application'
 
 export const Terminal: React.FC<IAppRendererProps> = ({ app }) => {
   return (
-    <div>我是 Terminal 在线终端, {JSON.stringify(app)}</div>
+    <div>我是 Terminal 在线终端, {JSON.stringify(app.$)}</div>
   );
 }
 

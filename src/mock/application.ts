@@ -7,7 +7,7 @@ export const mockUserApplications: ICompleteApplication[] = [
     id: "disktop-clock",
     description: "桌面时钟",
     icon: "/images/icons/clock.svg",
-    type: ApplicationType.Plugin,
+    type: ApplicationType.ExtApp,
     window: {
       border: false,
       resize: false,
@@ -18,8 +18,8 @@ export const mockUserApplications: ICompleteApplication[] = [
     },
     autorun: true,
     protected: false,
-    pinBerth: true,
-    pinDesktop: false,
+    pinBerth: false,
+    pinDesktop: true,
     pinPosition: {
       x: 20,
       y: 20

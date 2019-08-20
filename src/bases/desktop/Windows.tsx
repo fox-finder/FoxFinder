@@ -70,7 +70,7 @@ function getAppWindowSpringTo(app: App) {
     : getAppWindowData(app)
 }
 
-export const AppWindow = observer(function AppWindow({ app, hidden }: { app: App, hidden: boolean }) {
+export const AppWindow = observer(({ app, hidden }: { app: App, hidden: boolean }) => {
   return (
     <Spring
       // 仅处理全屏动画
@@ -139,7 +139,7 @@ export const AppWindow = observer(function AppWindow({ app, hidden }: { app: App
   )
 })
 
-export const AppWindows = observer(function AppWindows(props: IDesktopAppWindowsProps) {
+export const AppWindows = observer((props: IDesktopAppWindowsProps) => {
   return (
     <>
       <div

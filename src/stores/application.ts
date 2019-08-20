@@ -98,8 +98,12 @@ export class App {
     return App.verifyType(this, ApplicationType.Link)
   }
 
-  @computed get isPluginType(): boolean {
-    return App.verifyType(this, ApplicationType.Plugin)
+  @computed get isShortcutType(): boolean {
+    return App.verifyType(this, ApplicationType.Shortcut)
+  }
+
+  @computed get isExtAppType(): boolean {
+    return App.verifyType(this, ApplicationType.ExtApp)
   }
 
   @computed get isIframeType(): boolean {
@@ -130,7 +134,15 @@ export class App {
   }
 
   @action.bound run(): void {
+
+    // 链接形式的应用
     if (this.isLinkType) {
+      runLinkApp(this)
+      return
+    }
+
+    // 快捷方式 -> 打开 finder | 对应的文件处理器，并给予参数
+    if (this.isShortcutType) {
       runLinkApp(this)
       return
     }

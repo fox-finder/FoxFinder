@@ -1,14 +1,14 @@
 
 import React from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component'
-import { IAppRendererProps } from './';
+import { IAppRendererProps } from '.';
 import styles from './renderer.module.scss';
 
 const injectCSS = `
   body { margin: 0 }
 `
 
-export class PluginApp extends React.Component<IAppRendererProps> {
+export class ExtApp extends React.Component<IAppRendererProps> {
 
   shouldComponentUpdate() {
     return false

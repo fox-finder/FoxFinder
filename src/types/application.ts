@@ -4,11 +4,11 @@ import { Position } from 'react-rnd'
 export type ApplicationComponent = React.ComponentClass<any> | React.FunctionComponent<any>
 
 export enum ApplicationType {
-  Native = 'app', // 系统自带应用
-  Link = 'link', // 外链
+  Native = 'native', // 系统自带应用
   Shortcut = 'shortcut', // 快捷方式
+  ExtApp = 'extApp', // 扩展插件
+  Link = 'link', // 外链
   Iframe = 'iframe', // 框架
-  Plugin = 'plugin', // 扩展插件
 }
 
 export enum ApplicationState {

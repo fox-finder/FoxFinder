@@ -2,7 +2,6 @@
 import React from 'react'
 import classNames from 'classnames'
 import { observer, Observer } from 'mobx-react'
-import { useDragLayer } from 'react-dnd'
 import { MenuRegister } from 'bases/menu/Register'
 import { optionStore } from 'stores/option'
 import { AppIcons, IDesktopAppIconsProps } from "./Icons"
@@ -15,10 +14,6 @@ interface IDesktopProps {
 }
 
 export const Desktop: React.FC<IDesktopProps> = observer(props => {
-
-  const collectedProps = useDragLayer((data: any) => {
-    console.log('啥也没有啊', data)
-  })
 
   const classNameList = [
     styles.desktop,

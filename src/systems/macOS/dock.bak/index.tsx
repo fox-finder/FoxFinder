@@ -1,20 +1,20 @@
 
-import React from 'react';
-import classNames from 'classnames';
-import { optionStore } from 'stores/option';
-import { applicationStore, App } from 'stores/application';
+import React from 'react'
+import classNames from 'classnames'
+import { optionStore } from 'stores/option'
+import { applicationStore, App } from 'stores/application'
 import { Background } from 'bases/materials/background'
 
-import { DockItem, DockSeparator } from './Itme';
-import styles from './dock.module.scss';
+import { DockItem, DockSeparator } from './Itme'
+import styles from './dock.module.scss'
 
 type TAppIndex = number | null | void
 
 export const Dock: React.FC = () => {
 
-  const [hoverIndex, setHoverIndex] = React.useState<TAppIndex>();
+  const [hoverIndex, setHoverIndex] = React.useState<TAppIndex>()
   // TODO: 右键上下文菜单的绑定及 blur 事件的设计
-  const [contextMenuIndex, setContextMenuIndex] = React.useState<TAppIndex>();
+  const [contextMenuIndex, setContextMenuIndex] = React.useState<TAppIndex>()
 
   if (!applicationStore.berthViewApps.length) {
     return null
@@ -67,5 +67,5 @@ export const Dock: React.FC = () => {
         })}
       </Background>
     </div>
-  );
+  )
 }

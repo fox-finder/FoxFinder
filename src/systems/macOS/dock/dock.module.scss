@@ -4,18 +4,6 @@
 $dock-icon-animation-time: .0666s;
 $dock-size-animation-time: .0666s;
 
-// 元素放大器
-@mixin dockItemSize($scale, $animation-time) {
-  margin: 0 ($gap * $scale);
-  transition: margin $dock-size-animation-time;
-}
-
-// icon 放大器
-@mixin dockItemIconScale($scale, $animation-time) {
-  transform: scale($scale);
-  transition: transform $dock-icon-animation-time;
-}
-
 // 启动动画
 @keyframes app-running {
   0% { transform: translateY(0) }
@@ -85,25 +73,8 @@ $dock-size-animation-time: .0666s;
       justify-content: center;
       width: auto;
       height: 100%;
-      margin: 0 ($gap / 4);
-      transition: margin $dock-size-animation-time;
-
-      &.active {
-
-        > .icon {
-          animation: app-running 1s;
-        }
-
-        > .indicator {
-          visibility: visible;
-        }
-      }
-
-      &.error {
-        > .icon {
-          animation: app-error 1.8s 3;
-        }
-      }
+      // margin: 0 ($gap / 4);
+      transition: margin $dock-size-animation-time transform $dock-size-animation-time;
 
       // 透明层 -> 用于提高 prev | next 元素鼠标事件的阈值
       &::after {
@@ -122,6 +93,23 @@ $dock-size-animation-time: .0666s;
 
       &:last-child {
         margin-right: 0;
+      }
+
+      &.running {
+
+        > .icon {
+          animation: app-running 1s;
+        }
+
+        > .indicator {
+          visibility: visible;
+        }
+      }
+
+      &.erring {
+        > .icon {
+          animation: app-error 1.8s 3;
+        }
       }
 
       .name {
@@ -145,8 +133,9 @@ $dock-size-animation-time: .0666s;
         display: block;
         height: 100%;
         transform-origin: bottom;
-        transition: transform $dock-icon-animation-time;
+        // transition: transform $dock-icon-animation-time;
         animation: none;
+        // will-change: transform;
         filter: drop-shadow(0px 0px 1px $reverse-translucent);
       }
 
@@ -163,41 +152,24 @@ $dock-size-animation-time: .0666s;
         visibility: hidden;
       }
 
-      // 激活项
-      &.hover {
-        @include dockItemSize(2, $dock-icon-animation-time);
+      &.dragging {
+        
+        >.icon {
+          cursor: drag;
+        }
+      }
 
+      &:hover {
         > .name {
           visibility: visible;
           transition: visibility 0s;
         }
-
-        > .icon {
-          @include dockItemIconScale(1.8, $dock-icon-animation-time);
-        }
       }
 
-      // 前后项
-      &.hoverPrev,
-      &.hoverNext {
-        @include dockItemSize(1.3, $dock-icon-animation-time);
-
+      &.neighbour {
         &::after {
           height: 180%;
-        }
-
-        > .icon {
-          @include dockItemIconScale(1.5, $dock-icon-animation-time);
-        }
-      }
-
-      // 前后间隔项
-      &.hoverSeparatedPrev,
-      &.hoverSeparatedNext {
-        @include dockItemSize(0.8, $dock-icon-animation-time);
-
-        > .icon {
-          @include dockItemIconScale(1.2, $dock-icon-animation-time);
+          width: 120%;
         }
       }
     }

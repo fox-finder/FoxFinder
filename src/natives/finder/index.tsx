@@ -6,7 +6,7 @@ import { ICompleteApplication, ApplicationType } from 'types/application'
 export const Finder: React.FC<IAppRendererProps> = ({ app }) => {
   return (
     <div>
-      <span>I am Finder app component, {JSON.stringify(app)}</span>
+      <span>I am Finder app component, {JSON.stringify(app.$)}</span>
     </div>
   );
 }

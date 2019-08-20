@@ -2,7 +2,7 @@
 import React from 'react'
 import { observer, Observer } from 'mobx-react'
 import { App, ApplicationStore } from 'stores/application'
-import { PluginApp } from './Plugin'
+import { ExtApp } from './ExtApp'
 import { IframeApp } from './Iframe'
 
 export interface IAppRendererProps {
@@ -11,8 +11,8 @@ export interface IAppRendererProps {
 
 export const AppRenderer: React.FC<IAppRendererProps> = observer(({ app }) => {
 
-  if (app.isPluginType) {
-    return <PluginApp app={app} />
+  if (app.isExtAppType) {
+    return <ExtApp app={app} />
   }
 
   if (app.isIframeType) {

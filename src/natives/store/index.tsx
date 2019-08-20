@@ -5,7 +5,7 @@ import { ICompleteApplication, ApplicationType } from 'types/application'
 
 export const CloudStore: React.FC<IAppRendererProps> = ({ app }) => {
   return (
-    <div>我是 APP store 的内容, {JSON.stringify(app)}</div>
+    <div>我是 APP store 的内容, {JSON.stringify(app.$)}</div>
   );
 }
 

@@ -28,6 +28,7 @@
     "react-frame-component": "^4.1.1",
     "react-motion": "^0.5.2",
     "react-rnd": "^10.0.0",
+    "react-sortable-hoc": "^1.9.1",
     "react-spring": "^8.0.27"
   },
   "devDependencies": {
