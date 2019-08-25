@@ -1,0 +1,35 @@
+
+@import 'styles/init.scss';
+
+.finder {
+
+  .sidebarBox {}
+
+  .mainBox {
+
+    .fileList {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+
+      .item {
+        list-style: none;
+        padding: $gap;
+        margin: $gap;
+        text-align: center;
+        background-color: #c3c3c3;
+
+        .icon {
+          img {
+            width: 60px;
+          }
+        }
+
+        .name {
+
+        }
+      }
+    }
+  }
+}

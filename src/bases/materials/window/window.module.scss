@@ -1,0 +1,82 @@
+
+@import 'styles/init.scss';
+
+.window {
+  width: 100%;
+  height: 100%;
+
+  .handle {
+    &.macOS {
+      padding: $radius !important;
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.naked {
+  border-radius: $radius;
+  transition: background .166s;
+
+  &.lock {
+    .handle {
+      cursor: no-drop;
+      background: none;
+    }
+  }
+
+  &:hover {
+    background: $reverse-translucent;
+
+    .handle {
+      visibility: visible;
+    }
+  }
+  .handle {
+    $size: $gap * 3;
+    visibility: hidden;
+    background: $reverse-translucent;
+    height: $size;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    user-select: none;
+    cursor: move;
+    display: block;
+
+    .close {
+      float: left;
+    }
+
+    .pin {
+      float: right;
+    }
+
+    .close,
+    .pin {
+      width: $size;
+      height: $size;
+      padding: $radius;
+      cursor: pointer;
+
+      &:hover {
+        background: $reverse-translucent;
+      }
+
+      &.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .icon {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

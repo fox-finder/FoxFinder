@@ -1,0 +1,69 @@
+
+@import 'styles/init.scss';
+
+.desktop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: $base-index;
+
+  &.smallBerth {
+    .icons {
+      bottom: $dock-height-small;
+    }
+  }
+
+  &.hiddenHeader {
+    .icons {
+      top: 0;
+    }
+  }
+
+  &.hideBerth {
+    .icons {
+      bottom: 0;
+    }
+  }
+
+  .windows {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+
+    &.hideHeader {
+      top: 0;
+    }
+
+    &.dragBox {
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      width: 200%;
+      height: 150%;
+    }
+
+    .item {
+      pointer-events: all;
+      opacity: 1;
+      visibility: visible;
+      will-change: transform, width, height, opacity, visibility;
+      transition: visibility .266s, opacity .266s, padding .166s;
+
+      &.hidden {
+        visibility: hidden;
+        opacity: 0;
+        padding: $gap;
+
+        &.fullscreen {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

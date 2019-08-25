@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RocketDock效果</title>
+<style>
+/* CSS Reset */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td {margin:0; padding:0;}
+body,button,input,select,textarea {font:12px/1.5 \5FAE\8F6F\96C5\9ED1,\5B8B\4F53,Arial,Helvetica,sans-serif;}
+h1,h2,h3,h4,h5,h6 {font-size:100%; font-weight:normal;}
+table {border-collapse:collapse; border-spacing:0;}
+em {font-style:normal;}
+ul,ol {list-style:none;}
+a {text-decoration:none; color:#39442e;}
+a:hover {text-decoration:underline;}
+fieldset,img {border:0;}
+button,input,select,textarea {font-size:100%; border:0;}
+.clearfix:after {content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.clearfix {*zoom:1;}
+
+.menu {position:absolute; width:100%; bottom:0; text-align:center;}
+</style>
+</head>
+<body>
+<div id="menu" class="menu">
+    <img src="images/1.png" alt="" />
+    <img src="images/2.png" alt="" />
+    <img src="images/3.png" alt="" />
+    <img src="images/4.png" alt="" />
+    <img src="images/5.png" alt="" />
+    <img src="images/6.png" alt="" />
+    <img src="images/7.png" alt="" />
+    <img src="images/8.png" alt="" />
+</div>
+<script>
+window.onload=function () {
+    var oMenu=document.getElementById("menu");
+    var aImg=oMenu.getElementsByTagName("img");
+    var aWidth=[];
+    var i=0;
+    for (i=0;i<aImg.length;i++) {
+        //存储最初宽度
+        aWidth.push(aImg[i].offsetWidth);
+        //设置新的宽度
+        aImg[i].width=parseInt(aImg[i].offsetWidth/2); 
+    }
+    //鼠标移入事件
+    document.onmousemove=function (event) {
+        var event=event || window.event;
+        for (i=0;i<aImg.length;i++) {
+            /*
+             * 勾股定理的应用，a/b为直角的两边
+             * 计算鼠标到各种图片中心的直线距离
+             */
+            var a=event.clientX-aImg[i].offsetLeft-aImg[i].offsetWidth/2;
+            var b=event.clientY-aImg[i].offsetTop-oMenu.offsetTop-aImg[i].offsetHeight/2;
+            /*
+             * 设置图片放大比例，先将取得的值除以一个数值（Math.sqrt(a*a+b*b)/300）
+             * 然后再用1减去这个初始比例（距离越近，比例应越大）
+             */
+            var iScale=1-Math.sqrt(a*a+b*b)/300;
+            /*
+             * 如果鼠标距离图片太远，比例设置为0.5（该比例请与最初图片的设置保持一致）
+             * 
+             */
+            if (iScale<0.5) {
+                iScale=0.5;
+            };
+            aImg[i].width=aWidth[i]*iScale;
+        };
+    };
+};
+</script>
+</body>
+</html>

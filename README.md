@@ -1,10 +1,9 @@
 
 ## FoxFinder
 
-FoxFinder.
-
+Web cloud OS client powered by React.
 ### Development setup
 
 ```bash
-cd client & npm start
+npm start
 ```

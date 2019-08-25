@@ -1,0 +1,184 @@
+
+@import 'styles/init.scss';
+
+$dock-transition-time: .0666s;
+
+// 启动动画
+@keyframes app-running {
+  0% { transform: translateY(0) }
+  35% { transform: translateY(-40%) }
+  45% { transform: translateY(0) }
+  80% { transform: translateY(-30%) }
+  90% { transform: translateY(0) }
+}
+
+// 异常动画
+@keyframes app-error {
+  0% { transform: translateY(0) }
+  20% { transform: translateY(-80%) }
+  25% { transform: translateY(0) }
+  40% { transform: translateY(-43%) }
+  45% { transform: translateY(0) }
+  65% { transform: translateY(-28%) }
+  70% { transform: translateY(0) }
+}
+
+.dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $dock-height-normal;
+  display: flex;
+  justify-content: center;
+  z-index: $layout-berth-index;
+  pointer-events: none;
+
+  &.small {
+    height: $dock-height-small;
+  }
+
+  * {
+    user-select: none;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: auto;
+    max-width: 90%;
+    margin: 0;
+    padding: $gap / 2;
+    padding-bottom: calc((#{$gap} / 2) + #{$radius});
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    pointer-events: all;
+    transition: width $dock-transition-time;
+
+    .separator {
+      display: flex;
+      width: 1px;
+      height: 77%;
+      margin: 0 $gap;
+      background-color: $reverse-translucent;
+    }
+
+    .item {
+      $drop-shadow: drop-shadow(0px 0px 1px $reverse-translucent);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: auto;
+      height: 100%;
+      margin: 0 ($gap / 4);
+
+      // 透明层 -> 用于提高 prev | next 元素鼠标事件的阈值
+      &::after {
+        content: ' ';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.running {
+
+        > .icon {
+          animation: app-running 1s;
+        }
+
+        > .indicator {
+          visibility: visible;
+        }
+      }
+
+      &.erring {
+        > .icon {
+          animation: app-error 1.8s 3;
+        }
+      }
+
+      .name {
+        $name-height: $gap * 2.618;
+        position: absolute;
+        top: calc(-100% - #{$name-height});
+        left: 50%;
+        display: block;
+        width: auto;
+        height: $name-height;
+        line-height: $name-height;
+        white-space: nowrap;
+        padding: 0 ($name-height / 4);
+        background-color: $normal-translucent;
+        border-radius: $radius;
+        transform: translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility $dock-transition-time, opacity $dock-transition-time;
+        box-shadow: $reverse-translucent 0px 0px 1px, $reverse-translucent 1px 0px 5px;
+
+        &::after {
+          content: ' ';
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 10px 10px 0 10px;
+          border-color: $normal-translucent transparent transparent transparent;
+          position: absolute;
+          left: calc(50% - 10px);
+          bottom: -10px;
+          filter: $drop-shadow;
+        }
+      }
+
+      .icon {
+        display: block;
+        height: 100%;
+        transform-origin: bottom;
+        animation: none;
+        filter: $drop-shadow;
+      }
+
+      .indicator {
+        display: block;
+        width: 4px;
+        height: 3px;
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 1px;
+        background-color: $reverse;
+        visibility: hidden;
+      }
+
+      &.dragging,
+      &:hover {
+        > .name {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &.dragging {
+        
+        >.icon {
+          cursor: drag;
+        }
+      }
+    }
+  }
+}
