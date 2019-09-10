@@ -5,22 +5,15 @@ import { useDragLayer } from 'react-dnd'
 import { observer, Observer } from 'mobx-react'
 import { MenuRegister } from 'bases/layouts/menu/Register'
 import { option } from 'engines/option'
-import { AppIcons, IDesktopAppIconsProps } from "./icons"
-import { AppWindows, IDesktopAppWindowsProps } from "./windows"
+import { AppIcons } from "./icons"
+import { AppWindows } from "./windows"
 import styles from './desktop.module.scss'
 
-interface IDesktopProps {
-  appIconsProps?: IDesktopAppIconsProps
-  appWindowsProps?: IDesktopAppWindowsProps
-}
-
-export const Desktop: React.FC<IDesktopProps> = observer(props => {
+export const Desktop: React.FC = observer(() => {
 
   const classNameList = [
     styles.desktop,
-    option.isSmallSizeBerth && styles.smallBerth,
-    option.general.hideHeader && styles.hiddenHeader,
-    option.general.hideBerth && styles.hideBerth
+    // option.general.hideHeader && styles.hiddenHeader,
   ]
 
   return (
@@ -32,8 +25,8 @@ export const Desktop: React.FC<IDesktopProps> = observer(props => {
         backgroundImage: `url(${option.personalize.wallpaper})`
       }}
     >
-      <AppIcons {...props.appIconsProps} />
-      <AppWindows {...props.appWindowsProps} />
+      <AppIcons />
+      <AppWindows />
     </div>
   )
 })

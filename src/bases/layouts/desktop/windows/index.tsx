@@ -8,15 +8,13 @@ import { option } from 'engines/option'
 import { AppWindow } from './Window'
 import styles from '../desktop.module.scss'
 
-export interface IDesktopAppWindowsProps {}
-
-export const AppWindows = observer((props: IDesktopAppWindowsProps) => {
+export const AppWindows = observer(() => {
   return (
     <>
       <div
         className={classNames(
           styles.windows,
-          option.general.hideHeader && styles.hideHeader
+          // option.general.hideHeader && styles.hideHeader
         )}
       >
         <Transition

@@ -1,5 +1,5 @@
 
-import React, { Attributes, DOMAttributes } from 'react';
+import React, { DOMAttributes } from 'react';
 import classNames from 'classnames';
 import styles from './background.module.scss';
 
@@ -8,6 +8,7 @@ export interface IBackgroundProps extends DOMAttributes<HTMLElement> {
   radius?: string // 圆角
   circle?: boolean // 是否圆形
   blur?: boolean // 是否启用模糊效果
+  color?: boolean // 是否启用背景色
   opaque?: boolean // 是否启用不透明效果
   className?: string
   id?: string
@@ -18,13 +19,17 @@ export interface IBackgroundProps extends DOMAttributes<HTMLElement> {
 
 export const Background: React.FC<IBackgroundProps> = React.forwardRef<any, IBackgroundProps>((props, ref) => {
 
-  const { tag, radius, circle, blur, opaque, className, style, ...others } = props
+  const { tag, radius, circle, blur, opaque, className, color, style, ...others } = props
 
   const defaultStyles: React.CSSProperties = {}
   const classNamesList: string[] = []
 
   if (radius != null) {
     defaultStyles.borderRadius = radius
+  }
+
+  if (color) {
+    classNamesList.push(styles.color)
   }
 
   if (circle) {

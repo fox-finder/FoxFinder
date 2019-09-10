@@ -62,34 +62,18 @@
     }
   },
   {
-    "name": "QQ Mail",
-    "id": "qq-mail",
-    "description": "腾讯邮箱",
-    "icon": "/images/icons/mail.svg",
-    "type": "iframe",
-    "data": "https://mail.qq.com",
-    "window": {
-      "border": true,
-      "resize": true,
-      "defaultSize": {
-        "width": "400px",
-        "height": "300px"
-      }
-    }
-  },
-  {
     "name": "Weather",
     "id": "disktop-weather",
     "description": "桌面天气",
     "icon": "/images/icons/weather.svg",
-    "type": "plugin",
-    "data": "<div id=\"weather-view-he\"></div><script>WIDGET = {ID: 'mwjT55sjDg'};</script><script type=\"text/javascript\" src=\"https://apip.weatherdt.com/view/static/js/r.js?v=1111\"></script>",
+    "type": "iframe",
+    "data": "http://hoorayos.com/demo/extapp/weather/index.php",
     "window": {
       "border": false,
       "resize": false,
       "defaultSize": {
-        "width": "410px",
-        "height": "200px"
+        "width": "200px",
+        "height": "300px"
       }
     }
   }

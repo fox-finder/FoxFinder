@@ -7,6 +7,7 @@ import { Application } from 'engines/application'
 import { DndType } from 'engines/dnd'
 import { isTrashApp } from 'natives/trash'
 import styles from './icons.module.scss'
+import { option } from 'engines/option';
 
 export const AppIcon: React.FC<{ app: Application }> = observer(({ app }) => {
   const ref = React.useRef(null)
@@ -62,13 +63,24 @@ export const AppIcon: React.FC<{ app: Application }> = observer(({ app }) => {
     <div
       ref={ref}
       onDoubleClickCapture={app.run}
+      onContextMenu={() => {
+        console.log('图标点击了右键', app)
+      }}
       className={classNames(
         styles.item,
         app.isRunning && styles.running,
       )}
     >
       <p className={styles.icon}>
-        <img draggable={false} src={app.$.icon} alt={app.$.name} />
+        <img
+          draggable={false}
+          src={app.$.icon}
+          alt={app.$.name}
+          style={{
+            width: option.general.iconSize + 'px',
+            height: option.general.iconSize + 'px'
+          }}
+        />
         <span className={styles.indicator}></span>
       </p>
       <p className={styles.name}>{app.$.name}</p>

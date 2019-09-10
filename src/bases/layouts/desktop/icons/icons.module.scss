@@ -4,14 +4,17 @@
 .icons {
   position: absolute;
   left: 0;
-  top: $header-height;
-  bottom: $dock-height-normal;
+  // top: $header-height;
+  top: 0;
+  bottom: 0;
+  // top: $gap;
+  // bottom: $gap;
   width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
-  padding: $gap;
+  padding: ($gap * 2) $gap;
 
   * {
     user-select: none;
@@ -20,20 +23,6 @@
   &.rightStart {
     flex-wrap: wrap-reverse;
     align-content: flex-start;
-  }
-
-  &.small {
-    .item {
-      padding: $gap / 2;
-      margin: $gap ($gap / 2);
-
-      .icon {
-        img {
-          width: $desktop-icon-size-small;
-          height: $desktop-icon-size-small;
-        }
-      }
-    }
   }
 
   .item {
@@ -64,8 +53,8 @@
       margin-bottom: $gap;
 
       img {
-        width: $desktop-icon-size-normal;
-        height: $desktop-icon-size-normal;
+        // width: $desktop-icon-size-normal;
+        // height: $desktop-icon-size-normal;
         filter: drop-shadow(0px 0px 1px $reverse-translucent);
       }
 
@@ -93,8 +82,7 @@
       margin-bottom: 0;
       max-width: 80px;
       @include text-overflow();
-      color: $text-reversal;
-      text-shadow: 0px 0px 0px $text-reversal, 0px 0px 2px $text, 0px 0px 4px $text;
+      @include shadow-text();
     }
 
     .stackLayer {

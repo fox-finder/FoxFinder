@@ -1,0 +1,124 @@
+
+@import 'styles/init.scss';
+
+$dock-transition-time: .0666s;
+
+// 启动动画
+@keyframes app-running {
+  0% { transform: translateY(0) }
+  35% { transform: translateY(-40%) }
+  45% { transform: translateY(0) }
+  80% { transform: translateY(-30%) }
+  90% { transform: translateY(0) }
+}
+
+// 异常动画
+@keyframes app-error {
+  0% { transform: translateY(0) }
+  20% { transform: translateY(-80%) }
+  25% { transform: translateY(0) }
+  40% { transform: translateY(-43%) }
+  45% { transform: translateY(0) }
+  65% { transform: translateY(-28%) }
+  70% { transform: translateY(0) }
+}
+
+.dock {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  max-width: 80%;
+  margin: 0;
+  padding: 0;
+  transition: width $dock-transition-time;
+
+  .item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 $gap;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.running {
+
+      > .icon {
+        animation: app-running 1s;
+      }
+
+      > .indicator {
+        visibility: visible;
+      }
+    }
+
+    &.erring {
+      > .icon {
+        animation: app-error 1.8s 3;
+      }
+    }
+
+    .name {
+      $name-height: $gap * 2.618;
+      position: absolute;
+      // bottom: calc(-100% - #{$name-height});
+      bottom: -100%;
+      left: 50%;
+      display: block;
+      width: auto;
+      height: $name-height;
+      line-height: $name-height;
+      white-space: nowrap;
+      padding: 0 ($name-height / 4);
+      background-color: $normal-translucent;
+      border-radius: $radius;
+      transform: translateX(-50%);
+      opacity: 0;
+      visibility: hidden;
+      transition: visibility $dock-transition-time, opacity $dock-transition-time;
+      box-shadow: $reverse-translucent 0px 0px 1px, $reverse-translucent 1px 0px 5px;
+    }
+
+    .icon {
+      display: block;
+      transform-origin: top;
+      animation: none;
+    }
+
+    .indicator {
+      display: block;
+      width: 4px;
+      height: 3px;
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 1px;
+      background-color: $normal;
+      visibility: hidden;
+    }
+
+    &.dragging,
+    &:hover {
+      > .name {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &.dragging {
+      
+      >.icon {
+        cursor: drag;
+      }
+    }
+  }
+}

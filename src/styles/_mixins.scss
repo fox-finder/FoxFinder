@@ -1,17 +1,24 @@
-/* -------------------------------------------------------------
-  Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
-  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets
 
-  List of CSS3 Sass Mixins File to be @imported and @included as you need
+// backdrop filter with background
+@mixin backdrop-blur() {
+  backdrop-filter: blur(5px);
+}
 
-  The purpose of this library is to facilitate the use of CSS3 on different browsers avoiding HARD TO READ and NEVER
-  ENDING css files
+// icon shadow: svg icon
+@mixin shadow-box() {
+  box-shadow: rgba($black, 0.4) 0px 0px 8px;
+}
 
-  note: All CSS3 Properties are being supported by Safari 5
-  more info: http://www.findmebyip.com/litmus/#css3-properties
+// icon shadow: svg icon
+@mixin shadow-icon() {
+  filter: drop-shadow(0px 0px 1px $black);
+}
 
-------------------------------------------------------------- */
-
+// text shadow: icon names | header texts
+@mixin shadow-text() {
+  color: $white;
+  text-shadow: 0px 0px 0px $white, 0px 0px 2px $black, 0px 0px 4px $black;
+}
 
 ////
 /// @author Matthieu Aussaguel

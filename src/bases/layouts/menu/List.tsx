@@ -1,31 +1,44 @@
 
-import React from 'react';
-import classnames from 'classnames';
-import styles from './menu.module.scss';
-import { MenuItem, IMenuItemProps } from './Item';
+import React from 'react'
+import classnames from 'classnames'
+import { observer } from 'mobx-react'
+import styles from './menu.module.scss'
+import { MenuItem, IMenuItemProps } from './Item'
+
+export type IMenuList = IMenuItemProps[] | null
 
 export interface IMenuListProps {
   className?: string
-  list?: IMenuItemProps[]
-  children?: React.ReactChildren
+  list?: IMenuList
+  children?: React.ReactNode
 }
 
-function normalizeItemsElement(list: IMenuItemProps[] | void) {
-  if (!list || !list.length) {
+export const MenuList: React.FC<IMenuListProps> = observer(props => {
+
+  /**
+   * 1. children -> children list
+   * 2. list options -> list.map -> children list
+   * 3. null
+   */
+  let itemsElement = props.children
+
+  if (!itemsElement && props.list && props.list.length) {
+    itemsElement = (
+      <>
+        {props.list.map((menu, index) => (
+          <MenuItem key={index} {...menu} />
+        ))}
+      </>
+    )
+  }
+
+  if (!itemsElement) {
     return null
   }
 
-  return list.map((menu, index) => (
-    <MenuItem key={index} {...menu} />
-  ))
-}
-
-export const MenuList: React.FC<IMenuListProps> = props => {
-  const itemsElement = props.children || normalizeItemsElement(props.list);
-
   return (
-    <ul className={classnames(styles.menuList, props.className)}>
+    <ul className={classnames(styles.list, props.className)}>
       {itemsElement}
     </ul>
-  );
-}
+  )
+})

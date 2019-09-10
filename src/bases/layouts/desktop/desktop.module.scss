@@ -10,21 +10,9 @@
   background-size: cover;
   z-index: $base-index;
 
-  &.smallBerth {
-    .icons {
-      bottom: $dock-height-small;
-    }
-  }
-
   &.hiddenHeader {
     .icons {
       top: 0;
-    }
-  }
-
-  &.hideBerth {
-    .icons {
-      bottom: 0;
     }
   }
 

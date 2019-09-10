@@ -1,38 +1,15 @@
 
+import { IFile, FileType } from '@fox-finder/base'
 import { observable, computed, action } from 'mobx'
-import { IFile, PayloadType } from 'types/file'
-import { mockDesktopFiles } from 'mock/file'
-
-export class File {
-
-  constructor() {
-    this.fetchDesktopFiles()
-  }
-  
-  // Desktop files
-  @observable desktopFiles: IFile[] = []
-  
-  @action updateDesktopFiles(files: IFile[]): void {
-    this.desktopFiles = files
-  }
-  
-  fetchDesktopFiles(): void {
-    Promise.resolve().then(() => {
-      this.updateDesktopFiles(mockDesktopFiles)
-    })
-  }
-
-  static openFile(file: IFile): void {
-    console.log('打开这个文件', file)
-  }
-
-  static isDirectory(file: IFile): boolean {
-    return file.type === PayloadType.Directory
-  }
-  
-  static isFile(file: IFile): boolean {
-    return file.type === PayloadType.File
-  }
+ 
+export function openFile(file: IFile, app?: string): void {
+  console.log('用', app, '打开这个文件', file)
 }
 
-export const file = new File()
+export function isDirectory(file: IFile): boolean {
+  return file.type === FileType.Directory
+}
+
+export function isFile(file: IFile): boolean {
+  return file.type === FileType.File
+}

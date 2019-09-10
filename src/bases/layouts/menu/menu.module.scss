@@ -3,17 +3,13 @@
 
 .menu {
   position: fixed;
+  z-index: $layout-menu-index;
 }
 
-.menuList {
+.list {
   width: auto;
   border-radius: 5px;
   background-color: #eee;
-
-  &.rightAngleTop {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
 
   &.children {
     position: absolute;
@@ -23,13 +19,13 @@
   }
 }
 
-.menuItem {
+.item {
   color: #000;
   position: relative;
 
   &:hover {
 
-    .menuList {
+    .list {
       display: block;
     }
   }

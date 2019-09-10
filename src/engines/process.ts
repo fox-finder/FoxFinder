@@ -18,7 +18,7 @@ import { TrashPackage } from 'natives/trash'
 
 const nativeApps = [
   FinderPackage,
-  TrashPackage,
+  // TrashPackage,
   SettingPackage,
   CloudStorePackage,
   TerminalPackage,

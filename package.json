@@ -9,8 +9,11 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@fox-finder/base": "^0.0.1",
+    "@tippy.js/react": "^2.2.3",
     "@types/faker": "^4.1.5",
     "@types/react-beautiful-dnd": "^11.0.3",
+    "@types/react-popover": "^0.5.3",
     "autobind": "^1.0.3",
     "autobind-decorator": "^2.4.0",
     "classnames": "^2.2.6",
@@ -20,8 +23,10 @@
     "lodash": "^4.17.15",
     "mobx": "^5.13.0",
     "mobx-react": "^6.1.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
+    "query-string": "^6.8.3",
     "re-resizable": "^6.0.0",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.5",
@@ -34,9 +39,11 @@
     "react-flip-toolkit": "^7.0.2",
     "react-frame-component": "^4.1.1",
     "react-motion": "^0.5.2",
+    "react-popover": "^0.5.10",
     "react-rnd": "^10.0.0",
     "react-sortable-hoc": "^1.9.1",
-    "react-spring": "^8.0.27"
+    "react-spring": "^8.0.27",
+    "react-tippy": "^1.2.3"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",

@@ -6,15 +6,92 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: $header-height;
-  z-index: $layout-berth-index;
+  display: flex;
+  justify-content: center;
+  z-index: $layout-header-index;
+  pointer-events: none;
 
-  .menu {
+  * {
+    user-select: none;
+  }
 
-    &.osMenu {
-      
+  .container {
+    display: flex;
+    align-items: center;
+    width: auto;
+    pointer-events: all;
+    background-color: rgba($white, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 6px;
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+
+  .svgIcon {
+    width: auto;
+    height: 60%;
+    @include shadow-icon();
+  }
+
+  .separator {
+    display: flex;
+    width: 1px;
+    height: 70%;
+    margin: 0 $gap;
+    background-color: rgba($white, 0.1);
+  }
+
+  .action {
+    cursor: pointer;
+
+    .svgIcon {
+      filter: brightness(0.9);
+      transition: filter .25s;
+    }
+
+    &:hover {
+      .svgIcon {
+        filter: brightness(1.1);
+      }
     }
   }
 
-  .tray {}
+  .launch {
+    padding: 0 1rem;
+    margin-right: -$gap;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tray {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    @include shadow-text();
+
+    .item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .time {
+      width: $gap * 18;
+      padding: 0 $gap;
+      font-family: Digital7Mono;
+      font-size: 1.1rem;
+    }
+
+    .off {
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+
+    .screen {
+      width: $gap * 4;
+    }
+  }
 }

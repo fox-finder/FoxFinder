@@ -2,7 +2,6 @@
 import autobind from 'autobind-decorator'
 import { observable, computed, action } from 'mobx'
 import { observer } from 'mobx-react'
-import { PayloadType } from 'types/file'
 
 export enum DndType {
   DesktopApp = 'desktopApp',

@@ -7,7 +7,7 @@ import { Spring } from 'react-spring/renderprops'
 import { Application } from 'engines/application'
 import { GLOBAL_OPTIONS } from 'engines/option'
 import { AppRenderer } from 'bases/renderers'
-import { Window } from 'bases/materials/window'
+import { Window } from 'bases/layouts/window'
 import styles from '../desktop.module.scss'
 
 export function getAppWindowDragBoxClassName() {

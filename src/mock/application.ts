@@ -21,8 +21,9 @@ export const mockUserApplications: ICompleteApplication[] = [
     pinBerth: false,
     pinDesktop: true,
     pinPosition: {
-      x: 20,
-      y: 20
+      // TODO: 这里最终呈现为 水平和垂直距离
+      x: 1600,
+      y: 0
     },
     berthOrder: 14,
     desktopOrder: 14,

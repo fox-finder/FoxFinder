@@ -1,5 +1,5 @@
 
-$iconfont-url: '//at.alicdn.com/t/font_190798_rjgpakiecc.css';
+$iconfont-url: '//at.alicdn.com/t/font_190798_naqdhyni7tq.css';
 
 // colors
 $white: #ffffff;
@@ -40,8 +40,6 @@ $body-bg: var(--body-bg);
 $window-bg: var(--window-bg);
 $window-hover-bg: var(--window-hover-bg);
 
-// shadow
-
 // text
 $text: var(--reverse);
 $text-reversal: var(--normal);
@@ -57,16 +55,13 @@ $gap: 1rem * 0.618;
 $radius: 4px;
 
 // size
-$header-height: 1.6rem;
-$dock-height-normal: 4rem;
-$dock-height-small: 3rem;
-$desktop-icon-size-normal: 3.5rem;
+$header-height: 2.6rem;
+$desktop-icon-size-normal: 3.3rem;
 $desktop-icon-size-small: 2.5rem;
 
 // index
 $base-index: 0;
 $layout-window-index-base: 100;
 $layout-header-index: 201;
-$layout-berth-index: 201;
 $layout-popup-index: 202;
-$layout-menu-index: 203;
+$layout-menu-index: 99999;

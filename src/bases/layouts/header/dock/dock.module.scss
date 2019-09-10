@@ -1,0 +1,102 @@
+
+@import 'styles/init.scss';
+
+$dock-transition-time: .0666s;
+
+// 启动动画
+@keyframes app-running {
+  0% { transform: translateY(0) }
+  35% { transform: translateY(-40%) }
+  45% { transform: translateY(0) }
+  80% { transform: translateY(-30%) }
+  90% { transform: translateY(0) }
+}
+
+// 异常动画
+@keyframes app-error {
+  0% { transform: translateY(0) }
+  20% { transform: translateY(-80%) }
+  25% { transform: translateY(0) }
+  40% { transform: translateY(-43%) }
+  45% { transform: translateY(0) }
+  65% { transform: translateY(-28%) }
+  70% { transform: translateY(0) }
+}
+
+.dockList {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  transition: width $dock-transition-time;
+
+  .item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 $gap;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.running {
+
+      > .icon {
+        animation: app-running 1s;
+      }
+
+      > .indicator {
+        visibility: visible;
+      }
+    }
+
+    &.erring {
+      > .icon {
+        animation: app-error 1.8s 3;
+      }
+    }
+
+    &.dragging {
+      cursor: grabbing !important;
+      // background-color: red;
+
+      .tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .tooltip {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .icon {
+      display: block;
+      transform-origin: top;
+      animation: none;
+    }
+
+    .indicator {
+      display: block;
+      width: 4px;
+      height: 3px;
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 1px;
+      background-color: $normal;
+      visibility: hidden;
+    }
+  }
+}
