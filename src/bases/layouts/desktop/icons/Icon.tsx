@@ -6,6 +6,7 @@ import { observer } from 'mobx-react'
 import { Application } from 'engines/application'
 import { DndType } from 'engines/dnd'
 import { isTrashApp } from 'natives/trash'
+import { Icon } from 'bases/materials/icon'
 import styles from './icons.module.scss'
 import { option } from 'engines/option';
 
@@ -15,7 +16,7 @@ export const AppIcon: React.FC<{ app: Application }> = observer(({ app }) => {
   // Drag
   const [{ isDragging }, connectDrag] = useDrag({
     item: {
-      id: app.$.id,
+      id: app.uuid,
       type: DndType.DesktopApp
     },
     canDrag() {
@@ -52,7 +53,7 @@ export const AppIcon: React.FC<{ app: Application }> = observer(({ app }) => {
       console.log(draggedId, '图标被拖入结束：', draggedId, type)
     },
     hover({ id: draggedId }: { id: string; type: string }) {
-      console.log(draggedId, '图标被拖入', draggedId, app.$.id)
+      console.log(draggedId, '图标被拖入', draggedId, app.uuid)
     },
   })
 
@@ -72,8 +73,7 @@ export const AppIcon: React.FC<{ app: Application }> = observer(({ app }) => {
       )}
     >
       <p className={styles.icon}>
-        <img
-          draggable={false}
+        <Icon
           src={app.$.icon}
           alt={app.$.name}
           style={{

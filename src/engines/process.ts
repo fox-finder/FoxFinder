@@ -37,7 +37,7 @@ function getDefaultCompletetOptions(): INecessaryApplication {
     autorun: false,
     protected: false,
     pinDesktop: true,
-    pinBerth: true,
+    pinBerth: false,
     pinPosition: false as false,
     berthOrder: defaultOrder,
     desktopOrder: defaultOrder
@@ -133,7 +133,7 @@ export class Process {
     if (app.isActivated) {
       return
     }
-    this.activeAppId = app.$.id
+    this.activeAppId = app.uuid
     this.windowVisibleApps.forEach(app => {
       const targetZIndex = app.window.zIndex - 1
       app.updateZIndex(targetZIndex < 0 ? 0 : targetZIndex)
@@ -158,7 +158,8 @@ export class Process {
   }
 
   static isTrashApp(app: Application): boolean {
-    return app.$.id === TrashPackage.id
+    return false
+    // return app.uuid === TrashPackage.uuid
   }
 
   static normalizeStandardApp(app: IStandardApplication): ICompleteApplication {

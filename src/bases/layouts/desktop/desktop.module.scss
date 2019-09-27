@@ -18,10 +18,13 @@
 
   .windows {
     position: absolute;
-    top: $header-height;
+    // TODO: 这里是不是全屏后就要隐藏 hedaer，有争议
+    // top: $header-height;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    margin: 3px;
     pointer-events: none;
 
     &.hideHeader {
@@ -38,11 +41,11 @@
 
     .item {
       pointer-events: all;
-      opacity: 1;
-      visibility: visible;
+      @include visible();
       will-change: transform, width, height, opacity, visibility;
       transition: visibility .266s, opacity .266s, padding .166s;
 
+      // pading 实现动画有争议
       &.hidden {
         visibility: hidden;
         opacity: 0;

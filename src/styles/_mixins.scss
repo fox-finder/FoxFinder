@@ -1,23 +1,34 @@
 
-// backdrop filter with background
-@mixin backdrop-blur() {
-  backdrop-filter: blur(5px);
+@mixin visible() {
+  opacity: 1;
+  visibility: visible;
 }
 
-// icon shadow: svg icon
-@mixin shadow-box() {
-  box-shadow: rgba($black, 0.4) 0px 0px 8px;
+@mixin hidden() {
+  opacity: 0;
+  visibility: hidden;
 }
 
-// icon shadow: svg icon
-@mixin shadow-icon() {
-  filter: drop-shadow(0px 0px 1px $black);
+@mixin visibility-transition($time: $transition-time) {
+  transition: opacity $time, visibility $time;
 }
 
-// text shadow: icon names | header texts
-@mixin shadow-text() {
-  color: $white;
-  text-shadow: 0px 0px 0px $white, 0px 0px 2px $black, 0px 0px 4px $black;
+@mixin backdrop-blur($blur-radius: 5px) {
+  backdrop-filter: blur($blur-radius);
+}
+
+@mixin box-shadow($alpha: 0.6, $blur-radius: 8px) {
+  box-shadow: rgba($black, $alpha) 0px 0px $blur-radius;
+}
+
+@mixin drop-shadow($alpha: 0.6, $blur-radius: 1px) {
+  filter: drop-shadow(0px 0px $blur-radius rgba($black, $alpha));
+}
+
+@mixin title-shadow() {
+  $text-color: $gray-1;
+  color: $text-color;
+  text-shadow: 0px 0px 0px $text-color, 0px 0px 2px rgba($black, 0.6), 0px 0px 4px rgba($black, 0.6);
 }
 
 ////
@@ -183,23 +194,6 @@
             zoom:   1;
 }
 
-
-/// Box Shadow
-/// @param {Size} $x [2px] - X
-/// @param {Size} $y [2px] - Y
-/// @param {Size} $blur [5px] - Blur
-/// @param {Color} $color [rgba(0,0,0,.4)] - Color
-/// @param {Boolean} $inset - Inset
-
-@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
-  @if ($inset != "") {
-    @include css3-prefix('box-shadow', $inset $x $y $blur $color);
-  } @else {
-    @include css3-prefix('box-shadow', $x $y $blur $color);
-  }
-}
-
-
 /// Box Sizing
 /// @param {*} $type [border-box] - Type
 /// @require {mixin} css3-prefix
@@ -319,18 +313,6 @@
        M11=#{$m11}, M12=#{$m12}, M21=#{$m21}, M22=#{$m22}, sizingMethod='auto expand');
     zoom: 1;
 }
-
-
-/// Text Shadow
-/// @param {Size} $x [2px] - X
-/// @param {Size} $y [2px] - Y
-/// @param {Size} $blur [2px] - Blur
-/// @param {Color} $color [rgba(0,0,0,.4)] - Color
-
-@mixin text-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4)) {
-    text-shadow: $x $y $blur $color;
-}
-
 
 /// Transform
 /// @param {List} $params - Params

@@ -1,23 +1,25 @@
 
-import moment from 'moment';
-import React from 'react';
-import classNames from 'classnames';
-import { observable, action } from 'mobx';
-import { observer } from 'mobx-react';
-import { MouseKeyType } from 'bases/layouts/menu/store';
+import moment from 'moment'
+import React from 'react'
+import classNames from 'classnames'
+import Calendar from 'react-calendar'
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 import { option } from 'engines/option'
 import { event } from 'engines/event'
-import { MenuRegister } from 'bases/layouts/menu/Register';
-import { Tipbox, TipboxContentTiggleType } from '../tipbox'
-import styles from './header.module.scss';
+import { Tooltip, Title } from 'bases/layouts/tooltip'
+import { Icon } from 'bases/materials/icon'
+import { isDisabledTooltip, calendarOperating } from './'
+import styles from './header.module.scss'
+
+const now = observable.box(moment())
+const Time: React.FC = observer(() => (
+  <span>{now.get().format('YYYY/MM/DD HH:mm:ss')}</span>
+))
+
+setInterval(() => now.set(moment()), 1000)
 
 @observer export class Tray extends React.Component<any> {
-
-  @observable private nowTime = this.getNowTime()
-
-  private getNowTime(): string {
-    return moment().format('YYYY/MM/DD HH:mm:ss')
-  }
 
   private toggleFullscreen(): void {
     event.isFullscreen
@@ -25,55 +27,91 @@ import styles from './header.module.scss';
       : event.fullscreen()
   }
 
-  @action private intervalTime(): void {
-    setInterval(() => {
-      this.nowTime = this.getNowTime()
-    }, 1000)
-  }
-
-  componentDidMount() {
-    this.intervalTime()
-  }
-
   render() {
     return (
       <div className={styles.tray}>
-        <Tipbox
-          title="日历"
-          content={(
-            <span>日历组件</span>
+        <Tooltip
+          disabled={isDisabledTooltip.get() && !calendarOperating.get()}
+          className={classNames(
+            styles.time,
+            styles.item,
+            styles.action
           )}
-          id="header-time"
-          contentTiggle={TipboxContentTiggleType.Click}
+          hover={{ content: <Title>日历</Title> }}
+          click={{
+            interactive: true,
+            hideOnClick: false,
+            onOpen: () => calendarOperating.set(true),
+            onClose: () => calendarOperating.set(false),
+            content: (
+              <Calendar
+                className={styles.calendar}
+                value={moment().toDate()}
+                nextLabel={<Icon iconfont="right" className={styles.label} />}
+                prevLabel={<Icon iconfont="left" className={styles.label} />}
+                prev2Label={<Icon iconfont="doubleleft" className={styles.label} />}
+                next2Label={<Icon iconfont="doubleright" className={styles.label} />}
+              />
+            )
+          }}
         >
-          <div className={classNames(styles.time, styles.item)}>
-            <span>{this.nowTime}</span>
-          </div>
-        </Tipbox>
-        <Tipbox title="退出系统" id="header-logout">
-          <div className={classNames(styles.off, styles.item, styles.action)}>
-            <i className="iconfont icon-off" />
-          </div>
-        </Tipbox>
-        <Tipbox
-          id="header-fullscreen"
-          title={`${event.isFullscreen ? '退出' : '进入'}全屏`}
+          <span className={styles.content}>
+            <Time />
+          </span>
+        </Tooltip>
+        <Tooltip
+          className={classNames(
+            styles.theme,
+            styles.item,
+            styles.action
+          )}
+          onClick={() => option.updateThemeMode(!option.personalize.darkTheme)}
+          hover={{ content: <Title>{`切换到${option.personalize.darkTheme ? '浅色' : '深色'}模式`}</Title> }}
+          disabled={isDisabledTooltip.get()}
         >
-          <div
-            onClick={this.toggleFullscreen}
-            className={classNames(styles.screen, styles.item, styles.action)}
-          >
-            <i
-              className={classNames(
-                "iconfont",
-                event.isFullscreen
-                  ? "icon-not-fullscreen"
-                  : "icon-fullscreen"
-              )}
-            />
-          </div>
-        </Tipbox>
+          <Icon
+            className={styles.content}
+            iconfont={
+              option.personalize.darkTheme
+                ? "moon"
+                : "sun"
+            }
+          />
+        </Tooltip>
+        <Tooltip
+          hover={{ content: <Title>退出系统</Title> }}
+          disabled={isDisabledTooltip.get()}
+          className={classNames(
+            styles.off,
+            styles.item,
+            styles.action
+          )}
+        >
+          <Icon
+            iconfont="off"
+            className={styles.content}
+          />
+        </Tooltip>
+        <Tooltip
+          className={classNames(
+            styles.screen,
+            styles.item,
+            styles.action
+          )}
+          onClick={this.toggleFullscreen}
+          disabled={isDisabledTooltip.get()}
+          hover={{ content: <Title>{`${event.isFullscreen ? '退出' : '进入'}全屏`}</Title> }}
+        >
+          <Icon
+            className={styles.content}
+            iconfont={
+              event.isFullscreen
+                ? "not-fullscreen"
+                : "fullscreen"
+            }
+          />
+        </Tooltip>
       </div>
-    );
+    )
   }
 }

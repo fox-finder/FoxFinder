@@ -1,26 +1,34 @@
 
 @import 'styles/init.scss';
 
-$dock-transition-time: .0666s;
-
-// 启动动画
+// app running animation
+// @keyframes app-running {
+//   0% { transform: translate3d(0, 0, 0) }
+//   60% { transform: translate3d(0, 1000%, 0) scale(5) }
+//   70% { transform: translate3d(0, 1000%, 0) scale(15) }
+//   87% { transform: translate3d(0, 1000%, 0) scale(15); opacity: 0 }
+//   88% { transform: none; opacity: 0 }
+//   100% { transform: none; opacity: 1 }
+// }
 @keyframes app-running {
-  0% { transform: translateY(0) }
-  35% { transform: translateY(-40%) }
-  45% { transform: translateY(0) }
-  80% { transform: translateY(-30%) }
-  90% { transform: translateY(0) }
+  0% { transform: scale(1); opacity: 1 }
+  80% { transform: scale(2); opacity: 0 }
+  90% { transform: scale(1); opacity: 0 }
+  100% { transform: scale(1); opacity: 1 }
 }
 
-// 异常动画
+// app error animation
 @keyframes app-error {
-  0% { transform: translateY(0) }
-  20% { transform: translateY(-80%) }
-  25% { transform: translateY(0) }
-  40% { transform: translateY(-43%) }
-  45% { transform: translateY(0) }
-  65% { transform: translateY(-28%) }
-  70% { transform: translateY(0) }
+  0% { @include visible(); }
+  10% { @include hidden(); }
+  20% { @include visible(); }
+  30% { @include hidden(); }
+  40% { @include visible(); }
+  50% { @include hidden(); }
+  60% { @include visible(); }
+  70% { @include hidden(); }
+  80% { @include visible(); }
+  90% { @include hidden(); }
 }
 
 .dockList {
@@ -30,7 +38,6 @@ $dock-transition-time: .0666s;
   height: 100%;
   margin: 0;
   padding: 0;
-  transition: width $dock-transition-time;
 
   .item {
     position: relative;
@@ -51,38 +58,31 @@ $dock-transition-time: .0666s;
     &.running {
 
       > .icon {
-        animation: app-running 1s;
+        // animation: app-running 0.36s cubic-bezier(0.26, 1.03, 0.71, 0.39)
       }
 
       > .indicator {
-        visibility: visible;
+        @include visible();
       }
     }
 
     &.erring {
       > .icon {
-        animation: app-error 1.8s 3;
+        animation: app-error .6s infinite;
       }
     }
 
     &.dragging {
       cursor: grabbing !important;
-      // background-color: red;
 
-      .tooltip {
-        opacity: 1;
-        visibility: visible;
+      // Hack
+      :global(.tooltip-container) {
+        @include visible();
       }
-    }
-
-    .tooltip {
-      opacity: 0;
-      visibility: hidden;
     }
 
     .icon {
       display: block;
-      transform-origin: top;
       animation: none;
     }
 
@@ -95,8 +95,9 @@ $dock-transition-time: .0666s;
       left: 50%;
       transform: translateX(-50%);
       border-radius: 1px;
-      background-color: $normal;
-      visibility: hidden;
+      background-color: $theme-background-fullness-1;
+      @include hidden();
+      @include visibility-transition();
     }
   }
 }

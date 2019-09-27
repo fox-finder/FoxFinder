@@ -6,7 +6,7 @@ import { observer } from 'mobx-react'
 import { option } from 'engines/option'
 import { process } from 'engines/process'
 import { DndType } from 'engines/dnd'
-import { MenuRegister } from 'bases/layouts/menu/Register'
+import { MenuRegister } from 'bases/layouts/menu'
 import { menus } from './menus'
 import { AppIcon } from './Icon'
 import styles from './icons.module.scss'
@@ -30,7 +30,7 @@ export const AppIcons: React.FC = observer(() => {
         )}
       >
         {process.disktopViewApps.slice().map(app => (
-          <AppIcon app={app} key={app.$.id} />
+          <AppIcon app={app} key={app.uuid} />
         ))}
       </div>
     </MenuRegister>

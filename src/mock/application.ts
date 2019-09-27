@@ -4,7 +4,6 @@ import { ICompleteApplication, ApplicationType } from 'types/application'
 export const mockUserApplications: ICompleteApplication[] = [
   {
     name: "Clock",
-    id: "disktop-clock",
     description: "桌面时钟",
     icon: "/images/icons/clock.svg",
     type: ApplicationType.ExtApp,
@@ -23,7 +22,7 @@ export const mockUserApplications: ICompleteApplication[] = [
     pinPosition: {
       // TODO: 这里最终呈现为 水平和垂直距离
       x: 1600,
-      y: 0
+      y: 20
     },
     berthOrder: 14,
     desktopOrder: 14,

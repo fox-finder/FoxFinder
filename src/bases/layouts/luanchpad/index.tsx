@@ -14,7 +14,6 @@ export const Launchpad: React.FC<IAppRendererProps> = ({ app }) => {
 // 最终是无用的
 export const LaunchpadPackage: ICompleteApplication = {
   name: 'Launchpad',
-  id: 'os-mac-launchpad',
   type: ApplicationType.Native,
   icon: '/images/icons/launchpad.svg',
   component: Launchpad,

@@ -18,7 +18,7 @@ export const AppWindows = observer(() => {
         )}
       >
         <Transition
-          keys={app => app.$.id}
+          keys={app => app.uuid}
           items={process.windowViewApps.slice()}
           from={{ opacity: 0 }}
           enter={{ opacity: 1 }}
@@ -26,7 +26,7 @@ export const AppWindows = observer(() => {
           config={{ duration: 260 }}
         >
           {app => props => (
-            <AppWindow key={app.$.id} app={app} hidden={props.opacity !== 1} />
+            <AppWindow key={app.uuid} app={app} hidden={props.opacity !== 1} />
           )}
         </Transition>
       </div>

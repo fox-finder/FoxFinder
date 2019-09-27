@@ -4,10 +4,10 @@
 .background {
 
   &.color {
-    background-color: $normal;
+    background-color: $theme-text;
 
     &.opaque {
-      background-color: $normal-translucent;
+      background-color: $theme-background-fullness-3;
     }
   }
 
@@ -16,6 +16,6 @@
   }
 
   &.blur {
-    @include css3-prefix(backdrop-filter, blur(5px));
+    @include backdrop-blur();
   }
 }

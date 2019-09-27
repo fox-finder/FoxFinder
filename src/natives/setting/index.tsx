@@ -34,7 +34,6 @@ export const Setting: React.FC<IAppRendererProps> = ({ app }) => {
 
 export const SettingPackage: ICompleteApplication = {
   name: 'Setting',
-  id: 'os-setting',
   type: ApplicationType.Native,
   icon: '/images/icons/settings.svg',
   component: Setting,

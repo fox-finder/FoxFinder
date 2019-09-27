@@ -39,12 +39,10 @@ export interface IApplicationWindow {
 // Standard interface for -> third app | store app | base app
 export interface IStandardApplication {
   name: string
-  id: string // 唯一 ID
   description?: string // App description (markdown format string)
   icon: string // Icon resource src | Base64 string
   type: ApplicationType
   data?: string // App data -> url | path | htmlcode |other
-  hideBerthActiveState?: boolean // Hide active status when active
   window?: {
     border: boolean // 是否有边框
     resize: boolean // 是否可以调整窗口尺寸

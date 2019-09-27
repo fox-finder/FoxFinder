@@ -8,6 +8,7 @@ import { event } from 'engines/event'
 import { toolboxStore } from './store'
 import './style.scss'
 
+// 这里有挺严重的问题，第一错位，第二不居中，第三从一个 context 切换到 另一个 context 竟然有残留，要 hack 的东西太多了
 export enum TipboxContentTiggleType {
   Click = 'click',
   ContextClick = 'contextClick'
@@ -131,10 +132,16 @@ interface TipboxProps {
       return this.props.children
     }
 
-    const contentElement = !this.props.content ? '' : React.cloneElement(
-      this.props.content as CommonElement,
-      { 'data-toolbox-id': this.props.id }
-    )
+    const contentElement =
+      !this.props.content
+        ? ''
+        : React.cloneElement(
+            this.props.content as CommonElement,
+            {
+              'data-toolbox-id': this.props.id,
+              className: 'tool-content'
+            }
+          )
 
     const tooltipElement = (
       <div className="tooltip">{this.props.title}</div>

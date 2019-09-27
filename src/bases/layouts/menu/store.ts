@@ -43,9 +43,9 @@ export class Menu {
   }
 
   private listenMouseDown() {
-    event.addMousedownListener(event => {
+    event.addMouseDownListener(event => {
       const isHitMenu = Event.isHitMousedownTargetElementID(event, MENU_ID)
-      isHitMenu || this.reset()
+      isHitMenu || this.hidden()
     })
   }
 
@@ -55,9 +55,13 @@ export class Menu {
     this.menuList = menuList;
   }
 
-  @action.bound reset() {
-    this.menuList = null;
+  @action.bound hidden() {
     this.visible = false;
+  }
+
+  @action.bound reset() {
+    this.hidden()
+    this.menuList = null;
     this.position = DEFAULT_POSITION;
   }
 

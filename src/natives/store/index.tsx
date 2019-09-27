@@ -11,7 +11,6 @@ export const CloudStore: React.FC<IAppRendererProps> = ({ app }) => {
 
 export const CloudStorePackage: ICompleteApplication = {
   name: 'Cloud Store',
-  id: 'os-cloud-store',
   type: ApplicationType.Native,
   icon: '/images/icons/store.svg',
   component: CloudStore,

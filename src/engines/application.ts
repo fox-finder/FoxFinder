@@ -1,4 +1,5 @@
 
+import uuid from 'uuid';
 import { observable, computed, action } from 'mobx';
 import { Position } from 'react-rnd'
 import { GLOBAL_OPTIONS } from 'engines/option'
@@ -27,10 +28,16 @@ function getDefaultWindowOptions(app: ICompleteApplication): IApplicationWindow 
 
 export class Application {
 
+  // uuid
+  uuid = uuid()
+
+   // meta data
   @observable $!: ICompleteApplication
-   // 应用状态
+
+   // run state
   @observable state!: ApplicationState
-   // 窗口配置
+
+   // window state
   @observable window!: IApplicationWindow
 
   @computed get isRunning(): boolean {
@@ -46,7 +53,7 @@ export class Application {
   }
 
   @computed get isActivated(): boolean {
-    return process.activeAppId === this.$.id
+    return process.activeAppId === this.uuid
   }
 
   @computed get isWindowVisible(): boolean {

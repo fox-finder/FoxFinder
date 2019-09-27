@@ -6,7 +6,6 @@ import { ICompleteApplication, ApplicationType } from 'types/application'
 
 export const TrashPackage: ICompleteApplication = {
   name: 'Trash',
-  id: 'os-trash',
   type: ApplicationType.Native,
   icon: '/images/icons/empty-trash.svg',
   autorun: false,
@@ -23,5 +22,6 @@ export const TrashPackage: ICompleteApplication = {
 }
 
 export function isTrashApp(app: Application): boolean {
-  return app.$.id === TrashPackage.id
+  return false
+  // return app.$.id2 === TrashPackage.id2
 }

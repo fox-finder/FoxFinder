@@ -2,6 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { observer, Observer } from 'mobx-react'
+import { observable, computed, IObservableValue, IComputedValue } from 'mobx';
 import { Rnd } from 'react-rnd'
 import { Spring } from 'react-spring/renderprops'
 import { Application } from 'engines/application'
@@ -15,7 +16,7 @@ export function getAppWindowDragBoxClassName() {
 }
 
 export function getAppWindowHandleClassName(app: Application) {
-  return app.$.id + '-' + 'handle'
+  return `app-${app.uuid}-handle`
 }
 
 export function getAppWindowResizingProps(app: Application) {
@@ -69,6 +70,7 @@ function getAppWindowSpringTo(app: Application) {
 }
 
 export const AppWindow = observer(({ app, hidden }: { app: Application, hidden: boolean }) => {
+  const isDragging: IObservableValue<boolean> = observable.box(false)
   return (
     <Spring
       // 仅处理全屏动画
@@ -101,7 +103,11 @@ export const AppWindow = observer(({ app, hidden }: { app: Application, hidden: 
               x: springProps.x,
               y: springProps.y
             }}
+            onDragStart={() => {
+              isDragging.set(true)
+            }}
             onDragStop={(_, position) => {
+              isDragging.set(false)
               app.updateKeepRigid(true)
               app.repositionWindow(position)
             }}
@@ -116,11 +122,13 @@ export const AppWindow = observer(({ app, hidden }: { app: Application, hidden: 
           >
             <Window
               title={app.$.name}
+              icon={app.$.icon}
               handleClassName={getAppWindowHandleClassName(app)}
               border={app.$.window && app.$.window.border}
               maximized={app.isWindowMax}
               actived={app.isActivated}
               locking={app.isLockng}
+              dragging={isDragging.get()}
               onClose={app.close}
               onActivate={app.activate}
               onMinimize={app.hiddenWindow}

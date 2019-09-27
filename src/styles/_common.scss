@@ -11,3 +11,28 @@
   animation: none !important;
   transition: none !important;
 }
+
+.fade-normal {
+  @include visibility-transition();
+}
+
+.fade-fast {
+  @include visibility-transition($transition-time-fast);
+}
+
+.fade-slow {
+  @include visibility-transition($transition-time-slow);
+}
+
+.fade-enter {
+  @include hidden();
+}
+.fade-enter-active {
+  @include visible();
+}
+.fade-exit {
+  @include visible();
+}
+.fade-exit-active {
+  @include hidden();
+}

@@ -1,59 +1,63 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import { observable, IObservableValue } from 'mobx';
+import { observable, computed, IObservableValue, IComputedValue } from 'mobx';
 import { observer } from 'mobx-react';
-import { option } from 'engines/option'
 import { process } from 'engines/process'
-import { Application } from 'engines/application';
-import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc'
-import { Tipbox } from 'bases/layouts/tipbox'
-import { Tooltip } from 'bases/layouts/tipbox/Tooltip'
+import { Application } from 'engines/application'
+import { SortableContainer, SortableElement, SortStart } from 'react-sortable-hoc'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { TRANSITION_NAME_FADE_SLOW, TRANSITION_DURATION_SLOW } from 'constants/animation'
+import { Tooltip, Title, isHitMousedownEventFromTooltipContainer } from 'bases/layouts/tooltip'
+import { MenuList } from 'bases/layouts/menu'
+import { Icon } from 'bases/materials/icon'
+import { getAppContextMenuList } from './menu'
+import { sortingIndex, tippingIndex, isDisabledTooltip } from '../'
 import styles from './dock.module.scss'
 import headerStyles from '../header.module.scss'
 
 interface DockItemProps {
   app: Application
-  id: string
+  index: number
+  tipIndex: number
 }
 
-const sortableContainerRef = React.createRef<HTMLUListElement>()
+const sortableContainerRef = React.createRef<TransitionGroup>()
 
-export const isSorting: IObservableValue<boolean> = observable.box(false)
-
-export const DockItem: React.FC<DockItemProps> = observer(({ app, id }) => {
-
-  const PopoverMenu = (
-    <div className={styles.dockAppPopoverName}>
-      我是上下文菜单
-    </div>
-  )
-
+export const DockItem: React.FC<DockItemProps> = observer(({ app, index, tipIndex }) => {
   return (
-    <Tipbox
-      title={app.$.name}
-      content={PopoverMenu}
-      disabled={isSorting.get()}
-      contentInteractive={true}
-      id={id}
+    <Tooltip
+      tag="li"
+      onClickCapture={app.run}
+      className={classNames(
+        styles.item,
+        headerStyles.action,
+        app.isRunning && styles.running,
+        app.isErring && styles.erring
+      )}
+      hover={{
+        content: <Title>{app.$.name}</Title>,
+        interactive: false
+      }}
+      context={{
+        content: <MenuList list={getAppContextMenuList(app)} />,
+        interactive: true,
+        hideOnClick: true,
+        onOpen: () => tippingIndex.set(tipIndex),
+        onClose: () => tippingIndex.set(null),
+      }}
+      disabled={
+        isDisabledTooltip.get() &&
+        sortingIndex.get() !== index &&
+        tippingIndex.get() !== tipIndex
+      }
     >
-      <li
-        onClickCapture={app.run}
-        className={classNames(
-          styles.item,
-          headerStyles.action,
-          app.isRunning && styles.running,
-          app.isErring && styles.erring
-        )}
-      >
-        <img
-          draggable={false}
-          src={app.$.icon}
-          className={classNames(headerStyles.svgIcon, styles.icon)}
-        />
-        <span className={styles.indicator} />
-        <Tooltip className={styles.tooltip}>{app.$.name}</Tooltip>
-      </li>
-    </Tipbox>
+      <Icon
+        src={app.$.icon}
+        className={classNames(headerStyles.svgIcon, styles.icon)}
+      />
+      <span className={styles.indicator} />
+    </Tooltip>
   )
 })
 
@@ -63,27 +67,36 @@ const SortableItem = SortableElement(observer((props: DockItemProps) => {
 
 const SortableList = SortableContainer(observer(({ apps }: { apps: Application[] }) => {
   return (
-    <ul className={styles.dockList} ref={sortableContainerRef}>
-      {apps.map((app: Application, index: number) => (
-        <SortableItem
-          index={index}
-          key={index}
-          app={app}
-          id={`dock-pin-app-${index}`}
-        />
-      ))}
-    </ul>
+    <TransitionGroup component="ul" className={styles.dockList} ref={sortableContainerRef}>
+      {apps.map(
+        (app: Application, index: number) => (
+          <CSSTransition
+            key={app.uuid}
+            timeout={TRANSITION_DURATION_SLOW}
+            classNames={TRANSITION_NAME_FADE_SLOW}
+          >
+            <SortableItem
+              index={index}
+              key={app.uuid}
+              app={app}
+              tipIndex={index}
+            />
+          </CSSTransition>
+        )
+      )}
+    </TransitionGroup>
   )
 }))
 
 export const DockFixedAppList: React.FC = observer(() => {
 
-  function onSortStart() {
-    isSorting.set(true);
+  function onSortStart({ index }: SortStart) {
+    console.log('data', index)
+    sortingIndex.set(index);
   }
 
   function onSortEnd({ oldIndex, newIndex }: { oldIndex: number, newIndex: number }) {
-    isSorting.set(false);
+    sortingIndex.set(null);
     console.log('拖动结束', oldIndex, newIndex)
   }
 
@@ -96,25 +109,37 @@ export const DockFixedAppList: React.FC = observer(() => {
       helperClass={styles.dragging}
       apps={process.pinBerthApps.slice()}
       lockOffset={["0%", "0%"]}
-      helperContainer={() => sortableContainerRef.current as HTMLUListElement}
       onSortEnd={onSortEnd}
       onSortStart={onSortStart}
+      helperContainer={() => {
+        return ReactDOM.findDOMNode(sortableContainerRef.current) as HTMLUListElement
+      }}
+      shouldCancelStart={(event: any) => {
+        return event.composedPath && isHitMousedownEventFromTooltipContainer(event)
+      }}
     />
   )
 })
 
 export const DockRunningAppList: React.FC = observer(() => {
   return (
-    <ul className={styles.dockList}>
+    <TransitionGroup component="ul" className={styles.dockList}>
       {process.runningAppsWithoutBerthApps.slice().map(
         (app: Application, index: number) => (
-          <DockItem
-            app={app}
-            key={index}
-            id={`dock-running-app-${index}`}
-          />
+          <CSSTransition
+            key={app.uuid}
+            timeout={TRANSITION_DURATION_SLOW}
+            classNames={TRANSITION_NAME_FADE_SLOW}
+          >
+            <DockItem
+              app={app}
+              key={app.uuid}
+              index={index}
+              tipIndex={process.pinBerthApps.length + index}
+            />
+          </CSSTransition>
         )
       )}
-    </ul>
+    </TransitionGroup>
   )
 })

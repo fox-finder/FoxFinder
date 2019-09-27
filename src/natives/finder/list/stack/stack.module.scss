@@ -46,7 +46,7 @@
 
     &.selected,
     &:hover {
-      background-color: $reverse-translucent;
+      background-color: $theme-background-fullness-2;
       border-radius: $radius;
     }
 
@@ -66,7 +66,7 @@
       img {
         width: $desktop-icon-size-normal;
         height: $desktop-icon-size-normal;
-        filter: drop-shadow(0px 0px 1px $reverse-translucent);
+        filter: drop-shadow(0px 0px 1px $theme-background-fullness-2);
       }
 
       .indicator {

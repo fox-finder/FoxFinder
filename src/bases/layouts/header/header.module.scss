@@ -20,16 +20,19 @@
     align-items: center;
     width: auto;
     pointer-events: all;
-    background-color: rgba($white, 0.2);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 6px;
+    background-color: $theme-background-fullness-4;
+    border: 1px solid rgba($white, 0.1);
+    border-top-width: 0;
     border-bottom-left-radius: $radius;
     border-bottom-right-radius: $radius;
+    transition: background-color $transition-time;
+    @include box-shadow(0.5, 10px);
   }
 
   .svgIcon {
     width: auto;
     height: 60%;
-    @include shadow-icon();
+    @include drop-shadow(0.4);
   }
 
   .separator {
@@ -37,22 +40,21 @@
     width: 1px;
     height: 70%;
     margin: 0 $gap;
-    background-color: rgba($white, 0.1);
+    background-color: $theme-background-fullness-3;
+
+    &:global(-enter),
+    &:global(-enter-active),
+    &:global(-exit) {
+      @include visible();
+    }
+
+    &:global(-exit-done) {
+      @include hidden();
+    }
   }
 
   .action {
     cursor: pointer;
-
-    .svgIcon {
-      filter: brightness(0.9);
-      transition: filter .25s;
-    }
-
-    &:hover {
-      .svgIcon {
-        filter: brightness(1.1);
-      }
-    }
   }
 
   .launch {
@@ -69,25 +71,125 @@
     align-items: center;
     text-align: center;
     height: 100%;
-    @include shadow-text();
 
     .item {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      .content {
+        @include title-shadow();
+      }
     }
 
     .time {
       width: $gap * 18;
       padding: 0 $gap;
-      font-family: Digital7Mono;
-      font-size: 1.1rem;
+
+      .content {
+        font-family: Digital7Mono;
+        font-size: 1.3rem;
+      }
+
+      .calendar {
+        font-family: DINRegular;
+        background-color: transparent;
+        border: none;
+        padding: $gap;
+
+        :global(.react-calendar__navigation) {
+          height: $gap * 3;
+          margin: 0;
+
+          button {
+            font-weight: 900;
+          }
+
+          :global(.react-calendar__navigation__arrow) {
+            font-size: $font-size-h6;
+          }
+
+          :global(.react-calendar__navigation__label) {
+            font-size: 1.1rem;
+          }
+        }
+
+        :global(.react-calendar__month-view__weekdays) {
+          height: $gap * 3;
+          margin-top: $gap;
+          margin-bottom: $gap / 2;
+        }
+
+        :global(abbr) {
+          text-decoration: none;
+        }
+
+        :global(button) {
+          color: $theme-text;
+          border-radius: $radius;
+          transition: background-color $transition-time-fast;
+
+          &[disabled],
+          &:focus {
+            background-color: transparent;
+          }
+
+          &[disabled] {
+            opacity: .5;
+          }
+
+          &:enabled:hover {
+            background-color: $background-gray;
+          }
+
+          &:global(.react-calendar__month-view__days__day) {
+            font-weight: bold;
+          }
+
+          &:global(.react-calendar__month-view__days__day--weekend) {
+            color: $error;
+          }
+
+          &:global(.react-calendar__month-view__days__day--neighboringMonth) {
+            color: $theme-text-light;
+            opacity: .5;
+          }
+
+          &:global(.react-calendar__tile) {
+            padding: $gap 0;
+
+            &:global(.react-calendar__century-view__decades__decade),
+            &:global(.react-calendar__decade-view__years__year),
+            &:global(.react-calendar__year-view__months__month) {
+              margin-top: $gap;
+            }
+          }
+
+          &:global(.react-calendar__tile--hasActive),
+          &:global(.react-calendar__tile--active) {
+            background-color: $primary;
+            color: $text-reversal;
+
+            &:hover {
+              background-color: $primary;
+            }
+          }
+        }
+      }
+    }
+
+    .theme {
+      width: $gap * 4;
+      margin-left: -$gap / 2;
+
+      :global(.icon-sun) {
+        font-size: 1.2em;
+      }
     }
 
     .off {
-      padding-left: $gap;
-      padding-right: $gap;
+      width: $gap * 4;
     }
 
     .screen {

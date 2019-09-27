@@ -2,64 +2,6 @@
 // TODO: 待优化合并重复项
 @import 'styles/init.scss';
 
-// os tooltip
-.os-tooltip {
-  position: absolute;
-  display: block;
-  width: auto;
-  padding: 0;
-  margin: 0;
-
-  &.bottom {
-    top: 100%;
-  }
-
-  &.top {
-    bottom: 100%;
-  }
-
-  &.left {
-    right: 100%;
-  }
-
-  &.right {
-    left: 100%;
-  }
-
-  .tooltip-arrow {
-    fill: $normal-translucent;
-    width: 100%;
-    height: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-
-    svg {
-      width: 18px;
-      height: 50%;
-    }
-  }
-
-  .tooltip-content {
-    padding: 0;
-    margin: 0;
-    z-index: 0;
-    border-radius: $radius;
-    background-color: $normal-translucent;
-    @include backdrop-blur();
-    @include shadow-box();
-    $name-height: $gap * 2.618;
-    padding: $gap ($gap * 2);
-    padding: 0 ($name-height / 4);
-    color: $reverse;
-    display: block;
-    width: auto;
-    height: $name-height;
-    line-height: $name-height;
-    white-space: nowrap;
-  }
-}
-
 // tippy tooltip
 .os-tipbox {
   display: block;
@@ -77,7 +19,7 @@
 
     svg {
       // box-shadow: rgba($black, 0.4) 0px -2px 4px;
-      fill: $normal-translucent;
+      fill: $theme-background-fullness-1;
       filter: drop-shadow(0px -1px 4px rgba($black, 0.4));
       @include backdrop-blur();
     }
@@ -88,15 +30,15 @@
     margin: 0;
     z-index: 0;
     border-radius: $radius;
-    background-color: $normal-translucent;
+    background-color: $theme-background-fullness-1;
     @include backdrop-blur();
-    @include shadow-box();
+    @include box-shadow();
 
     .tooltip {
       $name-height: $gap * 2.618;
       padding: $gap ($gap * 2);
       padding: 0 ($name-height / 4);
-      color: $reverse;
+      color: $theme-reverse;
       display: block;
       width: auto;
       height: $name-height;

@@ -7,7 +7,7 @@ type IMousedownListener = (event: MouseEvent) => any;
 
 export class Event {
 
-  private mousedownListeners: IMousedownListener[] = []
+  private mouseDownListeners: IMousedownListener[] = []
 
   @observable isFullscreen: boolean = false;
   @observable isVisible: boolean = true;
@@ -18,8 +18,8 @@ export class Event {
     this.watchFullscreen()
   }
   
-  @action.bound addMousedownListener(listener: IMousedownListener) {
-    this.mousedownListeners.push(listener)
+  @action.bound addMouseDownListener(listener: IMousedownListener) {
+    this.mouseDownListeners.push(listener)
   }
   
   @action.bound fullscreen() {
@@ -48,7 +48,7 @@ export class Event {
 
   @action private watchMousedown() {
     document.addEventListener('mousedown', event => {
-      this.mousedownListeners.forEach(listener => listener(event));
+      this.mouseDownListeners.forEach(listener => listener(event));
     }, false)
   }
 

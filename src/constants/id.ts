@@ -1,2 +1,2 @@
 
-export const MENU_ID = 'os-menu'
+export const MENU_ID = 'menu'

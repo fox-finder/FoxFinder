@@ -24,8 +24,13 @@
   font-size: 1em;
 }
 
-body {
+html {
   font-size: $font-size-base;
+}
+
+body {
+  color: $text;
+  font-size: 1rem;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,18 +73,18 @@ select:-webkit-autofill {
 }
 
 ::selection {
-  background: $normal; 
-  color: $reverse;
+  background: $theme-normal; 
+  color: $theme-reverse;
 }
 
 ::-moz-selection {
-  background: $normal; 
-  color: $reverse;
+  background: $theme-normal; 
+  color: $theme-reverse;
 }
 
 ::-webkit-selection {
-  background: $normal; 
-  color: $reverse;
+  background: $theme-normal; 
+  color: $theme-reverse;
 }
 
 ::-webkit-scrollbar {

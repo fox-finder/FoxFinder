@@ -1,14 +1,22 @@
 
 import React from 'react';
 import classNames from 'classnames'
+import { observer } from 'mobx-react'
 import { IWindowProps } from '.'
 import styles from './window.module.scss'
 
-export const Naked: React.FC<IWindowProps> = (props) => {
+export const Naked: React.FC<IWindowProps> = observer(props => {
   return (
     <div
-      className={classNames(styles.window, styles.naked, props.locking && styles.lock)}
-      onMouseDown={() => props.onActivate && props.onActivate()}
+      onMouseDown={() => {
+        props.onActivate && props.onActivate()
+      }}
+      className={classNames(
+        styles.window,
+        styles.naked,
+        props.locking && styles.lock,
+        props.dragging && styles.dragging
+      )}
     >
       <div className={classNames(props.handleClassName, styles.handle)}>
         <span
@@ -44,4 +52,4 @@ export const Naked: React.FC<IWindowProps> = (props) => {
       </div>
     </div>
   )
-}
+})

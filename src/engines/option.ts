@@ -6,7 +6,7 @@ import { ApplicationComponent, IApplicationWindowSize } from 'types/application'
 
 // Global default options
 export const GLOBAL_OPTIONS = {
-  defaultIconSize: 53,
+  defaultIconSize: 51,
   defaultBerthHeight: 42,
   minWindowWidth: 180,
   minWindowHeight: 130,
@@ -71,17 +71,16 @@ export class Option {
     // wallpaper: '/images/wallpapers/blake-connally-B3l0g6HLxr8-unsplash.jpg',
     // wallpaper: '/images/wallpapers/elephant-1822636_1920.jpg',
     // wallpaper: '/images/wallpapers/milky-way-1023340_1920.jpg',
-    // wallpaper: '/images/wallpapers/nature-3082832_1920.jpg',
+    wallpaper: '/images/wallpapers/nature-3082832_1920.jpg',
     // wallpaper: '/images/wallpapers/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg',
     // wallpaper: '/images/wallpapers/flat-3840x2160-forest-deer-4k-5k-iphone-wallpaper-abstract-11925.jpg',
     // wallpaper: '/images/wallpapers/alabama-hills-5120x2880-5k-4k-wallpaper-california-us-mountains-sky-4887.jpg',
-    wallpaper: '/images/wallpapers/night-sky-3840x2160-5k-4k-wallpaper-stars-mountains-bridge-new-zealand-547.jpg',
+    // wallpaper: '/images/wallpapers/night-sky-3840x2160-5k-4k-wallpaper-stars-mountains-bridge-new-zealand-547.jpg',
   }
 
   constructor() {
-    this.updateThemeMode(this.personalize.darkTheme)
+    this.updateThemeMode(true)
   }
-
 
   @action.bound updateThemeMode(darkTheme: boolean) {
     this.personalize.darkTheme = darkTheme

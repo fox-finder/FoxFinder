@@ -16,7 +16,6 @@ export const Monitor: React.FC<IAppRendererProps> = ({ app }) => {
 
 export const MonitorPackage: ICompleteApplication = {
   name: 'Monitor',
-  id: 'os-monitor',
   type: ApplicationType.Native,
   icon: '/images/icons/dashboard.svg',
   component: Monitor,

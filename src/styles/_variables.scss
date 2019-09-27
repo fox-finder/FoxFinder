@@ -1,22 +1,56 @@
 
-$iconfont-url: '//at.alicdn.com/t/font_190798_naqdhyni7tq.css';
-
-// colors
-$white: #ffffff;
-$black: #000000;
-$grey: #555555;
-$primary: #3277e2;
-
-$info: #3c77e5;
-$success: #61ca57;
-$error: #ee6c60;
-$warning: #f6c050;
+$iconfont-url: '//at.alicdn.com/t/font_190798_022nkqiovol8.css';
 
 // font
 $monospace: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 $serif: Georgia, Times, 'Times New Roman', serif;
 $sans-serif: specialSymbol, DINRegular, -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
 $font-family: $sans-serif;
+
+// base colors
+$black-triplet: 0, 0, 0;
+$white-triplet: 255, 255, 255;
+
+$white: rgb($white-triplet...);
+$gray-1: #ECECEC;
+$gray-2: #D7D7D7;
+$gray-3: #C2C2C2;
+$gray-4: #B7B7B7;
+$gray-5: #aaaaaa;
+$gray-6: #999999;
+$gray-7: #777777;
+$gray-8: #555555;
+$gray-9: #333333;
+$black: rgb($black-triplet...);
+
+$gray-absolute: $gray-6;
+
+$primary: #3277e2;
+$success: #28a745;
+$error: #dc3545;
+$warning: #ffc107;
+$info: #1a6ae2;
+
+// text colors
+$text: $gray-9;
+$text-reversal: $gray-1;
+$text-dark: $black;
+$text-light: $gray-7;
+$background-gray: rgba($gray-absolute, 0.3);
+
+// theme colors
+$theme-normal: var(--normal);
+$theme-reverse: var(--reverse);
+$theme-normal-triplet: var(--normal-triplet);
+$theme-reverse-triplet: var(--reverse-triplet);
+$theme-text: var(--text);
+$theme-text-dark: var(--text-dark);
+$theme-text-light: var(--text-light);
+$theme-background-fullness-1: var(--background-fullness-1);
+$theme-background-fullness-2: var(--background-fullness-2);
+$theme-background-fullness-3: var(--background-fullness-3);
+$theme-background-fullness-4: var(--background-fullness-4);
+$theme-background-fullness-5: var(--background-fullness-5);
 
 // typography
 $font-size-base: 14px;
@@ -30,29 +64,16 @@ $font-size-h5: 1rem;
 $font-size-h6: $font-size-small;
 $line-height-base: 1.4;
 
-// os colors
-$normal: var(--normal);
-$normal-translucent: var(--normal-translucent);
-$reverse: var(--reverse);
-$reverse-translucent: var(--reverse-translucent);
-
-$body-bg: var(--body-bg);
-$window-bg: var(--window-bg);
-$window-hover-bg: var(--window-hover-bg);
-
-// text
-$text: var(--reverse);
-$text-reversal: var(--normal);
-$text-dark: var(--text-dark);
-$text-darken: var(--text-darken);
-$text-light: var(--text-light);
-$secondary: var(--text-secondary);
-$disabled: var(--text-disabled);
-$dividers: var(--text-dividers);
-
 // layout
-$gap: 1rem * 0.618;
+$golden-ratio: 0.618;
+$gap: 10px;
+$gap-golden: $gap * $golden-ratio;
 $radius: 4px;
+
+// time
+$transition-time: 0.25s;
+$transition-time-fast: 0.1s;
+$transition-time-slow: 0.46s;
 
 // size
 $header-height: 2.6rem;

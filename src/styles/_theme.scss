@@ -1,9 +1,36 @@
 
-@mixin create-theme($normal, $reverse) {
+@mixin create-theme(
+  $normal,
+  $reverse,
+  $normal-triplet,
+  $reverse-triplet,
+  $text,
+  $text-dark,
+  $text-light,
+  $background-1,
+  $background-2,
+  $background-3,
+  $background-4,
+  $background-5,
+) {
+
+  // base
   #{--normal}: $normal;
   #{--reverse}: $reverse;
-  #{--normal-translucent}: rgba($normal, 0.3);
-  #{--reverse-translucent}: rgba($reverse, 0.3);
+  #{--normal-triplet}: $normal-triplet;
+  #{--reverse-triplet}: $reverse-triplet;
+
+  // text
+  #{--text}: $text;
+  #{--text-dark}: $text-dark;
+  #{--text-light}: $text-light;
+
+  // background
+  #{--background-fullness-1}: $background-1;
+  #{--background-fullness-2}: $background-2;
+  #{--background-fullness-3}: $background-3;
+  #{--background-fullness-4}: $background-4;
+  #{--background-fullness-5}: $background-5;
 }
 
 body {
@@ -11,14 +38,34 @@ body {
   &.default {
     @include create-theme(
       $normal: $white,
-      $reverse: $black
+      $reverse: $black,
+      $normal-triplet: $white-triplet,
+      $reverse-triplet: $black-triplet,
+      $text: $text,
+      $text-dark: $text-dark,
+      $text-light: $text-light,
+      $background-1: rgba($gray-1, 0.8),
+      $background-2: rgba($gray-2, 0.6),
+      $background-3: rgba($white, 0.3),
+      $background-4: rgba($gray-3, 0.3),
+      $background-5: rgba($gray-1, 0.1),
     )
   }
 
   &.dark {
     @include create-theme(
       $normal: $black,
-      $reverse: $white
+      $reverse: $white,
+      $normal-triplet: $black-triplet,
+      $reverse-triplet: $white-triplet,
+      $text: $gray-1,
+      $text-dark: $white,
+      $text-light: $gray-4,
+      $background-1: rgba($gray-9, 0.8),
+      $background-2: rgba($gray-8, 0.6),
+      $background-3: rgba($black, 0.2),
+      $background-4: rgba($gray-7, 0.4),
+      $background-5: rgba($gray-9, 0.1),
     )
   }
 }

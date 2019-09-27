@@ -22,7 +22,6 @@ export const Finder: React.FC<IAppRendererProps> = observer((({ app }) => {
 
 export const FinderPackage: ICompleteApplication = {
   name: 'Finder',
-  id: 'os-finder',
   type: ApplicationType.Native,
   icon: '/images/icons/exploer.svg',
   component: Finder,
