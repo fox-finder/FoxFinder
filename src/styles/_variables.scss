@@ -43,14 +43,16 @@ $theme-normal: var(--normal);
 $theme-reverse: var(--reverse);
 $theme-normal-triplet: var(--normal-triplet);
 $theme-reverse-triplet: var(--reverse-triplet);
-$theme-text: var(--text);
-$theme-text-dark: var(--text-dark);
-$theme-text-light: var(--text-light);
+
 $theme-background-fullness-1: var(--background-fullness-1);
 $theme-background-fullness-2: var(--background-fullness-2);
 $theme-background-fullness-3: var(--background-fullness-3);
 $theme-background-fullness-4: var(--background-fullness-4);
 $theme-background-fullness-5: var(--background-fullness-5);
+
+$theme-text: var(--text);
+$theme-text-dark: var(--text-dark);
+$theme-text-light: var(--text-light);
 
 // typography
 $font-size-base: 14px;

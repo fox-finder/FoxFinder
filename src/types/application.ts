@@ -1,5 +1,6 @@
 
 import { Position } from 'react-rnd'
+import { MenuIcon, IMenuList } from 'bases/features/menu'
 
 export type ApplicationComponent = React.ComponentClass<any> | React.FunctionComponent<any>
 
@@ -54,9 +55,10 @@ export interface IStandardApplication {
   }
 }
 
+// TODO 这个应该是 $$ 里的内容
 export interface INecessaryApplication {
   component?: ApplicationComponent // Native app component
-  iconContextMenu?: [] // Icon context menu list
+  iconContextMenu?: IMenuList // Icon context menu list
   autorun: boolean // Autorun when bootstrap
   protected: boolean // 是否是系统 app，受到操作保护，保证应用不被删除，仅可执行有限操作...
   pinDesktop: boolean // 是否贴在桌面

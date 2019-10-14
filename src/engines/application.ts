@@ -34,6 +34,9 @@ export class Application {
    // meta data
   @observable $!: ICompleteApplication
 
+  // system data
+  // @observable $$!: ICompleteApplication
+
    // run state
   @observable state!: ApplicationState
 
@@ -121,19 +124,17 @@ export class Application {
       return
     }
 
-    // 程序已在运行中 && 窗口已激活 && 可见 -> 则缩小
-    if (this.isRunning && this.isActivated && this.isWindowVisible) {
-      this.hiddenWindow()
-      return
-    }
-
-    // 首次运行 -> 重置窗口
+    // first run -> reset window
     if (!this.isRunning) {
       this.window.state = this.getDefaultWindowSize()
     }
-    // 运行（打开窗口）-> 显示窗口 -> 激活窗口及 zindex
-    this.state = ApplicationState.Running
+    // run（open window）
+    if (this.state === ApplicationState.Dormancy) {
+      this.state = ApplicationState.Running
+    }
+    // visible window
     this.visibleWindow()
+    // activate window
     this.activate()
   }
 
@@ -141,6 +142,21 @@ export class Application {
     // 休眠状态（关闭窗口） -> 重置窗口
     // TODO: 要失去焦点
     this.state = ApplicationState.Dormancy
+  }
+
+  @action.bound toggle(): void {
+    // dormancy -> run
+    if (!this.isRunning) {
+      this.run()
+      return
+    }
+
+    // running -> hidden | run
+    if (!this.isActivated || !this.isWindowVisible) {
+      this.run()
+    } else {
+      this.hiddenWindow()
+    }
   }
 
   @action.bound activate() {

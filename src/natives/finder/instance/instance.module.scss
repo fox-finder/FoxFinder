@@ -1,0 +1,34 @@
+
+@import 'styles/init.scss';
+
+.finderInstance {
+  height: 100%;
+  display: flex;
+
+  .sidebar {
+    width: 200px;
+    // height: 0;
+    // overflow-y: auto;
+    border-right: 1px solid $theme-background-fullness-2;
+  }
+
+  .main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .actionBar {
+      height: 50px;
+      border-bottom: 1px solid $theme-background-fullness-2;
+    }
+
+    .fileMain {
+      flex-grow: 1;
+      width: 100%;
+      height: 0;
+      overflow-y: auto;
+      background-color: $theme-background-fullness-3;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+
+@import 'styles/init.scss';
+
+.icons {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: ($gap * 2) $gap;
+
+  &.rightStart {
+    flex-wrap: wrap-reverse;
+    align-content: flex-start;
+  }
+
+  .item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $gap;
+    margin: $gap;
+    width: auto;
+    height: auto;
+    text-align: center;
+    border-radius: $radius;
+
+    &.selected,
+    &:hover {
+      background-color: $theme-background-fullness-4;
+      box-shadow: 0 0 0 1px $theme-background-fullness-3;
+    }
+
+    &.running {
+      .icon {
+        .indicator {
+          @include visible();
+        }
+      }
+    }
+
+    .icon {
+      position: relative;
+      margin-top: 0;
+      margin-bottom: $gap;
+
+      img {
+        @include drop-shadow();
+      }
+
+      .indicator {
+        position: absolute;
+        bottom: -5px;
+        right: calc(50% - 2px);
+        display: block;
+        background-color: $success;
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        @include visibility-transition();
+        @include hidden();
+        @include box-shadow();
+      }
+    }
+
+    .name {
+      margin-top: 0;
+      margin-bottom: 0;
+      min-width: 60px;
+      max-width: 80px;
+      @include text-overflow();
+      @include title-shadow();
+    }
+  }
+}

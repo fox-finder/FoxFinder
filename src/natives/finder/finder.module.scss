@@ -2,35 +2,17 @@
 @import 'styles/init.scss';
 
 .finder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  .sidebarBox {}
+  .tab {
+    height: 35px;
+    border-bottom: 1px solid $theme-background-fullness-2;
+    overflow: hidden;
+  }
 
-  .mainBox {
-
-    .fileList {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-
-      .item {
-        list-style: none;
-        padding: $gap;
-        margin: $gap;
-        text-align: center;
-        background-color: #c3c3c3;
-
-        .icon {
-          img {
-            width: 60px;
-          }
-        }
-
-        .name {
-
-        }
-      }
-    }
+  .content {
+    flex-grow: 1;
   }
 }

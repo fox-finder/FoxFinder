@@ -7,9 +7,9 @@ import { option, Option } from 'engines/option'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragLayer } from 'react-dnd'
 import { DndProvider } from 'react-dnd'
-import { Header } from 'bases/layouts/header';
-import { Desktop } from 'bases/layouts/desktop'
-import { MenuProvider } from 'bases/layouts/menu'
+import { Header } from 'bases/features/header';
+import { Desktop } from 'bases/features/desktop'
+import { MenuProvider } from 'bases/features/menu'
 
 import 'normalize.css'
 import './styles/os.scss'

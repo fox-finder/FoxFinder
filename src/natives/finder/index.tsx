@@ -2,20 +2,20 @@
 import React from 'react';
 import { observer } from 'mobx-react'
 import { IAppRendererProps } from 'bases/renderers';
+import { MenuIcon, IMenuList } from 'bases/features/menu'
 import { ICompleteApplication, ApplicationType } from 'types/application'
-import { FinderAside } from './Aside'
-import { FinderMain } from './Main'
+import { getIconPath } from 'transforms/icon'
+import { FinderInstance } from './instance'
 import styles from './finder.module.scss'
 
+// 这里用于管理整个 finder 的 store，管理 Tab、显示与隐藏
 export const Finder: React.FC<IAppRendererProps> = observer((({ app }) => {
-
   return (
     <div id="finder" className={styles.finder}>
-      <span>I am Finder app component, {JSON.stringify(app.$)}</span>
-      <hr/>
-      <FinderAside />
-      <div>这里是一个大 tab</div>
-      <FinderMain />
+      <div className={styles.tab}> 这里是切换栏 {JSON.stringify(app.$)}</div>
+      <div className={styles.content}>
+        <FinderInstance />
+      </div>
     </div>
   );
 }))
@@ -25,7 +25,7 @@ export const FinderPackage: ICompleteApplication = {
   type: ApplicationType.Native,
   icon: '/images/icons/exploer.svg',
   component: Finder,
-  autorun: false,
+  autorun: true,
   pinDesktop: true,
   pinBerth: true,
   protected: true,
@@ -35,5 +35,13 @@ export const FinderPackage: ICompleteApplication = {
   },
   berthOrder: 0,
   desktopOrder: 0,
-  iconContextMenu: []
+  iconContextMenu: [
+    {
+      label: '新建 Finder 窗口',
+      icon: <MenuIcon svg={getIconPath('replay')} />,
+      onClick() {
+        console.log('到菜单')
+      }
+    }
+  ]
 }

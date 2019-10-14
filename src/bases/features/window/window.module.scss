@@ -1,0 +1,197 @@
+
+@import 'styles/init.scss';
+
+.window {
+  width: 100%;
+  height: 100%;
+  border-radius: $radius;
+  overflow: hidden;
+
+  &.normal {
+    $handle-height: $gap * 3.5;
+    background-color: $theme-normal;
+    box-shadow:
+      rgba($black, 0.31) 0px 0px 1px,
+      rgba($black, 0.18) 0px 0px 5px,
+      rgba($black, 0.3) 0px 8px 50px;
+
+    &.actived {
+      box-shadow:
+        rgba($black, 0.26) 0px 0px 1px,
+        rgba($black, 0.16) 0px 0px 5px,
+        rgba($black, 0.06) 0px 8px 10px,
+        rgba($black, 0.48) 0px 25px 65px;
+    }
+
+    .content {
+      color: $theme-text;
+      height: calc(100% - #{$handle-height});
+      background-color: $theme-background-fullness-2;
+    }
+
+    .handle {
+      height: $handle-height;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $theme-background-fullness-1;
+      border-bottom: 1px solid $theme-background-fullness-2;
+      padding: 0 $gap;
+      color: $theme-text;
+
+      &.leftAction {
+        flex-direction: row-reverse;
+
+        .actions {
+          flex-direction: row-reverse;
+          .item:first-child {
+            margin: 0;
+          }
+        }
+      }
+
+      &.rightAction {
+        flex-direction: row;
+
+        .actions {
+          flex-direction: row;
+          .item:last-child {
+            margin: 0;
+          }
+        }
+      }
+
+      .actions {
+        display: flex;
+        
+        &:hover {
+          .item {
+            svg {
+              opacity: 1;
+            }
+          }
+        }
+
+        &:hover,
+        &.actived {
+          .item {
+            &.close {
+              background-color: $error;
+            }
+  
+            &.min {
+              background-color: $warning;
+            }
+  
+            &.toggle {
+              background-color: $success;
+            }
+          }
+        }
+
+        .item {
+          $size: $gap * 1.6;
+          width: $size;
+          height: $size;
+          line-height: $size;
+          text-align: center;
+          border-radius: 100%;
+          margin-right: $gap;
+          background-color: rgb(221, 221, 221);
+          border-color: rgb(208, 208, 208);
+
+          svg {
+            opacity: 0;
+          }
+        }
+      }
+
+      .name {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          $size: $gap * 2;
+          width: $size;
+          height: $size;
+          margin-right: $gap / 2;
+        }
+      }
+
+      .extra {
+        display: block;
+      }
+    }
+  }
+
+  &.naked {
+    transition: background .166s;
+  
+    &.lock {
+      .handle {
+        cursor: no-drop;
+        background: none;
+      }
+    }
+  
+    &.dragging,
+    &:hover {
+      @include backdrop-blur();
+      background: $theme-background-fullness-3;
+  
+      .handle {
+        visibility: visible;
+      }
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .handle {
+      $size: $gap * 3;
+      visibility: hidden;
+      background: $theme-background-fullness-3;
+      height: $size;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      display: block;
+      cursor: move;
+  
+      .close {
+        float: left;
+      }
+  
+      .pin {
+        float: right;
+      }
+  
+      .close,
+      .pin {
+        width: $size;
+        height: $size;
+        padding: $radius;
+        cursor: pointer;
+  
+        &:hover {
+          background: $theme-background-fullness-3;
+        }
+  
+        &.hidden {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+  
+      .icon {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}
